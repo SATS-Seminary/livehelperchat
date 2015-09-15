@@ -6,6 +6,7 @@ if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_p
 	try {
 		$theme = erLhAbstractModelWidgetTheme::fetch($Params['user_parameters_unordered']['theme']);
 		$Result['theme'] = $theme;	
+		$tpl->set('theme',$theme);
 	} catch (Exception $e) {
 
 	}
@@ -14,11 +15,16 @@ if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_p
 	if ($defaultTheme > 0) {
 		try {
 			$theme = erLhAbstractModelWidgetTheme::fetch($defaultTheme);
-			$Result['theme'] = $theme;			
+			$Result['theme'] = $theme;		
+			$tpl->set('theme',$theme);
 		} catch (Exception $e) {
 				
 		}
 	}
+}
+
+if (isset($Params['user_parameters_unordered']['er']) && (int)$Params['user_parameters_unordered']['er'] == 1){
+    $Result['er'] = true;  
 }
 
 try {
@@ -32,6 +38,8 @@ try {
         $tpl->set('chat',$chat);
 
         erLhcoreClassChat::setTimeZoneByChat($chat);
+        
+        $tpl->set('survey',is_numeric($Params['user_parameters_unordered']['survey']) ? (int)$Params['user_parameters_unordered']['survey'] : false);
         
         $Result['chat'] = $chat;
 
@@ -71,6 +79,7 @@ try {
 $Result['content'] = $tpl->fetch();
 $Result['pagelayout'] = 'userchat';
 $Result['is_sync_required'] = true;
+$Result['dynamic_height'] = true;
 
 $Result['path'] = array(array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Chat started')))
 

@@ -15,15 +15,16 @@
 <body<?php isset($Result['pagelayout_css_append']) ? print ' class="'.$Result['pagelayout_css_append'].'" ' : ''?>>
 
 <div id="widget-layout" class="row">
-	<div class="columns large-12">
+	<div class="col-xs-12">
        <?php echo $Result['content']; ?>
      </div>
 </div>
 
-<script type="text/javascript" language="javascript" src="<?php echo erLhcoreClassDesign::designJS('js/app.js');?>"></script>
+<div id="widget-layout-js">
 <?php if (isset($Result['dynamic_height'])) : ?>
 <script>
 var wasFocused = false;
+lhinst.isWidgetMode = true;
 $('input[type="text"]').first().click(function(){if (wasFocused == false){wasFocused=true;$(this).select().focus();}});
 $('textarea').first().click(function(){if (wasFocused == false){wasFocused=true;$(this).select();}});
 if (!!window.postMessage) {
@@ -34,7 +35,7 @@ if (!!window.postMessage) {
 		if (heightContent != currentHeight){
 			heightContent = currentHeight;
 			try {
-				parent.postMessage('<?php echo $Result['dynamic_height_message']?>:'+(parseInt(heightContent)+<?php (isset($Result['dynamic_height_append'])) ? print $Result['dynamic_height_append'] : print 20?>), '*');
+				parent.postMessage('<?php echo $Result['dynamic_height_message']?>:'+(parseInt(heightContent)+<?php (isset($Result['dynamic_height_append'])) ? print $Result['dynamic_height_append'] : print 15?>), '*');
 			} catch(e) {
 
 			};
@@ -58,5 +59,7 @@ if (!!window.postMessage) {
 		$debug = ezcDebug::getInstance();
 		echo $debug->generateOutput();
 } ?>
+</div>
+
 </body>
 </html>

@@ -9,10 +9,13 @@ var LHCCoBrowserOperator = (function() {
 
 		this.initialize = params['initialize'];
 		this.base = params['base'];
-		this.chat_id = params['chat_id'];
-		this.chat_hash = params['chat_hash'];
+		this.chat_id = params['chat_id'] ? params['chat_id'] : params['online_user_id'];
+		this.chat_hash = params['chat_hash'] ? params['chat_hash'] : params['online_user_hash'];
+		this.mode_co_browse =  params['mode'] ? '/(cobrowsemode)/'+params['mode'] : '/(cobrowsemode)/chat';
+		this.mode_co_browse_internal =  params['mode'] ? params['mode'] : 'chat';		
 		this.node_js_settings = params['nodejssettings'];
 		this.disablejs = params['disablejs'];
+		this.formsenabled = typeof params['formsenabled'] != 'undefined' ? params['formsenabled'] : true;
 		this.refreshTimeout = null;
 		this.isNodeConnected = false;
 		this.isInitialized = false;
@@ -25,7 +28,7 @@ var LHCCoBrowserOperator = (function() {
 		this.httpsmode = params['httpsmode'];
 		this.lhcbase = params['lhcbase'];
 		this.sitehttps = false;
-		
+				
 		if (this.base != '' && this.base.indexOf('https') > -1) {
 			this.sitehttps = true;
 		}
@@ -33,7 +36,6 @@ var LHCCoBrowserOperator = (function() {
 		if (params['nodejsenabled']) {
 			this.setupNodeJs();
 		}
-		;
 		
 		if (parseInt(params['cpos'].w) > 0 && parseInt(params['cpos'].wh) > 0){
 			document.getElementById('center-layout').style.width = params['cpos'].w+'px';
@@ -55,18 +57,36 @@ var LHCCoBrowserOperator = (function() {
 			};
 		};
 		
+		this.opcontrol = false;
+		
+		if (params['options'].opcontrol) {
+			params['options'].opcontrol.click(function(){
+				if ($(this).is(':checked')){			
+					_this.opcontrol = true;					
+				} else {					
+					_this.opcontrol = false;
+				}
+			});
+			if (params['options'].opcontrol.is(':checked')){
+				this.opcontrol = true;
+			};
+		};
+		
 		this.userScrollSync = false;
+		this.userScrollData = {'t':0,'l':0};
 		
 		if (params['options'].opscroll) {
 			params['options'].opscroll.click(function(){
 				if ($(this).is(':checked')){
-					_this.userScrollSync = true;					
+					_this.userScrollSync = true;	
+					_this.visitorScroll(_this.userScrollData);
 				} else {
 					_this.userScrollSync = false;
 				}
 			});
-			if (params['options'].opscroll.is(':checked')){
+			if (params['options'].opscroll.is(':checked')) {			
 				this.userScrollSync = true;
+				this.visitorScroll(this.userScrollData);
 			};
 		};
 		
@@ -118,9 +138,13 @@ var LHCCoBrowserOperator = (function() {
 				
 				if (tagName == 'INPUT' || tagName == 'TEXTAREA') {
 					var node = document.createElement(tagName);
-										
-					node.addEventListener('focus', function(){
-						_this.highlightElement(-1,-1,_this.iFrameDocument.body.scrollLeft,_this.iFrameDocument.body.scrollTop,_this.getSelectorQuery(node));
+					
+					if (_this.formsenabled == false) {
+						node.setAttribute('readonly','readonly');	
+					};	
+					
+					node.addEventListener('focus', function(){					
+						_this.highlightElement(-1,-1,_this.scrollLeftGS(),_this.scrollTopGS(),_this.getSelectorQuery(node),node);
 					}, false);
 					
 					return node;
@@ -166,15 +190,15 @@ var LHCCoBrowserOperator = (function() {
 						node.setAttribute('lhc-css','true');	
 						// Perhaps href was already set for particular node
 						if (_this.httpsmode == true && _this.sitehttps == false && node.getAttribute('href') != "") {
-							node.setAttribute('href',_this.lhcbase +'/'+_this.chat_id+'/?base='+encodeURIComponent(_this.base)+'&css='+encodeURIComponent(node.getAttribute('href')));						
+							node.setAttribute('href',_this.lhcbase+'/'+_this.chat_id+_this.mode_co_browse+'/?base='+encodeURIComponent(_this.base)+'&css='+encodeURIComponent(node.getAttribute('href')));						
 						}
 					}
 				}
 								
-				if (node.nodeName == 'LINK' && attr == 'href') {
+				if (node.nodeName == 'LINK' && attr == 'href') {					
 					// We have to proxy CSS request because LHC is in HTTPS and user site in HTTP
 					if (_this.httpsmode == true && _this.sitehttps == false && node.getAttribute('lhc-css') !== null) {
-						node.setAttribute('href',_this.lhcbase +'/'+_this.chat_id+'/?base='+encodeURIComponent(_this.base)+'&css='+encodeURIComponent(val));
+						node.setAttribute('href',_this.lhcbase +'/'+_this.chat_id+_this.mode_co_browse+'/?base='+encodeURIComponent(_this.base)+'&css='+encodeURIComponent(val));
 						return true;
 					}					
 				}
@@ -191,29 +215,27 @@ var LHCCoBrowserOperator = (function() {
 				}
 			}
 		};
-
+		
 		w.onIframeLoaded = function() {
 			_this.iFrameDocument = w.frames['content'].document
 			
 			_this.iFrameDocument.addEventListener('mousemove', _this.mouseEventListenerCallback, false);
 			
-			
-			
 			// Override behavior for links: instead of reloading an iframe,
 			// use them via our "browser" so that mirrors stay in sync.
 			_this.iFrameDocument.onclick = function(e) {							
-				if (e.ctrlKey) {					
+				if (e.ctrlKey || _this.opcontrol == true) {					
 					if (!(e.target && e.target.tagName == 'INPUT' && (e.target.type == 'radio' || e.target.type == 'checkbox')) ){
 						e.preventDefault();
 					};
 										
-					_this.sendClickCommand(e.x,e.y,_this.iFrameDocument.body.scrollLeft,_this.iFrameDocument.body.scrollTop,_this.getSelectorQuery(e.target));
+					_this.sendClickCommand(e.x,e.y,_this.scrollLeftGS(),_this.scrollTopGS(),_this.getSelectorQuery(e.target));
 										
 				} else {
 					e.preventDefault();
 														
 					// Highlight element on click
-					_this.highlightElement(e.x,e.y,_this.iFrameDocument.body.scrollLeft,_this.iFrameDocument.body.scrollTop,_this.getSelectorQuery(e.target));	
+					_this.highlightElement(e.x,e.y,_this.scrollLeftGS(),_this.scrollTopGS(),_this.getSelectorQuery(e.target),e.target);	
 				}
 			};
 
@@ -230,6 +252,45 @@ var LHCCoBrowserOperator = (function() {
 		}
 	};
 	
+	
+	LHCCoBrowserOperator.prototype.scrollTopGS = function(stop)
+	{
+		if (typeof stop === 'undefined') {
+			return this.iFrameDocument.documentElement.scrollTop || this.iFrameDocument.body.scrollTop;
+		} else {		
+			if (this.iFrameDocument.documentElement){
+				try {
+					this.iFrameDocument.documentElement.scrollTop = stop;
+				} catch (e) {}	
+			};	
+			
+			if (this.iFrameDocument.body) {
+				try {
+					this.iFrameDocument.body.scrollTop = stop;
+				} catch (e) {}	
+			}
+		}
+	};
+	
+	LHCCoBrowserOperator.prototype.scrollLeftGS = function(sleft)
+	{
+		if (typeof sleft === 'undefined') {
+			return this.iFrameDocument.documentElement.scrollLeft || this.iFrameDocument.body.scrollLeft;
+		} else {
+			if (this.iFrameDocument.documentElement){
+				try {
+					this.iFrameDocument.documentElement.scrollLeft = sleft;
+				} catch (e) {}	
+			};		
+			if (this.iFrameDocument.body) {
+				try {
+					this.iFrameDocument.body.scrollLeft = sleft;
+				} catch (e) {}	
+			}			
+		}
+	};
+	
+	
 	LHCCoBrowserOperator.prototype.getSelectorQuery = function(node)
 	{
 		var selectorData = $(node).getSelector();				
@@ -241,34 +302,50 @@ var LHCCoBrowserOperator = (function() {
 		
 	LHCCoBrowserOperator.prototype.fillForm = function(target,selector)
 	{
-		var elements = [target];
-		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].tagName == 'INPUT' || elements[i].tagName == 'TEXTAREA') {
-				this.textSend = elements[i].value.replace(new RegExp(':','g'),'_SEL_');
-				if (this.isNodeConnected === true) {					
-					this.sendData('lhc_cobrowse_cmd:fillform:'+this.textSend+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_')); // Split is required to avoid mixing argumetns	
-				} else {
-					if (this.fillTimeout === null) {
-						var _that = this;
-						this.fillTimeout = setTimeout(function() {
-							_that.sendData('lhc_cobrowse_cmd:fillform:'+_that.textSend+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_'));
-							_that.fillTimeout = null;
-						}, 300);
-					};
+		if (this.formsenabled == true) {
+			var elements = [target];
+			for (var i = 0; i < elements.length; i++) {
+				if (elements[i].tagName == 'INPUT' || elements[i].tagName == 'TEXTAREA') {
+					this.textSend = elements[i].value.replace(new RegExp(':','g'),'_SEL_');
+					if (this.isNodeConnected === true) {					
+						this.sendData('lhc_cobrowse_cmd:fillform:'+this.textSend+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_')); // Split is required to avoid mixing argumetns	
+					} else {
+						if (this.fillTimeout === null) {
+							var _that = this;
+							this.fillTimeout = setTimeout(function() {
+								_that.sendData('lhc_cobrowse_cmd:fillform:'+_that.textSend+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_'));
+								_that.fillTimeout = null;
+							}, 300);
+						};
+					}
 				}
-			}
-		};
+			};
+		}
 	};
 	
 	LHCCoBrowserOperator.prototype.changeSelectValue = function(val,selector)
 	{		
-		this.sendData('lhc_cobrowse_cmd:changeselect:'+val+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_'));		
+		if (this.formsenabled == true) {
+			this.sendData('lhc_cobrowse_cmd:changeselect:'+val+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_'));
+		}		
 	};
 	
-	LHCCoBrowserOperator.prototype.highlightElement = function(x,y,l,t,selector)
+	LHCCoBrowserOperator.prototype.highlightElement = function(x,y,l,t,selector,node)
 	{
 		this.sendData('lhc_cobrowse_cmd:hightlight:'+x+','+y+','+l+','+t+'__SPLIT__'+selector.replace(new RegExp(':','g'),'_SEL_'));		
 		
+		var hightlight = true;
+		
+		if (jQuery(node).hasClass('lhc-higlighted') == true && (node.tagName != 'INPUT' && node.tagName != 'TEXTAREA' && node.tagName != 'SELECT')) {
+			hightlight = false;
+		};
+		
+		jQuery(this.iFrameDocument).find('.lhc-higlighted').removeClass('lhc-higlighted');
+		
+		if (hightlight == true) {
+			jQuery(node).addClass('lhc-higlighted');
+		};
+			
 		if (this.highlightedCSS == false)
 		{
 			this.highlightedCSS = true;
@@ -288,7 +365,12 @@ var LHCCoBrowserOperator = (function() {
 	LHCCoBrowserOperator.prototype.sendData = function(command)
 	{
 		if (this.isNodeConnected === false) {
-			lhinst.addRemoteCommand(this.chat_id,command);	
+			
+			if (this.mode_co_browse_internal == 'onlineuser'){
+				return lhinst.addExecutionCommand(this.chat_id,'lhc_cobrowse_multi_command__'+command);
+			} else {		
+				lhinst.addRemoteCommand(this.chat_id,command);
+			}	
 		} else {
 			this.socket.emit('remotecommand', {
 				chat_id : this.chat_id + '_' + this.chat_hash,
@@ -300,10 +382,8 @@ var LHCCoBrowserOperator = (function() {
 	LHCCoBrowserOperator.prototype.mouseEventListener = function(e) {			
 		var _this = this;
 		if (this.iFrameDocument.body != null) {		
-			var mouseX = (e.clientX || e.pageX)
-					+ this.iFrameDocument.body.scrollLeft;
-			var mouseY = (e.clientY || e.pageY)
-					+ this.iFrameDocument.body.scrollTop;
+			var mouseX = (e.clientX || e.pageX) + this.scrollLeftGS();
+			var mouseY = (e.clientY || e.pageY) + this.scrollTopGS();
 	
 			if (_this.mouse.x != mouseX || _this.mouse.y != mouseY) {
 				_this.mouse.x = mouseX;
@@ -335,7 +415,8 @@ var LHCCoBrowserOperator = (function() {
 		} else {
 			try {
 				this.socket = io.connect(this.node_js_settings.nodejshost, {
-					secure : this.node_js_settings.secure
+					secure : this.node_js_settings.secure,
+					path : this.node_js_settings.path
 				});
 				this.socket.on('connect', function() {
 					_this.onConnected();
@@ -369,13 +450,13 @@ var LHCCoBrowserOperator = (function() {
 	};
 
 	LHCCoBrowserOperator.prototype.userLeft = function(chat_id) {
-		$('#status-icon-sharing').addClass('eye-not-sharing');
+		$('#status-icon-sharing').text('visibility_off');
 		this.clearPage();
 		
 	};
 
 	LHCCoBrowserOperator.prototype.userJoined = function(chat_id) {
-		$('#status-icon-sharing').removeClass('eye-not-sharing');
+		$('#status-icon-sharing').text('visibility');
 		var _this = this;
 	};
 
@@ -388,11 +469,11 @@ var LHCCoBrowserOperator = (function() {
 
 	LHCCoBrowserOperator.prototype.startChangesMonitoring = function() {
 		if (this.isNodeConnected === false) {
-			var _this = this;
+			var _this = this; 
 			this.isInitialized = true;
 			$.getJSON(
 					WWW_DIR_JAVASCRIPT + 'cobrowse/checkmirrorchanges/'
-							+ _this.chat_id, function(data) {
+							+ _this.chat_id + _this.mode_co_browse, function(data) {
 
 						if (typeof data.empty == "undefined") {
 							_this.handleMessage(data);
@@ -445,11 +526,25 @@ var LHCCoBrowserOperator = (function() {
 			}
 		}
 	};
+	
+	LHCCoBrowserOperator.prototype.visitorScroll = function(pos) {
+		this.userScrollData = pos;
+		if (typeof this.iFrameDocument !== 'undefined' && this.userScrollSync == true) {			
+			this.scrollTopGS(pos.t);
+			this.scrollLeftGS(pos.l);
+		}
+	};
 
-	LHCCoBrowserOperator.prototype.visitorScroll = function(pos) {	
-		if (typeof this.iFrameDocument !== 'undefined' && this.userScrollSync == true) {
-			this.iFrameDocument.body.scrollLeft = pos.l;
-			this.iFrameDocument.body.scrollTop = pos.t;
+	LHCCoBrowserOperator.prototype.visitorHash = function(pos) {	
+		if (typeof this.iFrameDocument !== 'undefined') {	
+			
+			// Try to find element by id first	
+			if (jQuery(this.iFrameDocument).find(pos.hsh).size() > 0) {	
+				this.scrollTopGS(jQuery(this.iFrameDocument).find(pos.hsh).offset().top);
+			} else {			
+				this.scrollTopGS(pos.t);
+				this.scrollLeftGS(pos.l);
+			}
 		}
 	};
 	
@@ -502,9 +597,9 @@ var LHCCoBrowserOperator = (function() {
 		} else if (msg.finished) {
 			$('#status-icon-sharing').attr('title', msg.finished.text);
 			if (msg.finished.status == false) {
-				$('#status-icon-sharing').removeClass('eye-not-sharing');
+				$('#status-icon-sharing').text('visibility');
 			} else {
-				$('#status-icon-sharing').addClass('eye-not-sharing');
+				$('#status-icon-sharing').text('visibility_off');
 			}
 		} else if (msg.url) {
 			this.$awesomebar.value = msg.url;
@@ -518,7 +613,7 @@ var LHCCoBrowserOperator = (function() {
 			this.mirror.initialize.apply(this.mirror, msg.args);			
 			var _this = this;
 			setTimeout(function(){
-				var fragment = _this.appendHTML("<style>body{visibility:visible!important;}#lhc-user-cursor{display:none!important;}.lhc-higlighted{-webkit-box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);-moz-box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);}</style>");
+				var fragment = _this.appendHTML("<style>body{visibility:visible!important;}#lhc_status_container{display:none!important;}#lhc-user-cursor{display:none!important;}.lhc-higlighted{-webkit-box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);-moz-box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);box-shadow: 0px 0px 20px 5px rgba(88,140,204,1);}</style>");
 				if (_this.iFrameDocument.body !== null) {
 					_this.iFrameDocument.body.insertBefore(fragment,
 							_this.iFrameDocument.body.childNodes[0]);
@@ -537,6 +632,8 @@ var LHCCoBrowserOperator = (function() {
 			this.visitorCursor(msg.pos);
 		} else if (msg.f && msg.f == 'uscroll') {
 			this.visitorScroll(msg.pos);
+		} else if (msg.f && msg.f == 'uchash') {
+			this.visitorHash(msg.pos);
 		} else if (msg.f && msg.f == 'textdata') {
 			this.changeTextValue(msg);
 		} else if (msg.f && msg.f == 'selectval') {

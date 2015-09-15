@@ -9,6 +9,7 @@ $msg = new erLhcoreClassModelmsg();
 
 $tpl->set('user',$user);
 
+
 if ( isset($_POST['SendMessage']) ) {
 
     $validationFields = array();
@@ -65,6 +66,10 @@ if ( isset($_POST['SendMessage']) ) {
 
     	erLhcoreClassTransfer::getSession()->save($transfer);
 
+    	
+    	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.startchatwithoperator_started',array('chat' => & $chat, 'transfer' => & $transfer));
+    	
+    	
     	// Redirect user
     	erLhcoreClassModule::redirect('chat/single/' . $chat->id);
     	exit;
@@ -73,6 +78,8 @@ if ( isset($_POST['SendMessage']) ) {
         $tpl->set('errors',$Errors);
     }
 }
+
+$tpl->set('msg',$msg);
 
 $Result['content'] = $tpl->fetch();
 $Result['pagelayout'] = 'popup';

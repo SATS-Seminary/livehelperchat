@@ -44,7 +44,9 @@ if ( isset($_POST['SendMessage']) ) {
     } else {
     	$visitor->requires_phone = 0;
     }
-    
+   
+    erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.sendnotice', array('errors' => & $Errors));
+            
     if (count($Errors) == 0) { 
                
         $currentUser = erLhcoreClassUser::instance();   
@@ -53,12 +55,15 @@ if ( isset($_POST['SendMessage']) ) {
         $visitor->operator_user_id = $currentUser->getUserID();
         $visitor->saveThis();
         
+        erLhcoreClassChatEventDispatcher::getInstance()->dispatch('onlineuser.proactive_send_invitation', array('ou' => & $visitor));
+        
         $tpl->set('message_saved',true);    
     } else {        
         $tpl->set('errors',$Errors);
     } 
 }
 
-$Result['content'] = $tpl->fetch();
-$Result['pagelayout'] = 'popup';
+echo $tpl->fetch();
+exit;
+
 ?>

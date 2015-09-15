@@ -19,8 +19,18 @@ if ( $ignorable_ip == '' || !erLhcoreClassIPDetect::isIgnored(erLhcoreClassIPDet
 	} else {
 		$department = false;
 	}
-		
-	$userInstance = erLhcoreClassModelChatOnlineUser::handleRequest(array('tz' => $Params['user_parameters_unordered']['tz'], 'message_seen_timeout' => erLhcoreClassModelChatConfig::fetch('message_seen_timeout')->current_value, 'department' => $department, 'identifier' => (string)$Params['user_parameters_unordered']['identifier'], 'pages_count' => ((int)$Params['user_parameters_unordered']['count_page'] == 1 ? true : false), 'vid' => (string)$Params['user_parameters_unordered']['vid'], 'check_message_operator' => true, 'pro_active_limitation' =>  erLhcoreClassModelChatConfig::fetch('pro_active_limitation')->current_value, 'pro_active_invite' => erLhcoreClassModelChatConfig::fetch('pro_active_invite')->current_value));
+	
+	if (is_array($Params['user_parameters_unordered']['ua'])){
+		$uarguments = $Params['user_parameters_unordered']['ua'];
+	} else {
+		$uarguments = false;
+	}
+	
+	$proactiveInviteActive = erLhcoreClassModelChatConfig::fetch('pro_active_invite')->current_value;
+	
+	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chatcheckoperatormessage', array('proactive_active' => & $proactiveInviteActive));
+
+	$userInstance = erLhcoreClassModelChatOnlineUser::handleRequest(array('uactiv' => (int)$Params['user_parameters_unordered']['uactiv'], 'wopen' => (int)$Params['user_parameters_unordered']['wopen'], 'tpl' => & $tpl, 'tz' => $Params['user_parameters_unordered']['tz'], 'message_seen_timeout' => erLhcoreClassModelChatConfig::fetch('message_seen_timeout')->current_value, 'department' => $department, 'identifier' => (string)$Params['user_parameters_unordered']['identifier'], 'pages_count' => ((int)$Params['user_parameters_unordered']['count_page'] == 1 ? true : false), 'vid' => (string)$Params['user_parameters_unordered']['vid'], 'check_message_operator' => true, 'pro_active_limitation' =>  erLhcoreClassModelChatConfig::fetch('pro_active_limitation')->current_value, 'pro_active_invite' => $proactiveInviteActive));
 	
 	// Exit if not required
 	$statusGeoAdjustment = erLhcoreClassChat::getAdjustment(erLhcoreClassModelChatConfig::fetch('geoadjustment_data')->data_value,'',false,$userInstance);
@@ -43,18 +53,22 @@ if ( $ignorable_ip == '' || !erLhcoreClassIPDetect::isIgnored(erLhcoreClassIPDet
 		
 		$tpl->set('priority',is_numeric($Params['user_parameters_unordered']['priority']) ? (int)$Params['user_parameters_unordered']['priority'] : false);
 		$tpl->set('department',$department !== false ? implode('/', $department) : false);
+		$tpl->set('uarguments',$uarguments !== false ? implode('/', $uarguments) : false);
 		$tpl->set('operator',is_numeric($Params['user_parameters_unordered']['operator']) ? (int)$Params['user_parameters_unordered']['operator'] : false);
 		$tpl->set('theme',is_numeric($Params['user_parameters_unordered']['theme']) && $Params['user_parameters_unordered']['theme'] > 0 ? (int)$Params['user_parameters_unordered']['theme'] : false);
 		$tpl->set('visitor',$userInstance);
 		$tpl->set('vid',(string)$Params['user_parameters_unordered']['vid']);
+		$tpl->set('survey',is_numeric($Params['user_parameters_unordered']['survey']) ? (int)$Params['user_parameters_unordered']['survey'] : false);
 		
 		if ($userInstance->reopen_chat == 1 && ($chat = $userInstance->chat) !== false && $chat->user_status == erLhcoreClassModelChat::USER_STATUS_PENDING_REOPEN) {
 			$tpl->set('reopen_chat',$chat);
 		}
 		
-		if ($userInstance->operation != ''){
+		// Execute request only if widget is not open
+		if ($userInstance->operation != '' && (int)$Params['user_parameters_unordered']['wopen'] == 0) {
 			$tpl->set('operation',$userInstance->operation);
 			$userInstance->operation = '';
+			$userInstance->operation_chat = '';
 			$userInstance->saveThis();
 		}
 			

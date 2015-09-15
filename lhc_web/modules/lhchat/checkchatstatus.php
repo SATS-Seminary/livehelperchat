@@ -6,6 +6,28 @@ $ott = '';
 $ru = '';
 
 $tpl = erLhcoreClassTemplate::getInstance('lhchat/checkchatstatus.tpl.php');
+$tpl->set('theme',false);
+
+if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_parameters_unordered']['theme'] > 0){
+    try {
+        $theme = erLhAbstractModelWidgetTheme::fetch($Params['user_parameters_unordered']['theme']);
+        $tpl->set('theme',$theme);
+    } catch (Exception $e) {
+
+    }
+} else {
+    $defaultTheme = erLhcoreClassModelChatConfig::fetch('default_theme_id')->current_value;
+    if ($defaultTheme > 0) {
+        try {
+            $theme = erLhAbstractModelWidgetTheme::fetch($defaultTheme);
+            $tpl->set('theme',$theme);
+        } catch (Exception $e) {
+             
+        }
+    }
+}
+
+$responseArray = array();
 
 try {
     $chat = erLhcoreClassModelChat::fetch($Params['user_parameters']['chat_id']);
@@ -34,6 +56,8 @@ try {
     		}
     	}
     	
+    	$contactRedirected = false;
+    	
     	if ($chat->status == erLhcoreClassModelChat::STATUS_PENDING_CHAT) {
     		$department = $chat->department;
     		if ($department !== false) {
@@ -48,7 +72,14 @@ try {
     				$msg->user_id = -1;
     				$msg->time = time();    				
     				erLhcoreClassChat::getSession()->save($msg);
+    				
     				// We do not store last msg time for chat here, because in any case none of opeators has opened it
+    				$contactRedirected = true;
+    				
+    				if ($chat->status_sub != erLhcoreClassModelChat::STATUS_SUB_CONTACT_FORM) {
+        				$chat->status_sub = erLhcoreClassModelChat::STATUS_SUB_CONTACT_FORM;
+        				$chat->updateThis();
+    				}
     				
     			} else {
     				erLhcoreClassChatWorkflow::autoAssign($chat,$department);
@@ -79,11 +110,12 @@ try {
 	    if ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT) {
 	    	$activated = 'true';
 	    	$tpl->set('is_closed',true);
+	    	$responseArray['closed'] = true;
 	    } else {
 	    	$tpl->set('is_closed',false);
 	    }
 	    
-	    if ($chat->status_sub == erLhcoreClassModelChat::STATUS_SUB_CONTACT_FORM) {
+	    if ($chat->status_sub == erLhcoreClassModelChat::STATUS_SUB_CONTACT_FORM && $contactRedirected == false) {
 	    	$activated = 'false';
 	    	$department = $chat->department;
 	    	if ($department !== false) {
@@ -109,6 +141,12 @@ try {
     exit;
 }
 
-echo json_encode(array('error' => 'false','ru' => $ru,'ott' => $ott, 'result' => $tpl->fetch(),'activated' => $activated));
+$responseArray['error'] = 'false';
+$responseArray['ru'] = $ru;
+$responseArray['ott'] = $ott;
+$responseArray['result'] = $tpl->fetch();
+$responseArray['activated'] = $activated;
+
+echo json_encode($responseArray);
 exit;
 ?>

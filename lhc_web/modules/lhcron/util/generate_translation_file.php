@@ -10,7 +10,7 @@ foreach ($items as $item) {
 
 $filesToCheck = ezcBaseFile::findRecursive('.',
 array( '@\.php$@' ),
-array( '@/albums|ezcomponents|doc|translations|var|extension|cache|bin|Zend|setttings|pos/@' ));
+array( '@/./albums|./ezcomponents|./doc|./translations|./var|./extension|./cache|./bin|./Zend|./setttings|./pos/@' ));
 
 $locale = 'en_EN';
 
@@ -47,6 +47,21 @@ foreach ($filesToCheck as $filePath)
 	        $arrayTranslationsProcess[$section][] = $Matches[2][$key];
 	    }
 	}
+
+	$Matches = array();
+	preg_match_all('/erTranslationClassLhTranslation::getInstance\(\)->getTranslation\("(.*?)","(.*?)"\)/i',$contentFile,$Matches);
+	
+	foreach ($Matches[1] as $key => $section)
+	{
+	    if (!isset($arrayTranslationsProcess[$section])) {
+	        $arrayTranslationsProcess[$section] = array();
+	    }
+	
+	    if (!in_array($Matches[2][$key],$arrayTranslationsProcess[$section])){
+	        $arrayTranslationsProcess[$section][] = $Matches[2][$key];
+	    }
+	}
+	
 }
 
 $reader = new ezcTranslationTsBackend( 'doc/translation_default' );

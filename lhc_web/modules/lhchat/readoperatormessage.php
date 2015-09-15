@@ -13,6 +13,7 @@ $inputData = new stdClass();
 $inputData->username = '';
 $inputData->question = '';
 $inputData->email = '';
+$inputData->phone = '';
 
 if (is_array($Params['user_parameters_unordered']['department']) && count($Params['user_parameters_unordered']['department']) == 1){
 	erLhcoreClassChat::validateFilterIn($Params['user_parameters_unordered']['department']);
@@ -32,7 +33,17 @@ $inputData->name_items = array();
 $inputData->value_items = array();
 $inputData->value_types = array();
 $inputData->value_sizes = array();
+$inputData->ua = $Params['user_parameters_unordered']['ua'];
 $inputData->hattr = array();
+$inputData->value_items_admin = array(); // These variables get's filled from start chat form settings
+
+// If chat was started based on key up, we do not need to store a message
+//  because user is still typing it. We start chat in the background just.
+$inputData->key_up_started = (isset($_POST['keyUpStarted']) && $_POST['keyUpStarted'] == 1);
+
+if ((string)$Params['user_parameters_unordered']['vid'] != '') {
+    $inputData->vid = (string)$Params['user_parameters_unordered']['vid'];
+}
 
 // Assign department instantly
 if ($inputData->departament_id > 0) {
@@ -49,14 +60,33 @@ if ($userInstance->visitor_tz != '') {
 
 $tpl->set('playsound',(string)$Params['user_parameters_unordered']['playsound'] == 'true' && !isset($_POST['askQuestion']) && erLhcoreClassModelChatConfig::fetch('sound_invitation')->current_value == 1);
 
+$startData = erLhcoreClassModelChatConfig::fetch('start_chat_data');
+$startDataFields = (array)$startData->data;
+
+// Allow extension override start chat fields
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.readoperatormessage_data_field',array('data_fields' => & $startDataFields, 'params' => $Params));
+
 $chat = new erLhcoreClassModelChat();
 
+$modeAppendTheme = '';
 if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_parameters_unordered']['theme'] > 0){
 	try {
 		$theme = erLhAbstractModelWidgetTheme::fetch($Params['user_parameters_unordered']['theme']);
 		$Result['theme'] = $theme;
+		$modeAppendTheme = '/(theme)/'.$theme->id;
 	} catch (Exception $e) {
 
+	}
+} else {
+	$defaultTheme = erLhcoreClassModelChatConfig::fetch('default_theme_id')->current_value;
+	if ($defaultTheme > 0) {
+		try {
+			$theme = erLhAbstractModelWidgetTheme::fetch($defaultTheme);
+			$Result['theme'] = $theme;
+			$modeAppendTheme = '/(theme)/'.$theme->id;
+		} catch (Exception $e) {
+		
+		}
 	}
 }
 
@@ -80,7 +110,14 @@ if (isset($_POST['askQuestion']))
 	$validationFields['value_sizes'] = new ezcInputFormDefinitionElement ( ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw', null, FILTER_REQUIRE_ARRAY );
 	$validationFields['value_show'] = new ezcInputFormDefinitionElement ( ezcInputFormDefinitionElement::OPTIONAL, 'string', null, FILTER_REQUIRE_ARRAY );
 	$validationFields['hattr'] = new ezcInputFormDefinitionElement ( ezcInputFormDefinitionElement::OPTIONAL, 'string', null, FILTER_REQUIRE_ARRAY );
-    
+	// Custom start chat fields
+	$validationFields['value_items_admin'] = new ezcInputFormDefinitionElement(
+	    ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+	    null,
+	    FILTER_REQUIRE_ARRAY
+	);
+	
+	
     if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
     	// Start session if required only
     	$currentUser = erLhcoreClassUser::instance();
@@ -100,7 +137,7 @@ if (isset($_POST['askQuestion']))
     	$inputData->departament_id_array = $form->DepartmentIDDefined;
     }
     
-    if ( !$form->hasValidData( 'Question' ) || trim($form->Question) == '' ) {
+    if ( $inputData->key_up_started == false && (!$form->hasValidData( 'Question' ) || trim($form->Question) == '') ) {
         $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your message');
     } elseif ($form->hasValidData( 'Question' )) {
         $inputData->question = $form->Question;
@@ -130,6 +167,8 @@ if (isset($_POST['askQuestion']))
     		$inputData->email = $chat->email = $form->Email;
     	}
     }
+    
+    $stringParts = array();
     
     // validate and insert additional_data code in proactive chat
 	if ($form->hasValidData ( 'name_items' ) && ! empty ( $form->name_items )) {
@@ -170,20 +209,46 @@ if (isset($_POST['askQuestion']))
 					'value' => (isset ( $valuesArray [$key] ) ? trim ( $valuesArray [$key] ) : '') 
 			);
 		}
-		
-		$chat->additional_data = json_encode ( $stringParts );
 	}
-
+		
+	// Admin custom fields
+	if (isset($startDataFields['custom_fields']) && $startDataFields['custom_fields'] != '') {
+	    $customAdminfields = json_decode($startDataFields['custom_fields'],true);
 	
+	    $valuesArray = array();
+	
+	    // Fill values if exists
+	    if ($form->hasValidData( 'value_items_admin' )){
+	        $inputData->value_items_admin = $valuesArray = $form->value_items_admin;
+	    }
+	
+	    if (is_array($customAdminfields)){
+	        foreach ($customAdminfields as $key => $adminField) {
+	
+	            if (isset($form->value_items_admin[$key]) && isset($adminField['isrequired']) && $adminField['isrequired'] == 'true' && ($adminField['visibility'] == 'all' || $adminField['visibility'] == 'on') && (!isset($valuesArray[$key]) || trim($valuesArray[$key]) == '')) {
+	                $Errors[] = trim($adminField['fieldname']).': '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','is required');
+	            }
+	
+	            if (isset($valuesArray[$key]) && $valuesArray[$key] != '') {
+	                $stringParts[] = array('key' => $adminField['fieldname'], 'value' => (isset($valuesArray[$key]) ? trim($valuesArray[$key]) : ''));
+	            }
+	        }
+	    }
+	}
+		
+	if (!empty($stringParts)) {
+	   $chat->additional_data = json_encode ( $stringParts );
+	}
+		
     if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
     	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600 || $hashCaptcha != sha1($_SERVER['REMOTE_ADDR'].$form->$nameField.erConfigClassLhConfig::getInstance()->getSetting( 'site', 'secrethash' ))){
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
     	}
     } else {
     	// Captcha validation
     	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600)
     	{
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
     	}
     }
     
@@ -206,17 +271,28 @@ if (isset($_POST['askQuestion']))
     if ($form->hasValidData( 'DepartamentID' ) && erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $form->DepartamentID,'disabled' => 0))) > 0) {
     	$inputData->departament_id = $chat->dep_id = $form->DepartamentID;
     } elseif ($chat->dep_id == 0 || erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $chat->dep_id,'disabled' => 0))) == 0) {
-    	$departments = erLhcoreClassModelDepartament::getList(array('limit' => 1,'filter' => array('disabled' => 0)));
-    	if (!empty($departments) ) {
-    		$department = array_shift($departments);
-    		$chat->dep_id = $department->id;
-    	} else {
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Could not determine a default department!');
-    	}
-    }
         
+        // Perhaps extension overrides default department?
+        $response = erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.validate_department', array('input_form' => $inputData));
+        
+        if ($response === false) {
+        	$departments = erLhcoreClassModelDepartament::getList(array('limit' => 1,'filter' => array('disabled' => 0)));
+        	if (!empty($departments) ) {
+        		$department = array_shift($departments);
+        		$chat->dep_id = $department->id;
+        	} else {
+        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Could not determine a default department!');
+        	}
+         } else {
+                $chat->dep_id = $response['department_id'];
+         }
+    }
+
+    erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.validate_read_operator_message',array('errors' => & $Errors, 'input_form' => & $inputData, 'chat' => & $chat));
+    
     if (count($Errors) == 0)
     {
+
        $chat->time = time();
        $chat->status = 0;
        $chat->setIP();
@@ -253,55 +329,69 @@ if (isset($_POST['askQuestion']))
        $msg->msg = trim($userInstance->operator_message);
        $msg->chat_id = $chat->id;
        $msg->name_support = $userInstance->operator_user !== false ? trim($userInstance->operator_user->name.' '.$userInstance->operator_user->surname) : (!empty($userInstance->operator_user_proactive) ? $userInstance->operator_user_proactive : erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support'));
-       $msg->user_id = $userInstance->operator_user_id > 0 ? $userInstance->operator_user_id : 1;
+       $msg->user_id = $userInstance->operator_user_id > 0 ? $userInstance->operator_user_id : -2;
        $msg->time = time()-7; // Deduct 7 seconds so for user all looks more natural
 
        erLhcoreClassChat::getSession()->save($msg);
 
-       // Store User Message
-       $msg = new erLhcoreClassModelmsg();
-       $msg->msg = trim($inputData->question);
-       $msg->chat_id = $chat->id;
-       $msg->user_id = 0;
-       $msg->time = time();
-       erLhcoreClassChat::getSession()->save($msg);
-
-       if ($userInstance->invitation !== false) {
-
-       		if ($userInstance->invitation->wait_message != '') {
-		       	$msg = new erLhcoreClassModelmsg();
-		       	$msg->msg = trim($userInstance->invitation->wait_message);
-		       	$msg->chat_id = $chat->id;
-		       	$msg->name_support = $userInstance->operator_user !== false ? $userInstance->operator_user->name_support : (!empty($userInstance->operator_user_proactive) ? $userInstance->operator_user_proactive : erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support'));
-		       	$msg->user_id = $userInstance->operator_user_id > 0 ? $userInstance->operator_user_id : 1;
-		       	$msg->time = time()+5;
-		       	erLhcoreClassChat::getSession()->save($msg);
-       		}
-
-	       	// Store wait timeout attribute for future
-	       	$chat->wait_timeout = $userInstance->invitation->wait_timeout;
-	       	$chat->timeout_message = $userInstance->invitation->timeout_message;
-       } else {
-
-       		// Default auto responder
-	       	$responder = erLhAbstractModelAutoResponder::processAutoResponder($chat);
-
-	       	if ($responder instanceof erLhAbstractModelAutoResponder) {
-	       		$chat->wait_timeout = $responder->wait_timeout;
-	       		$chat->timeout_message = $responder->timeout_message;
-
-	       		if ($responder->wait_message != '') {
-	       			$msg = new erLhcoreClassModelmsg();
-	       			$msg->msg = trim($responder->wait_message);
-	       			$msg->chat_id = $chat->id;
-	       			$msg->name_support = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support');
-	       			$msg->user_id = 1;
-	       			$msg->time = time()+5;
-	       			erLhcoreClassChat::getSession()->save($msg);
-	       		}
-	       	}
+       // Chat was based on key up, there is no message object
+       $messageInitial = false;
+                     
+       // Do not store anything, like user just started normal chat
+       if ($inputData->key_up_started == false) {
+           // Store User Message
+           $msg = new erLhcoreClassModelmsg();
+           $msg->msg = trim($inputData->question);
+           $msg->chat_id = $chat->id;
+           $msg->user_id = 0;
+           $msg->time = time();
+           erLhcoreClassChat::getSession()->save($msg);
+           
+           $messageInitial = $msg;
+       
+           if ($userInstance->invitation !== false) {
+    
+           		if ($userInstance->invitation->wait_message != '') {
+    		       	$msg = new erLhcoreClassModelmsg();
+    		       	$msg->msg = trim($userInstance->invitation->wait_message);
+    		       	$msg->chat_id = $chat->id;
+    		       	$msg->name_support = $userInstance->operator_user !== false ? $userInstance->operator_user->name_support : (!empty($userInstance->operator_user_proactive) ? $userInstance->operator_user_proactive : erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support'));
+    		       	$msg->user_id = $userInstance->operator_user_id > 0 ? $userInstance->operator_user_id : -2;
+    		       	$msg->time = time()+5;
+    		       	erLhcoreClassChat::getSession()->save($msg);
+           		}
+    
+    	       	// Store wait timeout attribute for future
+    	       	$chat->wait_timeout = $userInstance->invitation->wait_timeout;
+    	       	$chat->timeout_message = $userInstance->invitation->timeout_message;
+    	       	$chat->wait_timeout_send = 1-$userInstance->invitation->repeat_number;
+    	       	$chat->wait_timeout_repeat = $userInstance->invitation->repeat_number;
+           } else {
+    
+           		// Default auto responder
+    	       	$responder = erLhAbstractModelAutoResponder::processAutoResponder($chat);
+    
+    	       	if ($responder instanceof erLhAbstractModelAutoResponder) {
+    	       		$chat->wait_timeout = $responder->wait_timeout;
+    	       		$chat->timeout_message = $responder->timeout_message;
+    	       		$chat->wait_timeout_send = 1-$responder->repeat_number;	       	
+    	       		$chat->wait_timeout_repeat = $responder->repeat_number;
+    	       		
+    	       		if ($responder->wait_message != '') {
+    	       			$msg = new erLhcoreClassModelmsg();
+    	       			$msg->msg = trim($responder->wait_message);
+    	       			$msg->chat_id = $chat->id;
+    	       			$msg->name_support = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support');
+    	       			$msg->user_id = -2;
+    	       			$msg->time = time()+5;
+    	       			erLhcoreClassChat::getSession()->save($msg);
+    	       		}
+    	       		
+    	       		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.auto_responder_triggered',array('chat' => & $chat));
+    	       	}
+           }
        }
-
+       
        // Set chat attributes for transfer workflow logic
        if ($chat->department !== false && $chat->department->department_transfer_id > 0) {
 	       	$chat->transfer_if_na = 1;
@@ -312,17 +402,20 @@ if (isset($_POST['askQuestion']))
        $chat->last_msg_id = $msg->id;
        $chat->last_user_msg_time = time();
        $chat->saveThis();
-
-       erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chat_started',array('chat' => & $chat));
        
-       // Redirect user
-       erLhcoreClassModule::redirect('chat/chatwidgetchat/' . $chat->id . '/' . $chat->hash . '/(cstarted)/chat_started_by_invitation_cb');
-       exit;
+       erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chat_started',array('chat' => & $chat, 'msg' => $messageInitial));
+       
+       erLhcoreClassChat::updateDepartmentStats($chat->department);
+               
+       $Result = erLhcoreClassModule::reRun(erLhcoreClassDesign::baseurlRerun('chat/chatwidgetchat') . '/' . $chat->id . '/' . $chat->hash . $modeAppendTheme .  '/(cstarted)/chat_started_by_invitation_cb');
+       return true;
 
     } else {
         $tpl->set('errors',$Errors);
     }
 }
+
+$tpl->set('start_data_fields',$startDataFields);
 
 // User this only if not post
 if (!ezcInputForm::hasPostData()) {
@@ -361,7 +454,12 @@ if (!ezcInputForm::hasPostData()) {
 					ezcInputFormDefinitionElement::OPTIONAL, 'string',
 					null,
 					FILTER_REQUIRE_ARRAY
-			)
+			),
+            'value_items_admin' => new ezcInputFormDefinitionElement(
+                    ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+                    null,
+                    FILTER_REQUIRE_ARRAY
+            )
 	);
 	
 	$form = new ezcInputForm( INPUT_GET, $definition );
@@ -400,6 +498,12 @@ if (!ezcInputForm::hasPostData()) {
 	{
 		$inputData->value_sizes = $form->size;
 	}
+	
+	// Fill back office values ir prefilled
+	if ($form->hasValidData( 'value_items_admin' ))
+	{
+	    $inputData->value_items_admin = $form->value_items_admin;
+	}
 }
 
 $tpl->set('input_data',$inputData);
@@ -424,6 +528,10 @@ if (isset($_POST['r']))
 	$tpl->set('referer_site',$_POST['r']);
 }
 
+
+
+
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.readoperatormessage',array('tpl' => $tpl, 'params' => & $Params));
 
 $Result['content'] = $tpl->fetch();
 $Result['pagelayout'] = 'widget';

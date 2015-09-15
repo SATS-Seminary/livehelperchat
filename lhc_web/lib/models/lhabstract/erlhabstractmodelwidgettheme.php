@@ -7,6 +7,7 @@ class erLhAbstractModelWidgetTheme {
 		$stateArray = array (
 			'id'         				=> $this->id,
 			'name'  					=> $this->name,
+			'name_company'  			=> $this->name_company,
 			'onl_bcolor'				=> $this->onl_bcolor,			
 			'bor_bcolor'				=> $this->bor_bcolor,			
 			'text_color'				=> $this->text_color,				
@@ -54,6 +55,11 @@ class erLhAbstractModelWidgetTheme {
 			'header_height'		        => $this->header_height,
 			'header_padding'		    => $this->header_padding,
 			'widget_border_width'		=> $this->widget_border_width,
+			'support_joined'		    => $this->support_joined,
+			'support_closed'		    => $this->support_closed,
+			'pending_join'		        => $this->pending_join,
+			'noonline_operators'		=> $this->noonline_operators,
+			'noonline_operators_offline'=> $this->noonline_operators_offline,
 		);
 
 		return $stateArray;
@@ -109,7 +115,8 @@ class erLhAbstractModelWidgetTheme {
 			$response = erLhcoreClassChatEventDispatcher::getInstance()->dispatch('theme.edit.store_'.$attr,array(
 					'theme' => & $this, 
 					'path_attr' => $attr.'_path', 
-					'name' => $this->$attr,					
+					'name' => $this->$attr,
+			        'name_attr' => $attr,				
 					'file_path' => $this->{$attr.'_path'} . $this->$attr));
 			
 		} else {
@@ -140,7 +147,11 @@ class erLhAbstractModelWidgetTheme {
 	
 	public function getModuleTranslations()
 	{
-		return array('path' => array('url' => erLhcoreClassDesign::baseurl('theme/index'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('theme/index','Themes')), 'permission_delete' => array('module' => 'lhchat','function' => 'administratethemes'),'permission' => array('module' => 'lhchat','function' => 'administratethemes'),'name' => erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/widgettheme','Widget themes'));
+	    $metaData = array('path' => array('url' => erLhcoreClassDesign::baseurl('theme/index'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('theme/index','Themes')), 'permission_delete' => array('module' => 'lhchat','function' => 'administratethemes'),'permission' => array('module' => 'lhchat','function' => 'administratethemes'),'name' => erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/widgettheme','Widget themes'));
+	    
+	    erLhcoreClassChatEventDispatcher::getInstance()->dispatch('feature.can_use_themes', array('object_meta_data' => & $metaData));
+	    
+	    return $metaData;
 	}
 	
 	public function saveThis() {
@@ -405,10 +416,17 @@ class erLhAbstractModelWidgetTheme {
 	public $close_image_path = '';	
 	public $popup_image = '';
 	public $popup_image_path = '';	
+	public $name_company = '';	
 	public $header_height = 0;
 	public $header_padding = 0;
 	public $widget_border_width = 0;
 	
+	public $support_joined = '';
+	public $support_closed = '';
+	public $pending_join = '';
+	public $noonline_operators = '';
+	public $noonline_operators_offline = '';
+		
 	public $hide_add = false;
 	public $hide_delete = false;
 

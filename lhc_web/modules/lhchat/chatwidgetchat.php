@@ -16,6 +16,7 @@ if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_p
 	try {
 		$theme = erLhAbstractModelWidgetTheme::fetch($Params['user_parameters_unordered']['theme']);
 		$Result['theme'] = $theme;
+		$tpl->set('theme',$theme);
 		$modeAppend .= '/(theme)/'.$theme->id;
 	} catch (Exception $e) {
 
@@ -42,7 +43,8 @@ try {
         $tpl->set('chat',$chat);
         $tpl->set('chat_widget_mode',true);
         $tpl->set('chat_embed_mode',$embedMode);
-
+        $tpl->set('survey',is_numeric($Params['user_parameters_unordered']['survey']) ? (int)$Params['user_parameters_unordered']['survey'] : false);
+                
         $Result['chat'] = $chat;
 
         // User online

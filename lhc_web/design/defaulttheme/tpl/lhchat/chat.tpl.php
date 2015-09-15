@@ -1,64 +1,78 @@
-<div class="row collapse">
+<div class="row">
 
-	<div class="columns small-9">
+	<div class="col-xs-9">
 		<div id="status-chat">
 		<?php if ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT) : ?>
 			<h4><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','This chat is closed.'); ?></h4>
+	   <?php elseif (($user = $chat->user) !== false) : ?>
+               <?php include_once(erLhcoreClassDesign::designtpl('lhchat/part/operator_profile.tpl.php')); ?>
 		<?php else : ?>
 			<h4><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Pending confirm')?></h4>
 		<?php endif; ?>
 		</div>
-		
-		
+				
 		<?php if ( erLhcoreClassModelChatConfig::fetch('reopen_chat_enabled')->current_value == 1 && erLhcoreClassModelChatConfig::fetch('allow_reopen_closed')->current_value == 1 && erLhcoreClassChat::canReopen($chat) ) : ?>
-			<a href="<?php echo erLhcoreClassDesign::baseurl('chat/reopen')?>/<?php echo $chat->id?>/<?php echo $chat->hash?><?php if ( isset($chat_widget_mode) && $chat_widget_mode == true ) : ?>/(mode)/widget<?php endif; ?><?php if ( isset($chat_embed_mode) && $chat_embed_mode == true ) : ?>/(embedmode)/embed<?php endif;?>" class="tiny button round success" ><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chatnotexists','Resume chat');?></a>
+			<a href="<?php echo erLhcoreClassDesign::baseurl('chat/reopen')?>/<?php echo $chat->id?>/<?php echo $chat->hash?><?php if ( isset($chat_widget_mode) && $chat_widget_mode == true ) : ?>/(mode)/widget<?php endif; ?><?php if ( isset($chat_embed_mode) && $chat_embed_mode == true ) : ?>/(embedmode)/embed<?php endif;?>" class="btn btn-default" ><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chatnotexists','Resume chat');?></a>
 		<?php endif; ?>
 				
-		<?php if ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT && isset($chat_widget_mode) && $chat_widget_mode == true ) : ?>
-			<input type="button" class="tiny secondary button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Close')?>" onclick="lhinst.userclosedchatembed();" />
+		<?php if ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT && ( (isset($chat_widget_mode) && $chat_widget_mode == true && $chat->time < time()-1800) || (isset($chat_embed_mode) && $chat_embed_mode == true)) ) : ?>
+			<input type="button" class="btn btn-default mb10" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Close')?>" onclick="lhinst.userclosedchatembed();" />
 		<?php endif;?>
 		
 	</div>
 
-	<div class="columns small-3">
+	<div class="col-xs-3 mb5">
 		<?php include(erLhcoreClassDesign::designtpl('lhchat/customer_user_settings.tpl.php'));?>
 	</div>
 
 </div>
 
-<?php if ($chat->status == erLhcoreClassModelChat::STATUS_ACTIVE_CHAT || $chat->status == erLhcoreClassModelChat::STATUS_PENDING_CHAT) : ?>
+<?php if ($chat->status == erLhcoreClassModelChat::STATUS_ACTIVE_CHAT || $chat->status == erLhcoreClassModelChat::STATUS_PENDING_CHAT || ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT && $chat->time > time()-1800)) : ?>
     <div id="messages" >
         <div class="msgBlock" <?php if (erLhcoreClassModelChatConfig::fetch('mheight')->current_value > 0) : ?>style="height:<?php echo (int)erLhcoreClassModelChatConfig::fetch('mheight')->current_value?>px"<?php endif?> id="messagesBlock"><?php
         $lastMessageID = 0;
-        foreach (erLhcoreClassChat::getChatMessages($chat_id) as $msg) : ?>        		
-        	<?php include(erLhcoreClassDesign::designtpl('lhchat/lists/user_msg_row.tpl.php'));?>	        	
-         <?php $lastMessageID = $msg['id']; endforeach; ?>
+        $lastOperatorChanged = false;
+        $lastOperatorId = false;
+        
+        foreach (erLhcoreClassChat::getChatMessages($chat_id) as $msg) : 
+        
+        if ($lastOperatorId !== false && $lastOperatorId != $msg['user_id']) {
+            $lastOperatorChanged = true;
+        } else {
+            $lastOperatorChanged = false;
+        }
+        
+        $lastOperatorId = $msg['user_id'];        
+        ?>        		
+        <?php include(erLhcoreClassDesign::designtpl('lhchat/lists/user_msg_row.tpl.php'));?>	        	
+        <?php $lastMessageID = $msg['id']; 
+         endforeach; ?>
        </div>
     </div>
-
-    <div class="pt5" id="ChatMessageContainer">
-    
-		<div class="pt5 user-chatwidget-buttons" id="ChatSendButtonContainer">        	
-	    	<ul class="button-group right button-action-right">    	
+    <div id="id-operator-typing"></div>
+ 
+    <?php if ($chat->status != erLhcoreClassModelChat::STATUS_CLOSED_CHAT) : ?>
+    <div id="ChatMessageContainer">    
+		<div class="user-chatwidget-buttons" id="ChatSendButtonContainer">     
+		
+		
+		   	<div class="btn-group" role="group" aria-label="...">
+		   	    <a href="#" class="btn btn-default btn-xs trigger-button"><i class="material-icons fs14 mr-0">mode_edit</i></a>
 	    	
-	    		<li><a href="#" class="tiny secondary button trigger-button"><i class="icon-pencil"></i></a></li>
-	    	
-	    		<li><input type="button" class="tiny secondary button sendbutton invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Send')?>" onclick="lhinst.addmsguser()" /></li>
+	    		<input type="button" class="btn btn-default btn-xs sendbutton invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Send')?>" onclick="lhinst.addmsguser()" />
 	    	
 	    		<?php if (erLhcoreClassModelChatConfig::fetch('bbc_button_visible')->current_value == 1) : ?>
-	    		<li><input type="button" class="tiny secondary button invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','BB Code')?>" data-reveal-id="bbcodeReveal" data-reveal-ajax="<?php echo erLhcoreClassDesign::baseurl('chat/bbcodeinsert')?>" /></li>
+	    		<input type="button" class="btn btn-default btn-xs invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','BB Code')?>" onclick="return lhc.revealModal({'url':'<?php echo erLhcoreClassDesign::baseurl('chat/bbcodeinsert')?>'})" />
 	    		<?php endif; ?>
 	    		
-	    		<?php if ( isset($chat_embed_mode) && $chat_embed_mode == true ) : ?>
-	    		<li><input type="button" class="tiny secondary button invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Close')?>" onclick="lhinst.userclosedchatembed();" /></li>
+	    		<?php if ( (isset($chat_embed_mode) && $chat_embed_mode == true) || (isset($chat_embed_mode) && $chat_embed_mode == true)) : ?>
+	    		<input type="button" class="btn btn-default btn-xs invisible-button" value="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Close')?>" onclick="lhinst.userclosedchatembed();" />
 	    		<?php endif;?>
-	    	</ul>    	
+		   	</div>
+		  	    	    	
 	    </div>
-    
-        <textarea rows="4" name="ChatMessage" placeholder="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Enter your message')?>" id="CSChatMessage" class="live-chat-message"></textarea>
-        <div id="id-operator-typing">
-	            <i></i>
-	    </div>
+       
+        <textarea class="form-control live-chat-message" rows="4" name="ChatMessage" placeholder="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Enter your message')?>" id="CSChatMessage" ></textarea>
 	    
         <script type="text/javascript">        
         jQuery('#CSChatMessage').bind('keydown', 'return', function (evt){
@@ -70,12 +84,9 @@
 		});		
         lhinst.initTypingMonitoringUser('<?php echo $chat_id?>');
         </script>
+        
     </div>
-	<div id="bbcodeReveal" class="reveal-modal"></div>
-	
-    
-
-
+     <?php endif;?>
 <script type="text/javascript">
     lhinst.setChatID('<?php echo $chat_id?>');
     lhinst.setChatHash('<?php echo $hash?>');
@@ -85,15 +96,33 @@
     lhinst.setWidgetMode(true);
 	<?php endif; ?>
 
+    <?php if ( isset($theme) && $theme !== false ) : ?>
+    lhinst.setTheme('<?php echo $theme->id?>');
+	<?php endif; ?>
+
+    <?php if ( isset($survey) && $survey !== false ) : ?>
+    lhinst.setSurvey('<?php echo $survey?>');
+	<?php endif; ?>
+
+	<?php if (isset($chat_embed_mode) && $chat_embed_mode == true) : ?>
+	lhinst.setEmbedMode(true);
+    <?php endif;?>
+	
 	setTimeout(function(){
 			$('#messagesBlock').scrollTop($('#messagesBlock').prop('scrollHeight'));
 	},100);
-	
 	
     // Start user chat synchronization
     lhinst.chatsyncuserpending();    
     lhinst.scheduleSync();
 
+    $( document ).ready(function() {
+        if (jQuery('#CSChatMessage').size() > 0) {
+        	jQuery('#CSChatMessage').focus();    
+        	jQuery('#CSChatMessage')[0].setSelectionRange(1000,1000);
+    	}
+    });
+    
     $(window).bind('beforeunload', function(){
         lhinst.userclosedchat();
     });

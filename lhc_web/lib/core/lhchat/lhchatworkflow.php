@@ -11,16 +11,20 @@ class erLhcoreClassChatWorkflow {
     	$msg->msg = trim($chat->timeout_message);
     	$msg->chat_id = $chat->id;
     	$msg->name_support = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Live Support');
-    	$msg->user_id = 1;
+    	$msg->user_id = -2;
     	$msg->time = time();
     	erLhcoreClassChat::getSession()->save($msg);
 
     	if ($chat->last_msg_id < $msg->id) {
     		$chat->last_msg_id = $msg->id;
     	}
-
-    	$chat->timeout_message = '';
-    	$chat->wait_timeout_send = 1;
+    	
+    	$chat->wait_timeout_send++;
+    	
+    	if ($chat->wait_timeout_send == 1) {
+    	   $chat->timeout_message = '';
+    	}
+    	    	
     	$chat->updateThis();
     }
 
@@ -147,7 +151,7 @@ class erLhcoreClassChatWorkflow {
     	}
     	
     	if (in_array('xmp_accepted', $options['options'])) {    	
-    		erLhcoreClassXMP::sendXMPMessage($chat,array('template' => 'xmp_accepted_message'));
+    		erLhcoreClassXMP::sendXMPMessage($chat,array('template' => 'xmp_accepted_message','recipients_setting' => 'xmp_users_accepted'));
     	}
     	
     	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chat_accepted',array('chat' => & $chat));
@@ -186,6 +190,8 @@ class erLhcoreClassChatWorkflow {
     	$closedChatsNumber = 0;
     	$timeout = (int)erLhcoreClassModelChatConfig::fetch('autoclose_timeout')->current_value;    	
     	if ($timeout > 0) {
+    	    
+    	    // Close normal chats
     		$delay = time()-($timeout*60);
     		foreach (erLhcoreClassChat::getList(array('limit' => 500,'filtergt' => array('last_user_msg_time' => 0), 'filterlt' => array('last_user_msg_time' => $delay), 'filter' => array('status' => erLhcoreClassModelChat::STATUS_ACTIVE_CHAT))) as $chat) {
     			$chat->status = erLhcoreClassModelChat::STATUS_CLOSED_CHAT;
@@ -206,6 +212,28 @@ class erLhcoreClassChatWorkflow {
     			$chat->updateThis();  
     			erLhcoreClassChat::updateActiveChats($chat->user_id);
     			$closedChatsNumber++;
+	    	}
+	    	
+	    	// Close pending chats where the only message is user initial message
+	    	foreach (erLhcoreClassChat::getList(array('limit' => 500,'filterlt' => array('time' => $delay), 'filterin' => array('status' => array(erLhcoreClassModelChat::STATUS_PENDING_CHAT, erLhcoreClassModelChat::STATUS_ACTIVE_CHAT)),'filter' => array('last_user_msg_time' => 0))) as $chat) {
+	    	    $chat->status = erLhcoreClassModelChat::STATUS_CLOSED_CHAT;
+	    	     
+	    	    $msg = new erLhcoreClassModelmsg();
+	    	    $msg->msg = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/syncuser','Chat was automatically closed by cron');
+	    	    $msg->chat_id = $chat->id;
+	    	    $msg->user_id = -1;
+	    	     
+	    	    $chat->last_user_msg_time = $msg->time = time();
+	    	     
+	    	    erLhcoreClassChat::getSession()->save($msg);
+	    	     
+	    	    if ($chat->last_msg_id < $msg->id) {
+	    	        $chat->last_msg_id = $msg->id;
+	    	    }
+	    	     
+	    	    $chat->updateThis();
+	    	    erLhcoreClassChat::updateActiveChats($chat->user_id);
+	    	    $closedChatsNumber++;
 	    	}	    	
     	}
 
@@ -290,8 +318,27 @@ class erLhcoreClassChatWorkflow {
      	if (!empty($items)){
      		$cannedMsg = array_shift($items);
      		
+     		$replaceArray = array(
+     		    '{nick}' => $chat->nick, 
+     		    '{email}' => $chat->email,
+     		    '{phone}' => $chat->phone,
+     		    '{operator}' => (string)$chat->user->name_support     		    
+     		);
+     		
+     		$additionalData = $chat->additional_data_array;
+     		
+     		foreach ($additionalData as $row) {
+     		    if (isset($row->identifier) && $row->identifier != ''){
+     		        $replaceArray['{'.$row->identifier.'}'] = $row->value;
+     		    }
+     		}
+     		
+     		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.workflow.canned_message_replace',array('chat' => $chat, 'replace_array' => & $replaceArray));
+     		
+     		$cannedMsg->setReplaceData($replaceArray);
+     		
      		$msg = new erLhcoreClassModelmsg();
-     		$msg->msg = $cannedMsg->msg;
+     		$msg->msg = $cannedMsg->msg_to_user;
      		$msg->chat_id = $chat->id;
      		$msg->user_id = $chat->user_id;
      		$msg->name_support = $chat->user->name_support;

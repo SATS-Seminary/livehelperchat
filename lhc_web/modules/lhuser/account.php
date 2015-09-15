@@ -34,6 +34,40 @@ if (erLhcoreClassUser::instance()->hasAccessTo('lhuser','allowtochoosependingmod
 	$tpl->set('tab','tab_pending');
 }
 
+if (erLhcoreClassUser::instance()->hasAccessTo('lhspeech','changedefaultlanguage') && isset($_POST['UpdateSpeech_account']))
+{	
+	if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
+		erLhcoreClassModule::redirect('user/account');
+		exit;
+	}
+	
+	$definition = array(
+			'select_language' => new ezcInputFormDefinitionElement(
+					ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1)
+			),
+			'select_dialect' => new ezcInputFormDefinitionElement(
+					ezcInputFormDefinitionElement::OPTIONAL, 'string'
+			),
+	);
+	
+	$form = new ezcInputForm( INPUT_POST, $definition );
+	$Errors = array();
+	
+	if ( $form->hasValidData( 'select_language' ) )	{	  
+	    erLhcoreClassModelUserSetting::setSetting('speech_language',$form->select_language);
+	} else {
+	    erLhcoreClassModelUserSetting::setSetting('speech_language','');
+	}
+	
+	if ( $form->hasValidData( 'select_dialect' ) && $form->hasValidData( 'select_dialect' ) != '0' )	{
+	    erLhcoreClassModelUserSetting::setSetting('speech_dialect',$form->select_dialect);
+	} else {
+	   erLhcoreClassModelUserSetting::setSetting('speech_dialect','');
+	}
+
+	$tpl->set('account_updated','done');
+	$tpl->set('tab','tab_speech');
+}
 
 if (erLhcoreClassUser::instance()->hasAccessTo('lhuser','change_visibility_list') && isset($_POST['UpdateTabsSettings_account']))
 {
@@ -128,6 +162,9 @@ if (isset($_POST['Update']))
    		),
    		'UserInvisible' => new ezcInputFormDefinitionElement(
    				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
+   		),
+   		'ReceivePermissionRequest' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
    		)
     );
 
@@ -194,6 +231,14 @@ if (isset($_POST['Update']))
 	    	$UserData->invisible_mode = 1;
 	    } else {
 	    	$UserData->invisible_mode = 0;
+	    }
+    }
+    
+    if ( erLhcoreClassUser::instance()->hasAccessTo('lhuser','receivepermissionrequest') ) {
+	    if ( $form->hasValidData( 'ReceivePermissionRequest' ) && $form->ReceivePermissionRequest == true ) {
+	    	$UserData->rec_per_req = 1;
+	    } else {
+	    	$UserData->rec_per_req = 0;
 	    }
     }
     
@@ -288,13 +333,14 @@ if ($allowEditDepartaments && isset($_POST['UpdateDepartaments_account']))
        $UserData->all_departments = 0;
    }
 
-   erLhcoreClassUser::getSession()->update($UserData);
-
    if (isset($_POST['UserDepartament']) && count($_POST['UserDepartament']) > 0)
    {
        $globalDepartament = array_merge($_POST['UserDepartament'],$globalDepartament);
    }
-
+      
+   $UserData->departments_ids = implode(',', $globalDepartament);
+   erLhcoreClassUser::getSession()->update($UserData);
+      
    if (count($globalDepartament) > 0) {
        erLhcoreClassUserDep::addUserDepartaments($globalDepartament,false,$UserData);
    } else {
@@ -337,55 +383,18 @@ if ( erLhcoreClassUser::instance()->hasAccessTo('lhuser','personalcannedmsg') ) 
 	}
 	
 	if (isset($_POST['Save_canned_action']))
-	{
-		$definition = array(
-				'Message' => new ezcInputFormDefinitionElement(
-						ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
-				),
-				'Position' => new ezcInputFormDefinitionElement(
-						ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 0)
-				),
-				'Delay' => new ezcInputFormDefinitionElement(
-						ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 0)
-				),
-		        'AutoSend' => new ezcInputFormDefinitionElement(
-		            ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
-		        )
-		);
-		
-		$form = new ezcInputForm( INPUT_POST, $definition );
-		$Errors = array();
-		
-		if ( !$form->hasValidData( 'Message' ) || $form->Message == '' )
-		{
-			$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('chat/cannedmsg','Please enter canned message');
-		}
-		
-		if ( $form->hasValidData( 'Position' )  )
-		{
-			$cannedMessage->position = $form->Position;
-		}
-		
-		if ( $form->hasValidData( 'Delay' )  )
-		{
-			$cannedMessage->delay = $form->Delay;
-		}
-		
-		if ( $form->hasValidData( 'AutoSend' ) && $form->AutoSend == true )
-		{
-			$cannedMessage->auto_send = 1;
-		} else {
-			$cannedMessage->auto_send = 0;
-		}
-		
-		if (count($Errors) == 0) {
-			$cannedMessage->msg = $form->Message;
+	{	
+		$Errors = erLhcoreClassAdminChatValidatorHelper::validateCannedMessage($cannedMessage, true);
+				
+		if (count($Errors) == 0) {		
 			$cannedMessage->user_id = $UserData->id;
 			$cannedMessage->saveThis();			
 			$tpl->set('updated_canned',true);
 		}  else {
 			$tpl->set('errors_canned',$Errors);
 		}
+		
+		$tpl->set('tab','tab_canned');
 	}
 	
 	/**
@@ -410,7 +419,7 @@ if ( erLhcoreClassUser::instance()->hasAccessTo('lhuser','personalcannedmsg') ) 
 		exit;
 	}
 	
-	$tpl->set('canned_msg',$cannedMessage);
+	$tpl->set('canned_msg',$cannedMessage);	
 }
 
 

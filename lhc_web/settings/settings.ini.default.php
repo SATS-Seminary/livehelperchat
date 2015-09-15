@@ -15,6 +15,7 @@ return array (
       'templatecompile' => false,
       'modulecompile' => false,
       'force_virtual_host' => false,
+      'one_login_per_account' => false,
       'time_zone' => '',
       'date_format' => 'Y-m-d',
       'date_hour_format' => 'H:i:s',
@@ -54,7 +55,8 @@ return array (
       	25 => 'geo',
       	26 => 'fin',
       	27 => 'alb',
-      	28 => 'site_admin'
+      	28 => 'heb',
+      	29 => 'site_admin'
       ),
     ),
     'default_url' =>
@@ -612,7 +614,24 @@ return array (
     		'module' => 'chat',
     		'view' => 'startchat'
     	),
-      ),	
+      ),
+      'heb' => array (
+        'locale' => 'he_HE',
+        'content_language' => 'he',
+        'dir_language' => 'rtl',
+        'title' => '',
+        'description' => '',
+        'theme' =>
+            array (
+              0 => 'customtheme',
+              1 => 'defaulttheme'
+        ),
+        'default_url' =>
+            array (
+                'module' => 'chat',
+                'view' => 'startchat'
+            ),
+       ),
       'site_admin' =>
       array (
         'locale' => 'en_EN',

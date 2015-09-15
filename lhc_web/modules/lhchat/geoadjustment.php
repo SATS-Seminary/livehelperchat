@@ -1,5 +1,7 @@
 <?php
 
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.geoadjustment', array());
+
 $tpl = erLhcoreClassTemplate::getInstance( 'lhchat/geoadjustment.tpl.php');
 
 $geoData = erLhcoreClassModelChatConfig::fetch('geoadjustment_data');
@@ -97,5 +99,7 @@ $tpl->set('geo_data',$data);
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
 array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('chat/geoadjustment','GEO adjustment')));
+
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.geoadjustment_path',array('result' => & $Result));
 
 ?>

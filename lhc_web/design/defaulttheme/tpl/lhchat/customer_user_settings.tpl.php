@@ -3,38 +3,35 @@
 $soundData = erLhcoreClassModelChatConfig::fetch('sync_sound_settings')->data;
 $soundMessageEnabled = erLhcoreClassModelUserSetting::getSetting('chat_message',(int)($soundData['new_message_sound_user_enabled'])); ?>
 
-<div class="right pos-rel">
-	<a href="#" data-dropdown="drop2" class="tiny secondary round button dropdown"><i class="icon-tools"></i></a>
 
-	<ul id="drop2" data-dropdown-content class="f-dropdown widget-options">
+
+  <div class="btn-group pull-right" role="group">
+    <?php include(erLhcoreClassDesign::designtpl('lhchat/customer_user_settings_multiinclude.tpl.php'));?>
+    
+    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <i class="material-icons mr-0">settings_applications</i>
+      <span class="caret"></span>
+    </button>  
+    <ul role="menu" data-dropdown-content class="dropdown-menu widget-options">
 		 
-		 <li><a href="#" class="icon-sound <?php $soundMessageEnabled == 0 ? print ' icon-mute' : ''?>" onclick="return lhinst.disableChatSoundUser($(this))" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Enable/Disable sound about new messages from the operator');?>"></a></li>
-	     
-	     
+		 <li><a href="#" class="material-icons mat-100" onclick="return lhinst.disableChatSoundUser($(this))" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Enable/Disable sound about new messages from the operator');?>"><?php $soundMessageEnabled == 0 ? print 'volume_off' : print 'volume_up'?></a></li>
+	     	     
 	     <?php if ( isset($chat) ) : ?>
 	     
 	     <?php if ((int)erLhcoreClassModelChatConfig::fetch('disable_print')->current_value == 0) : ?>
-		 <li><a target="_blank" href="<?php echo erLhcoreClassDesign::baseurl('chat/printchat')?>/<?php echo $chat->id?>/<?php echo $chat->hash?>" class="icon-print" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Print')?>"></a></li>
+		 <li><a target="_blank" href="<?php echo erLhcoreClassDesign::baseurl('chat/printchat')?>/<?php echo $chat->id?>/<?php echo $chat->hash?>" class="material-icons mat-100" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Print')?>">print</a></li>
 		 <?php endif;?>
 		 				 
 		 <?php if ((int)erLhcoreClassModelChatConfig::fetch('disable_send')->current_value == 0) : ?>
-		 <li><a target="_blank" onclick="$.colorbox({className:'user-action-colorbox',closeButton:false,href:'<?php echo erLhcoreClassDesign::baseurl('chat/sendchat')?>/<?php echo $chat->id?>/<?php echo $chat->hash?>'});return false;" href="#" class="icon-mail" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Send chat transcript to your e-mail')?>"></a></li>
+		 <li><a target="_blank" onclick="lhc.revealModal({'url':'<?php echo erLhcoreClassDesign::baseurl('chat/sendchat')?>/<?php echo $chat->id?>/<?php echo $chat->hash?>'});return false;" href="#" class="material-icons mat-100" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/user_settings','Send chat transcript to your e-mail')?>">email</a></li>
 		 <?php endif;?>
 		 
-		 <?php $fileData = (array)erLhcoreClassModelChatConfig::fetch('file_configuration')->data ?>
-
-		 <?php if (isset($fileData['active_user_upload']) && $fileData['active_user_upload'] == true) : ?>
-		 <li>
-		 <a class="file-uploader icon-attach" href="#">
-		        <!-- The file input field used as target for the file upload widget -->
-		        <input id="fileupload" type="file" name="files[]" multiple>
-		 </a>
-		 </li>
-		 <?php endif;?>
+		 <?php include(erLhcoreClassDesign::designtpl('lhchat/customer_user_settings/user_file_upload.tpl.php'));?>
 
 		 <?php endif;?>
 	</ul>
-</div>
+  </div>
+
 
 <?php if ( isset($chat) && isset($fileData['active_user_upload']) && $fileData['active_user_upload'] == true ) : ?>
 <script>

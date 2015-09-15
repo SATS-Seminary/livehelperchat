@@ -137,7 +137,7 @@ class erLhcoreClassXMP {
 		}
 	}
 			
-	public static function sendTestXMPGTalk($userData) {	
+	public static function sendTestXMPGTalk($email) {	
 								
 		$xmpData = erLhcoreClassModelChatConfig::fetch('xmp_data');
 		$data = (array)$xmpData->data;
@@ -151,7 +151,7 @@ class erLhcoreClassXMP {
 				$conn->connect();
 				$conn->processUntil('session_start');
 				$conn->presence();
-				$conn->message($userData->email, $data['xmp_message']);
+				$conn->message($email, $data['xmp_message']);
 				$conn->disconnect();
 				return true;
 			} catch (Exception $e) {
@@ -174,6 +174,9 @@ class erLhcoreClassXMP {
 		
 		$data = (array) erLhcoreClassModelChatConfig::fetch('xmp_data')->data;
 		
+		// Allows extension to override xmpp settings, let say disable it :)
+		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('xml.send_xmp_message',array('params' => & $data));
+				
 		$templateMessage = 'xmp_message';
 		if (isset($params['template'])) {
 			$templateMessage = $params['template'];
@@ -195,7 +198,26 @@ class erLhcoreClassXMP {
 					} elseif (isset($data['recipients']) && $data['recipients'] != '') {
 						$emailRecipient = explode(',', $data['recipients']);
 					}
-								
+
+					$settingsXMPPGlobal = isset($params['recipients_setting']) ? $params['recipients_setting'] : 'xmp_users';
+					
+					$optionsDepartment = array();
+					
+					if ($chat->department !== false){
+					    $optionsDepartment = $chat->department->inform_options_array;
+					}
+															
+					if (in_array($settingsXMPPGlobal, $optionsDepartment)) {					 					    
+					    $db = ezcDbInstance::get();
+                        $stmt = $db->prepare("SELECT xmpp_username FROM lh_users WHERE id IN (SELECT user_id FROM lh_userdep WHERE dep_id = 0 OR dep_id = :dep_id) AND xmpp_username != ''");
+                        $stmt->bindValue( ':dep_id',$chat->dep_id,PDO::PARAM_INT);
+                        $stmt->execute();
+                        $usersXMPPs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+                        if (is_array($usersXMPPs)){
+                            $emailRecipient = array_unique(array_merge($emailRecipient,$usersXMPPs));
+                        }
+					}
+					
 					if ($chat->department !== false && $chat->department->xmpp_group_recipients != '') {
 						$groupRecipients = explode(',',$chat->department->xmpp_group_recipients);
 					}
@@ -263,6 +285,25 @@ class erLhcoreClassXMP {
 							$emailRecipient = explode(',',$chat->department->xmpp_recipients);
 						} elseif (isset($data['recipients']) && $data['recipients'] != '') {
 							$emailRecipient = explode(',', $data['recipients']);
+						}
+						
+						$settingsXMPPGlobal = isset($params['recipients_setting']) ? $params['recipients_setting'] : 'xmp_users';
+						
+						$optionsDepartment = array();
+					
+    					if ($chat->department !== false){
+    					    $optionsDepartment = $chat->department->inform_options_array;
+    					}
+															
+					    if (in_array($settingsXMPPGlobal, $optionsDepartment)) {
+						    $db = ezcDbInstance::get();
+						    $stmt = $db->prepare("SELECT xmpp_username FROM lh_users WHERE id IN (SELECT user_id FROM lh_userdep WHERE dep_id = 0 OR dep_id = :dep_id) AND xmpp_username != ''");
+						    $stmt->bindValue( ':dep_id',$chat->dep_id,PDO::PARAM_INT);
+						    $stmt->execute();
+						    $usersXMPPs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+						    if (is_array($usersXMPPs)){
+						        $emailRecipient = array_unique(array_merge($emailRecipient,$usersXMPPs));
+						    }
 						}
 						
 						$messages = array_reverse(erLhcoreClassModelmsg::getList(array('limit' => 5,'sort' => 'id DESC','filter' => array('chat_id' => $chat->id))));

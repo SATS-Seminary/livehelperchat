@@ -11,7 +11,11 @@ services.factory('OnlineUsersFactory', ['$http','$q',function ($http, $q) {
 	this.deleteOnlineUser = function(params){
 		var deferred = $q.defer();		
 		$http.post(WWW_DIR_JAVASCRIPT +'chat/onlineusers/(deletevisitor)/'+params.user_id + '/(csfr)/'+confLH.csrf_token).success(function(data) {
-			 deferred.resolve(data);		
+			if (typeof data.error_url !== 'undefined') {
+				document.location = data.error_url;
+			} else {
+				deferred.resolve(data);
+			}		
 		});		
 		return deferred.promise;
 	};
@@ -216,26 +220,22 @@ lhcAppControllers.controller('OnlineCtrl',['$scope','$http','$location','$rootSc
 			}
 		});
 		
-		
 		$scope.$watch('online.userTimeout + online.department + online.maxRows + groupByField', function(newVal,oldVal) { 
 				that.updateList();			
 		});
-		
+				
 		this.showOnlineUserInfo = function(user_id) {
-			$.colorbox({onComplete:function(){$(document).foundation('section', 'reflow');},width:'550px',href:WWW_DIR_JAVASCRIPT+'chat/getonlineuserinfo/'+user_id});
+			lhc.revealModal({'url':WWW_DIR_JAVASCRIPT+'chat/getonlineuserinfo/'+user_id});
 		};
 		
 		this.previewChat = function(ou) {
-			if (ou.chat_id > 0 && ou.can_view_chat == 1) {				
-				if ($('#myModal').size() == 0) {
-					$('body').prepend('<div id="myModal" class="reveal-modal medium"><a class="close-reveal-modal">&#215;</a></div>');
-				};				
-				$('#myModal').foundation('reveal', 'open', {url: WWW_DIR_JAVASCRIPT+'chat/previewchat/'+ou.chat_id});
+			if (ou.chat_id > 0 && ou.can_view_chat == 1) {	
+				lhc.revealModal({'url':WWW_DIR_JAVASCRIPT+'chat/previewchat/'+ou.chat_id});
 			}
 		};
 		
 		this.sendMessage = function(user_id) {
-			$.colorbox({'iframe':true,height:'500px',width:'500px', href:WWW_DIR_JAVASCRIPT+'chat/sendnotice/'+user_id});
+			lhc.revealModal({'url':WWW_DIR_JAVASCRIPT+'chat/sendnotice/'+user_id});
 		};
 		
 		this.deleteUser = function(user,q) {
@@ -258,5 +258,6 @@ lhcAppControllers.controller('OnlineCtrl',['$scope','$http','$location','$rootSc
 		
 		$scope.$on('$destroy', function disableController() {
 			$interval.cancel(timeoutId);	
-		});			  
+		});
+		
 }]);

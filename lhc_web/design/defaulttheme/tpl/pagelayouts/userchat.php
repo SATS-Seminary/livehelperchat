@@ -6,42 +6,51 @@
 </head>
 <body>
 
-<div class="content-row">
+	<div class="modal-dialog modal-lg" id="user-popup-window">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="row">
+					<div class="col-xs-6">
+            		  <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_head_logo.tpl.php'));?>
+            		</div>
+					<div class="col-xs-6">
+						<div class="btn-group pull-right" role="group" aria-label="...">
+                        <?php if (!isset($Result['hide_close_window'])) : ?>
+                                              
+                            <?php if (isset($Result['chat']) && is_numeric($Result['chat']->id) && isset($Result['er']) && $Result['er'] == true) : ?>
+                            <a class="btn btn-default btn-xs" onclick="lhinst.restoreWidget('<?php echo $Result['chat']->id,'_',$Result['chat']->hash?>');" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Switch to widget')?>"><i class="material-icons mr-0">open_in_browser</i></a>
+                            <?php endif;?>
+                                  
+                            <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/close_popup.tpl.php'));?>
+                		    <?php endif;?>	
+                		  
+                		  <?php if (isset($Result['show_switch_language'])) : ?>		  
+                		    <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/switch_language.tpl.php'));?>
+                		  <?php endif; ?>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">      
+                <?php echo $Result['content'];?>  
+            </div>
+		</div>
+	</div>
 
-<div class="row">
-    <div class="columns small-7">
-        <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_head_logo.tpl.php'));?>
-    </div>
-    
-    <div class="columns small-5 pt20">
-    	<ul class="button-group radius right">
-    	  <?php if (!isset($Result['hide_close_window'])) : ?>
-		  	<li><a class="secondary tiny button" onclick="lhinst.userclosedchatandbrowser();" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/chat','Close')?>"><i class="icon-cancel"></i></a></li>
-		  <?php endif;?>		  
-		  <?php if (isset($Result['show_switch_language'])) : ?>
-		  <li>
-		    <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/switch_language.tpl.php'));?>			
-		  </li>
-		  <?php endif; ?>
-		</ul>
-	
-	
-	</div>	
-</div>
-
-<div class="row">
-    <div class="columns twelve">
-    <?php echo $Result['content']; ?>
-    </div>
-</div>
-
+	<div class="container-fluid">
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_footer_user.tpl.php'));?>
 </div>
 
-<?php if (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'debug_output' ) == true) {
-		$debug = ezcDebug::getInstance();
-		echo $debug->generateOutput();
-} ?>
+<?php
+
+if (erConfigClassLhConfig::getInstance()->getSetting('site', 'debug_output') == true) {
+    $debug = ezcDebug::getInstance();
+    echo $debug->generateOutput();
+}
+?>
+
+<?php include(erLhcoreClassDesign::designtpl('pagelayouts/parts/dynamic_height.tpl.php'));?>
+
 
 </body>
 </html>

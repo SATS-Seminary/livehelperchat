@@ -109,6 +109,7 @@ class erLhcoreClassChatValidator {
         $validationFields['DepartmentIDDefined'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1),FILTER_REQUIRE_ARRAY);
         $validationFields['operator'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1));
         $validationFields['user_timezone'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'int');
+        $validationFields['keyUpStarted'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'int', array('min_range' => 1));
         
         
         
@@ -166,6 +167,14 @@ class erLhcoreClassChatValidator {
 	        $validationFields[$nameField] = new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'string' );
         }
 
+        // Custom start chat fields
+        $validationFields['value_items_admin'] = new ezcInputFormDefinitionElement(
+            ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+            null,
+            FILTER_REQUIRE_ARRAY
+        );
+        
+        
         $form = new ezcInputForm( INPUT_POST, $validationFields );
         $Errors = array();
 
@@ -184,60 +193,59 @@ class erLhcoreClassChatValidator {
        
         if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
         	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600 || $hashCaptcha != sha1($_SERVER['REMOTE_ADDR'].$form->$nameField.erConfigClassLhConfig::getInstance()->getSetting( 'site', 'secrethash' ))){
-        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
         	}
         } else {
         	// Captcha validation
         	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600 )
         	{
-        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
         	}
         }
-        
-
+          
         if (isset($validationFields['Username'])) {
 
             if ( !$form->hasValidData( 'Username' ) || ($form->Username == '' && (($start_data_fields['name_require_option'] == 'required' && !isset($additionalParams['offline'])) || (isset($additionalParams['offline']) && isset($start_data_fields['offline_name_require_option']) && $start_data_fields['offline_name_require_option'] == 'required' )))  )
             {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your name');
+                $Errors['nick'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your name');
             } elseif ($form->hasValidData( 'Username' )) {
                 $chat->nick = $inputForm->username = $form->Username;
             }
 
             if ($form->hasValidData( 'Username' ) && $form->Username != '' && strlen($form->Username) > 50)
             {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum 50 characters');
+                $Errors['nick'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum 50 characters');
             }
         }
 
         if ( isset($validationFields['Email']) ) {
             if ( (!$form->hasValidData( 'Email' ) && $start_data_fields['email_require_option'] == 'required') || (!$form->hasValidData( 'Email' ) && isset($additionalParams['offline'])) ) {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter a valid email address');
+                $Errors['email'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter a valid email address');
             } elseif ( $form->hasValidData( 'Email' ) ) {
                 $chat->email = $inputForm->email = $form->Email;
             } else {
                 $chat->email = $inputForm->email = $_POST['Email'];
             }
         }
-
+        
         // Validate question
         if (isset($validationFields['Question'])) {
 
-            if ( !$form->hasValidData( 'Question' ) || (trim($form->Question) == '' && (($start_data_fields['message_require_option'] == 'required' && !isset($additionalParams['offline'])) || (isset($additionalParams['offline']) && isset($start_data_fields['offline_message_require_option']) && $start_data_fields['offline_message_require_option'] == 'required')))) {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your message');
+            if ( !$form->hasValidData('keyUpStarted') && (!$form->hasValidData( 'Question' ) || (trim($form->Question) == '' && (($start_data_fields['message_require_option'] == 'required' && !isset($additionalParams['offline'])) || (isset($additionalParams['offline']) && isset($start_data_fields['offline_message_require_option']) && $start_data_fields['offline_message_require_option'] == 'required'))))) {
+                $Errors['question'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your message');
             } elseif ($form->hasValidData( 'Question' )) {
                 $inputForm->question = trim($form->Question);
             }
 
             if ($form->hasValidData( 'Question' ) && trim($form->Question) != '' && strlen($form->Question) > (int)erLhcoreClassModelChatConfig::fetch('max_message_length')->current_value)
             {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum').' '.(int)erLhcoreClassModelChatConfig::fetch('max_message_length')->current_value.' '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','characters for a message');
+                $Errors['question'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum').' '.(int)erLhcoreClassModelChatConfig::fetch('max_message_length')->current_value.' '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','characters for a message');
             }
         }
        
         if (isset($validationFields['AcceptTOS'])) {
         	if ( !$form->hasValidData( 'AcceptTOS' ) || $form->AcceptTOS == false) {
-        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','You have to accept our Terms Of Service');
+        		$Errors['accept_tos'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','You have to accept our Terms Of Service');
         	} else {
         		$inputForm->accept_tos = true;
         	}
@@ -255,7 +263,7 @@ class erLhcoreClassChatValidator {
 
             if ($form->hasValidData( 'Phone' ) && $form->Phone != '' && strlen($form->Phone) > 100)
             {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum 100 characters for phone');
+                $Errors['phone'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum 100 characters for phone');
             }
         }
         
@@ -310,13 +318,22 @@ class erLhcoreClassChatValidator {
         if ($form->hasValidData( 'DepartamentID' ) && erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $form->DepartamentID,'disabled' => 0))) > 0) {
         	$chat->dep_id = $form->DepartamentID;
         } elseif ($chat->dep_id == 0 || erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $chat->dep_id,'disabled' => 0))) == 0) {
-        	$departments = erLhcoreClassModelDepartament::getList(array('limit' => 1,'filter' => array('disabled' => 0)));
-        	if (!empty($departments) ) {
-	        	$department = array_shift($departments);
-	        	$chat->dep_id = $department->id;
-        	} else {
-        		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Could not determine a default department!');
-        	}
+            
+            // Perhaps extension overrides default department?
+            $response = erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.validate_department', array('input_form' => $inputForm));
+            
+            // There was no callbacks or file not found etc, we try to download from standard location
+            if ($response === false) {
+            	$departments = erLhcoreClassModelDepartament::getList(array('limit' => 1,'filter' => array('disabled' => 0)));
+            	if (!empty($departments) ) {
+    	        	$department = array_shift($departments);
+    	        	$chat->dep_id = $department->id;
+            	} else {
+            		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Could not determine a default department!');
+            	}
+            } else {
+                $chat->dep_id = $response['department_id'];
+            }
         }
 
         // Set chat attributes for transfer workflow logic
@@ -340,6 +357,7 @@ class erLhcoreClassChatValidator {
         	}
         }
 
+        $stringParts = array();
         
         if ( $form->hasValidData( 'name_items' ) && !empty($form->name_items))
         {
@@ -375,21 +393,144 @@ class erLhcoreClassChatValidator {
         	}
 
         	$inputForm->name_items = $form->name_items;
-
-        	$stringParts = array();
+        	
         	foreach ($form->name_items as $key => $name_item) {    
         		if (isset($inputForm->values_req[$key]) && $inputForm->values_req[$key] == 't' && ($inputForm->value_show[$key] == 'b' || $inputForm->value_show[$key] == (isset($additionalParams['offline']) ? 'off' : 'on')) && (!isset($valuesArray[$key]) || trim($valuesArray[$key]) == '')) {
-        			$Errors[] = trim($name_item).' : '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','is required');
+        			$Errors['additional_'.$key] = trim($name_item).' : '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','is required');
         		}
-        		$stringParts[] = array('key' => $name_item,'value' => (isset($valuesArray[$key]) ? trim($valuesArray[$key]) : ''));
-        	}
+        		$stringParts[] = array('h' => ($inputForm->value_types[$key] && $inputForm->value_types[$key] == 'hidden' ? true : false), 'key' => $name_item,'value' => (isset($valuesArray[$key]) ? trim($valuesArray[$key]) : ''));
+        	}        	
+        }
+        
 
-        	$chat->additional_data = json_encode($stringParts);
+        if (isset($start_data_fields['custom_fields']) && $start_data_fields['custom_fields'] != '') {
+            $customAdminfields = json_decode($start_data_fields['custom_fields'],true);
+            
+            $valuesArray = array();
+            
+            // Fill values if exists
+            if ($form->hasValidData( 'value_items_admin' )){
+                $inputForm->value_items_admin = $valuesArray = $form->value_items_admin;
+            }
+
+            if (is_array($customAdminfields)){
+                foreach ($customAdminfields as $key => $adminField) {
+            
+                    if (isset($inputForm->value_items_admin[$key]) && isset($adminField['isrequired']) && $adminField['isrequired'] == 'true' && ($adminField['visibility'] == 'all' || $adminField['visibility'] == (isset($additionalParams['offline']) ? 'off' : 'on')) && (!isset($valuesArray[$key]) || trim($valuesArray[$key]) == '')) {
+            			$Errors['additional_admin_'.$key] = trim($adminField['fieldname']).': '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','is required');
+            		}
+            		
+            		if (isset($valuesArray[$key]) && $valuesArray[$key] != '') {
+            		    $stringParts[] = array('identifier' => $adminField['fieldidentifier'], 'key' => $adminField['fieldname'], 'value' => (isset($valuesArray[$key]) ? trim($valuesArray[$key]) : ''));
+            		}       
+                }
+            }
+        }
+        
+        if (!empty($stringParts)) {
+            $chat->additional_data = json_encode($stringParts);
         }
 
         erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.validate_start_chat',array('errors' => & $Errors, 'input_form' => & $inputForm, 'start_data_fields' => & $start_data_fields, 'chat' => & $chat,'additional_params' => & $additionalParams));
         
         return $Errors;
+    }
+    
+    
+    /**
+     * Validates custom fields
+     */
+    public static function validateCustomFieldsRefresh(& $chat)
+    {
+        $definition = array (
+            'name'  => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+                null,
+                FILTER_REQUIRE_ARRAY
+            ),
+            'value' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+                null,
+                FILTER_REQUIRE_ARRAY
+            ),
+            'type' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'string',
+                null,
+                FILTER_REQUIRE_ARRAY
+            ),
+            'size' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'string',
+                null,
+                FILTER_REQUIRE_ARRAY
+            ),
+            'req' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'string',
+                null,
+                FILTER_REQUIRE_ARRAY
+            ),
+            'sh' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'string',
+                null,
+                FILTER_REQUIRE_ARRAY
+            )            
+        );
+    
+        $form = new ezcInputForm( INPUT_POST, $definition );
+        $Errors = array();
+        $inputForm = new stdClass();
+        
+        $stringParts = array();
+        
+        if ( $form->hasValidData( 'name' ) && !empty($form->name))
+        {
+            $valuesArray = array();
+            if ( $form->hasValidData( 'value' ) && !empty($form->value))
+            {
+                $inputForm->value = $valuesArray = $form->value;
+            }
+             
+            if ( $form->hasValidData( 'req' ) && !empty($form->req))
+            {
+                $inputForm->req = $form->req;
+            }
+        
+            if ( $form->hasValidData( 'type' ) && !empty($form->type))
+            {
+                $inputForm->type = $form->type;
+            }
+        
+            if ( $form->hasValidData( 'size' ) && !empty($form->size))
+            {
+                $inputForm->size = $form->size;
+            }
+        
+            $inputForm->name = $form->name;
+            
+            $currentChatData = json_decode($chat->additional_data,true);
+            
+            if (is_array($currentChatData)) {
+                foreach ($currentChatData as $key => $data) {
+                    if (isset($data['h']) && $data['h'] == true) {
+                        unset($currentChatData[$key]);
+                    }
+                }
+            } else {
+                $currentChatData = array();
+            }
+            
+            foreach ($form->name as $key => $name_item) {
+                if (isset($inputForm->type[$key]) && $inputForm->type[$key] == 'hidden') {
+                    $currentChatData[] = array('h' => true, 'key' => $name_item,'value' => isset($inputForm->value[$key]) ? trim($inputForm->value[$key]) : '');
+                }
+            }
+        }
+        
+        // To reset index
+        $currentChatData = array_values($currentChatData);
+        
+        if (!empty($currentChatData)) {
+            $chat->additional_data = json_encode($currentChatData);
+        }
     }
     
     /**
@@ -413,6 +554,48 @@ class erLhcoreClassChatValidator {
     	if ($attrChanged) {
     		$prefillChat->saveThis();
     	}
+    }
+    
+    public static function validateNickChange(& $chat)
+    {
+        $definition = array(
+            'Email' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'validate_email'
+            ),
+            'UserNick' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+            ),
+            'UserPhone' => new ezcInputFormDefinitionElement(
+                ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+            )
+        );
+    
+        $form = new ezcInputForm( INPUT_POST, $definition );
+        $Errors = array();
+     
+        if ( !$form->hasValidData( 'Email' ) && $_POST['Email'] != '' ) {
+            $Errors['email'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter a valid email address');
+        } elseif ($form->hasValidData( 'Email' )) {
+            $chat->email = $form->Email;
+        }
+    
+        if ($form->hasValidData( 'UserNick' ) && $form->UserNick != '' && strlen($form->UserNick) > 50)
+        {
+            $Errors['nick'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Maximum 50 characters');
+        }
+    
+        if ($form->hasValidData( 'UserPhone' )) {
+            $chat->phone = $form->UserPhone;
+        }
+    
+        if ($form->hasValidData( 'UserNick' ) && $form->UserNick != '')
+        {
+            $chat->nick = $form->UserNick;
+        } else {
+            $Errors['nick'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your name');
+        }
+    
+        return $Errors;
     }
 }
 

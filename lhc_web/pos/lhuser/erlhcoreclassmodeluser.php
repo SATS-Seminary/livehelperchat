@@ -69,6 +69,37 @@ $def->properties['invisible_mode']->columnName   = 'invisible_mode';
 $def->properties['invisible_mode']->propertyName = 'invisible_mode';
 $def->properties['invisible_mode']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
+$def->properties['active_chats_counter'] = new ezcPersistentObjectProperty();
+$def->properties['active_chats_counter']->columnName   = 'active_chats_counter';
+$def->properties['active_chats_counter']->propertyName = 'active_chats_counter';
+$def->properties['active_chats_counter']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+$def->properties['closed_chats_counter'] = new ezcPersistentObjectProperty();
+$def->properties['closed_chats_counter']->columnName   = 'closed_chats_counter';
+$def->properties['closed_chats_counter']->propertyName = 'closed_chats_counter';
+$def->properties['closed_chats_counter']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+$def->properties['pending_chats_counter'] = new ezcPersistentObjectProperty();
+$def->properties['pending_chats_counter']->columnName   = 'pending_chats_counter';
+$def->properties['pending_chats_counter']->propertyName = 'pending_chats_counter';
+$def->properties['pending_chats_counter']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+/**
+ * We store to user assigned department, for easier fetching. Just for repreesntation purposes.
+ * */
+$def->properties['departments_ids'] = new ezcPersistentObjectProperty();
+$def->properties['departments_ids']->columnName   = 'departments_ids';
+$def->properties['departments_ids']->propertyName = 'departments_ids';
+$def->properties['departments_ids']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+/**
+ * Receive permission request from other users/operators
+ * */
+$def->properties['rec_per_req'] = new ezcPersistentObjectProperty();
+$def->properties['rec_per_req']->columnName   = 'rec_per_req';
+$def->properties['rec_per_req']->propertyName = 'rec_per_req';
+$def->properties['rec_per_req']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
 $def->properties['filepath'] = new ezcPersistentObjectProperty();
 $def->properties['filepath']->columnName   = 'filepath';
 $def->properties['filepath']->propertyName = 'filepath';
@@ -83,6 +114,11 @@ $def->properties['time_zone'] = new ezcPersistentObjectProperty();
 $def->properties['time_zone']->columnName   = 'time_zone';
 $def->properties['time_zone']->propertyName = 'time_zone';
 $def->properties['time_zone']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['session_id'] = new ezcPersistentObjectProperty();
+$def->properties['session_id']->columnName   = 'session_id';
+$def->properties['session_id']->propertyName = 'session_id';
+$def->properties['session_id']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 
 return $def;
 

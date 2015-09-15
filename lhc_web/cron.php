@@ -23,12 +23,9 @@ ini_set("max_execution_time", "3600");
 
 require_once dirname(__FILE__)."/ezcomponents/Base/src/base.php";
 
-function __autoload( $className )
-{
-        ezcBase::autoload( $className );
-}
-
 ezcBase::addClassRepository( dirname(__FILE__).'/', dirname(__FILE__).'/lib/autoloads');
+
+spl_autoload_register(array('ezcBase','autoload'), true, false);
 
 $input = new ezcConsoleInput();
 
@@ -46,6 +43,14 @@ new ezcConsoleOption(
     'cronjob',
     ezcConsoleInput::TYPE_STRING
 )
+);
+
+$cronjobPathOption = $input->registerOption(
+    new ezcConsoleOption(
+        'p',
+        'path',
+        ezcConsoleInput::TYPE_STRING
+    )
 );
 
 $extensionPartOption = $input->registerOption(
@@ -79,6 +84,9 @@ $optionsSiteAccess = $cfgSite->getSetting('site_access_options',$helpOption->val
 $instance->Language = $optionsSiteAccess['locale'];
 $instance->ThemeSite = $optionsSiteAccess['theme'];
 $instance->WWWDirLang = '/'.$helpOption->value;
+
+// Attatch extensions events listeners
+erLhcoreClassModule::attatchExtensionListeners();
 
 // php cron.php -s site_admin -c cron/workflow
 // php cron.php -s site_admin -e customstatus -c cron/customcron

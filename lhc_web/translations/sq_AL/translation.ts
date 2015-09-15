@@ -2,6 +2,22 @@
   <context>
     <name>listchatconfig</name>
     <message>
+      <source/>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source/>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source/>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source/>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>How many days voting widget should not be expanded after last show</source>
       <translation type="unfinished"/>
     </message>
@@ -18,6 +34,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Should mouse movement be tracked as activity measure, if not checked only basic events would be tracked</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Track is user still on site, chat status checks also has to be enabled</source>
       <translation type="unfinished"/>
     </message>
@@ -31,6 +51,10 @@
     </message>
     <message>
       <source>Set your domain to enable user tracking across different domain subdomains.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Track users activity on site?</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -63,6 +87,10 @@
     </message>
     <message>
       <source>Connect to NodeJs in https mode</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>socket.io path, optional</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -106,6 +134,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source/>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Need help tooltip timeout, after how many hours show again tooltip?</source>
       <translation type="unfinished"/>
     </message>
@@ -142,7 +174,15 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Hide right column in frontpage</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Hide disabled department widget</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Home page tabs order</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -175,6 +215,10 @@
     </message>
     <message>
       <source>Disable HMTL5 storage, check it if your site is switching between http and https</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Home page dashboard widgets order</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -311,15 +355,15 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Widget copyright</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Widget container</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Need help widget</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Main widget text</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -331,11 +375,19 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Name of the company</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Need help header text</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Need help standard text</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Widget border width (px)</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -383,7 +435,23 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Widget copyright link</source>
+      <source>Hide widget close button</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hide popup option</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Header height (px)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Header padding (px)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Site URL</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -419,6 +487,26 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Text then user starts chat based on proactive invitation</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Text then operator closes a chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Text then user starts a chat and is waiting for operator to join a chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Text then user starts a chat but department is offline</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Leave a message form text</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Need help border color</source>
       <translation type="unfinished"/>
     </message>
@@ -444,6 +532,22 @@
     </message>
     <message>
       <source>Widget body additional CSS, takes effect after save</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimize image</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Restore image</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Close image</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Popup image</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -526,6 +630,10 @@
     </message>
     <message>
       <source>Wait timeout. Time in seconds before timeout message is shown.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>How many times repeat message?</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -663,14 +771,6 @@
       <translation>Zgjidhni gjuhen</translation>
     </message>
     <message>
-      <source>Widget embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Page embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Chatbox messages content height</source>
       <translation type="unfinished"/>
     </message>
@@ -684,6 +784,14 @@
     </message>
     <message>
       <source>Copy the code from the text area to the page where you want it to be rendered</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Place this tag where you want the Live Helper Chatbox module to render.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Place this tag after the Live Helper Chatbox module tag.</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -759,6 +867,14 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Place this tag where you want the Live Helper FAQ module to render.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Place this tag after the Live Helper FAQ module tag.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Status text</source>
       <translation type="unfinished"/>
     </message>
@@ -779,11 +895,43 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Place this tag where you want the Live Helper Questionary module to render.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Place this tag after the Live Helper Questionary module tag.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Help us to grow</source>
       <translation>Na ndihmoni qe te rritemi</translation>
     </message>
     <message>
       <source>Embed code</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Widget embed code</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Page embed code</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Set default speech recognition language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Speech language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>General</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Design</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -815,6 +963,14 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Place this tag where you want the Live Helper Plugin to render.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Place this tag after the Live Helper Plugin tag.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>On a mouse click show the page widget</source>
       <translation type="unfinished"/>
     </message>
@@ -831,12 +987,40 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Popup window size</source>
+      <source>Survey at the end of chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimize action, applies only if status widget is at the bottom</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Keep where it was</source>
+      <translation>Mbaje aty ku ishte</translation>
+    </message>
+    <message>
+      <source>Minimize to bottom of the screen</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Native placement - it will be shown where the html is embedded</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Invisible, only JS API will be included</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Popup window width</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Popup window width in pixels</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>height</source>
+      <translation>gjatesia</translation>
     </message>
     <message>
       <source>Popup window height in pixels</source>
@@ -851,31 +1035,23 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>height</source>
-      <translation>gjatesia</translation>
-    </message>
-    <message>
       <source>Widget height in pixels</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Native placement - it will be shown where the html is embedded</source>
+      <source>no survey</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Invisible, only JS API will be included</source>
+      <source>Please do not enter protocol, only domain name is required</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Minimize action, applies only if status widget is at the bottom</source>
+      <source>Place this tag where you want the Live Helper Status to render.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Keep where it was</source>
-      <translation>Mbaje aty ku ishte</translation>
-    </message>
-    <message>
-      <source>Minimize to bottom of the screen</source>
+      <source>Place this tag after the Live Helper status tag.</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -937,20 +1113,12 @@
       <translation>Format</translation>
     </message>
     <message>
-      <source>Documents</source>
-      <translation>Dokumentat</translation>
-    </message>
-    <message>
       <source>Form</source>
       <translation>Forma</translation>
     </message>
   </context>
   <context>
     <name>chat/activechats</name>
-    <message>
-      <source>Active chats list</source>
-      <translation>Lista e bisedave aktive</translation>
-    </message>
     <message>
       <source>Information</source>
       <translation>Informacion</translation>
@@ -970,6 +1138,10 @@
     <message>
       <source>Empty...</source>
       <translation>Bosh...</translation>
+    </message>
+    <message>
+      <source>Active chats list</source>
+      <translation>Lista e bisedave aktive</translation>
     </message>
     <message>
       <source>Chats lists</source>
@@ -1007,6 +1179,26 @@
       <translation>Perdorues</translation>
     </message>
     <message>
+      <source>Vote status</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Any</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Not Voted</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Up Voted</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Down vote</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Search</source>
       <translation>Kerko</translation>
     </message>
@@ -1016,6 +1208,10 @@
     </message>
     <message>
       <source>XLS</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>XLS (with content)</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -1029,6 +1225,34 @@
     <message>
       <source>Type to search</source>
       <translation>Shtyp per te kerkuar</translation>
+    </message>
+    <message>
+      <source>Choose department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Group by</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Month</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Day</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Group results by operator</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimum chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Optional</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1102,6 +1326,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Switch to widget</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Visitor</source>
       <translation>Vizitor</translation>
     </message>
@@ -1156,10 +1384,6 @@
   <context>
     <name>chat/blockedusers</name>
     <message>
-      <source>Blocked users</source>
-      <translation>Perdorues te bllokuar</translation>
-    </message>
-    <message>
       <source>IP</source>
       <translation>IP</translation>
     </message>
@@ -1178,6 +1402,10 @@
     <message>
       <source>Empty...</source>
       <translation>Bosh...</translation>
+    </message>
+    <message>
+      <source>Blocked users</source>
+      <translation>Perdorues te bllokuar</translation>
     </message>
     <message>
       <source>Please enter an IP to block</source>
@@ -1202,12 +1430,12 @@
   <context>
     <name>chat/cannedmsg</name>
     <message>
-      <source>Canned messages</source>
-      <translation>Mesazhe te konservuara</translation>
+      <source>Title/Message</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Message</source>
-      <translation>Mesazh</translation>
+      <source>Department</source>
+      <translation>Departament</translation>
     </message>
     <message>
       <source>User</source>
@@ -1238,8 +1466,20 @@
       <translation>Mezash i ri i konservuar</translation>
     </message>
     <message>
-      <source>Edit canned message</source>
-      <translation>Redakto mesazhin e konservuar</translation>
+      <source>Title</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Explain</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Message</source>
+      <translation>Mesazh</translation>
+    </message>
+    <message>
+      <source>Fallback message</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Automatically send this message to user then chat is accepted</source>
@@ -1250,8 +1490,12 @@
       <translation>Vonesa ne sekonda</translation>
     </message>
     <message>
-      <source>Department</source>
-      <translation>Departament</translation>
+      <source>Canned messages</source>
+      <translation>Mesazhe te konservuara</translation>
+    </message>
+    <message>
+      <source>Edit canned message</source>
+      <translation>Redakto mesazhin e konservuar</translation>
     </message>
     <message>
       <source>Personal canned message</source>
@@ -1262,11 +1506,7 @@
       <translation>Mesazhi i konservuar eshte ruajtur</translation>
     </message>
     <message>
-      <source>System configuration</source>
-      <translation>Konfigurimi i sistemit</translation>
-    </message>
-    <message>
-      <source>Please enter canned message</source>
+      <source>Please enter a canned message</source>
       <translation>Ju lutem vendos nje mesazh te konservuar</translation>
     </message>
     <message>
@@ -1274,8 +1514,8 @@
       <translation>Ju lutem zgjidh nje departament</translation>
     </message>
     <message>
-      <source>Please enter a canned message</source>
-      <translation>Ju lutem vendos nje mesazh te konservuar</translation>
+      <source>System configuration</source>
+      <translation>Konfigurimi i sistemit</translation>
     </message>
   </context>
   <context>
@@ -1321,6 +1561,22 @@
       <translation>Oret automatike online</translation>
     </message>
     <message>
+      <source>Notifications</source>
+      <translation>Njoftime</translation>
+    </message>
+    <message>
+      <source>Chat transfer worklow</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Auto assignment</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Miscellaneous</source>
+      <translation>Te ndryshme</translation>
+    </message>
+    <message>
       <source>Work hours/work days logic is active</source>
       <translation type="unfinished"/>
     </message>
@@ -1361,7 +1617,15 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Hours from</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Hours from, E.g. 8</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minutes from</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -1369,16 +1633,20 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Hours to</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Hours to, E.g. 17</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minutes to</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Minutes to, E.g. 30</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Notifications</source>
-      <translation>Njoftime</translation>
     </message>
     <message>
       <source>XMPP recipients</source>
@@ -1402,6 +1670,10 @@
     </message>
     <message>
       <source>XMPP messages</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Send XMPP messages to all department operators</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -1433,10 +1705,6 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Chat transfer worklow</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>To what department chat should be transfered if it is not accepted</source>
       <translation type="unfinished"/>
     </message>
@@ -1451,14 +1719,6 @@
     <message>
       <source>Execute unanswered chat logic again for recipient department?</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Auto assignment</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Miscellaneous</source>
-      <translation>Te ndryshme</translation>
     </message>
     <message>
       <source>This field is max 50 characters length and can be used for any purpose by extensions. This field is also indexed.</source>
@@ -1495,16 +1755,36 @@
   <context>
     <name>chat/adminchat</name>
     <message>
+      <source>Attach uploaded file</source>
+      <translation>Bashkangjit skedarin e ngarkuar</translation>
+    </message>
+    <message>
+      <source>Are you sure?</source>
+      <translation>A je i/e sigurt?</translation>
+    </message>
+    <message>
+      <source>Block user</source>
+      <translation>Blloko perdorues</translation>
+    </message>
+    <message>
+      <source>Screen sharing</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Choose other than default recognition language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Transfer chat</source>
+      <translation>Transfero biseden</translation>
+    </message>
+    <message>
       <source>Footprint</source>
       <translation>Gjurme</translation>
     </message>
     <message>
       <source>Visitor</source>
       <translation>Vizitor</translation>
-    </message>
-    <message>
-      <source>General information</source>
-      <translation>Informacion personal</translation>
     </message>
     <message>
       <source>Files</source>
@@ -1535,11 +1815,44 @@
       <translation>Chati i operatoreve</translation>
     </message>
     <message>
-      <source>Information</source>
-      <translation>Informacion</translation>
+      <source>Edit main chat information</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Edit main chat information</source>
+      <source>Close dialog</source>
+      <translation>Mbyll dialogun</translation>
+    </message>
+    <message>
+      <source>Close chat</source>
+      <translation>Mbyll biseden</translation>
+    </message>
+    <message>
+      <source>Delete chat</source>
+      <translation>Fshi biseden</translation>
+    </message>
+    <message>
+      <source>Mail was send</source>
+      <translation>Posta u deguar</translation>
+    </message>
+    <message>
+      <source>Send mail</source>
+      <translation>Dergo E-mail
+</translation>
+    </message>
+    <message>
+      <source>Redirect user to contact form.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Print</source>
+      <translation>Printo</translation>
+    </message>
+    <message>
+      <source>Please enter a URL</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Redirect user to another url</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -1575,8 +1888,16 @@
       <translation>Telefon</translation>
     </message>
     <message>
+      <source>Refresh</source>
+      <translation>Rifresko</translation>
+    </message>
+    <message>
       <source>Additional data</source>
       <translation>Te dhena te tjera</translation>
+    </message>
+    <message>
+      <source>Hidden field</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Created</source>
@@ -1595,67 +1916,6 @@
       <translation>Kohezgjatja e bisedes</translation>
     </message>
     <message>
-      <source>Actions</source>
-      <translation>Veprime</translation>
-    </message>
-    <message>
-      <source>Close dialog</source>
-      <translation>Mbyll dialogun</translation>
-    </message>
-    <message>
-      <source>Close chat</source>
-      <translation>Mbyll biseden</translation>
-    </message>
-    <message>
-      <source>Delete chat</source>
-      <translation>Fshi biseden</translation>
-    </message>
-    <message>
-      <source>Transfer chat</source>
-      <translation>Transfero biseden</translation>
-    </message>
-    <message>
-      <source>Are you sure?</source>
-      <translation>A je i/e sigurt?</translation>
-    </message>
-    <message>
-      <source>Block user</source>
-      <translation>Blloko perdorues</translation>
-    </message>
-    <message>
-      <source>Mail was send</source>
-      <translation>Posta u deguar</translation>
-    </message>
-    <message>
-      <source>Send mail</source>
-      <translation>Dergo E-mail
-</translation>
-    </message>
-    <message>
-      <source>Redirect user to contact form.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Print</source>
-      <translation>Printo</translation>
-    </message>
-    <message>
-      <source>Attach uploaded file</source>
-      <translation>Bashkangjit skedarin e ngarkuar</translation>
-    </message>
-    <message>
-      <source>Please enter a URL</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Redirect user to another url</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Screen sharing</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Chat between operators, chat initializer</source>
       <translation>Chat midis operatoreve</translation>
     </message>
@@ -1664,28 +1924,28 @@
       <translation>Pronari i chatit</translation>
     </message>
     <message>
-      <source>Map</source>
-      <translation>Harta</translation>
-    </message>
-    <message>
       <source>Could not detect. Make sure that GEO detection is enabled.</source>
       <translation>Nuk mund të zbulojë. Sigurohuni që zbulimi Gjeo është aktivizuar.</translation>
     </message>
     <message>
-      <source>Browsing information</source>
-      <translation>Shfleto informacionin</translation>
+      <source>Map</source>
+      <translation>Harta</translation>
     </message>
     <message>
-      <source>Refresh</source>
-      <translation>Rifresko</translation>
+      <source>User browsing information</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats</source>
+      <translation>Chate</translation>
     </message>
     <message>
       <source>Remarks</source>
       <translation>Verejtje</translation>
     </message>
     <message>
-      <source>Chats</source>
-      <translation>Chate</translation>
+      <source>Notes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Send</source>
@@ -1712,8 +1972,131 @@
       <translation>Mesazhet</translation>
     </message>
     <message>
-      <source>Invalid chat status</source>
-      <translation>Status chati i papranueshem</translation>
+      <source>has accepted the chat!</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/translation</name>
+    <message>
+      <source>Visitor language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>My language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Auto translate</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Translating</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Automatically detected</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Automatic translation</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Translation settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enter text for testing purposes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Translated text</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Detected language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Detect language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Translate</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enable translation service</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Bing</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Google</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Use Bing service</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Bing client ID</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Bing client secret, key is never shown for security purposes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Bing access token expires</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Use Google service</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>API key, key is never shown for security purposes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Settings updated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Missing text to translate</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not detect a language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not detect language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not translate</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Translation configuration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat messages automatic translations has been stopped</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Messages has been translated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose translation languages manually and click Auto translate</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1727,8 +2110,12 @@
       <translation>Fshi skedar</translation>
     </message>
     <message>
-      <source>Download file</source>
-      <translation>Shkarko skedar</translation>
+      <source>Sent by Customer</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Sent by Operator</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Drop your files here.</source>
@@ -1793,13 +2180,61 @@
       <source>Empty...</source>
       <translation>Bosh...</translation>
     </message>
+    <message>
+      <source>Configure dashboard</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitor</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Nothing found</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Pending chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Last activity ago</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Wait time</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Delete chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Created</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Transfer time</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Time ago</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>chat/screenshot</name>
-    <message>
-      <source>Screenshot</source>
-      <translation>Screenshot</translation>
-    </message>
     <message>
       <source>Take user screenshot</source>
       <translation>Screenshot perdoruesin</translation>
@@ -1821,6 +2256,10 @@
       <translation>Ndoshta screenshot është në proces ose screenshot nuk është i mbështetur në shfletuesin e klientit, klikoni rifresko për të kontrolluar për një screenshot.</translation>
     </message>
     <message>
+      <source>Screenshot</source>
+      <translation>Screenshot</translation>
+    </message>
+    <message>
       <source>Screenshot ready...</source>
       <translation>Screenshot gati...</translation>
     </message>
@@ -1832,28 +2271,28 @@
       <translation>Konfirmim ne pritje</translation>
     </message>
     <message>
-      <source>All pending chats</source>
-      <translation>Te gjitha bisedat ne pritje</translation>
-    </message>
-    <message>
       <source>Active chats</source>
       <translation>Bisedat aktive</translation>
-    </message>
-    <message>
-      <source>All active chats</source>
-      <translation>Te gjithe bisedat aktive</translation>
     </message>
     <message>
       <source>Unread messages</source>
       <translation>Mesazhet e palexuara</translation>
     </message>
     <message>
-      <source>All unread chats</source>
-      <translation>Te gjitha mesazhet e palexuara</translation>
-    </message>
-    <message>
       <source>Closed chats</source>
       <translation>Bisedat e mbyllura</translation>
+    </message>
+    <message>
+      <source>All pending chats</source>
+      <translation>Te gjitha bisedat ne pritje</translation>
+    </message>
+    <message>
+      <source>All active chats</source>
+      <translation>Te gjithe bisedat aktive</translation>
+    </message>
+    <message>
+      <source>All unread chats</source>
+      <translation>Te gjitha mesazhet e palexuara</translation>
     </message>
     <message>
       <source>All closed chats</source>
@@ -1874,6 +2313,14 @@
     <message>
       <source>Online operators</source>
       <translation>Operatoret online</translation>
+    </message>
+    <message>
+      <source>Mail settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>SMTP</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1907,10 +2354,6 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Start chat</source>
-      <translation>Fillo biseden</translation>
-    </message>
-    <message>
       <source>Live support is not available in your country</source>
       <translation type="unfinished"/>
     </message>
@@ -1927,12 +2370,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Leave a message</source>
-      <translation>Lini nje mesazh</translation>
-    </message>
-    <message>
       <source>Your request was sent!</source>
       <translation>Kerkesa juaj u dergua!</translation>
+    </message>
+    <message>
+      <source>Leave a message</source>
+      <translation>Lini nje mesazh</translation>
     </message>
     <message>
       <source>I accept my personal data will be handled according to</source>
@@ -1941,6 +2384,10 @@
     <message>
       <source>our terms and to the Law</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Start chat</source>
+      <translation>Fillo biseden</translation>
     </message>
     <message>
       <source>Department</source>
@@ -1953,6 +2400,14 @@
     <message>
       <source>Have a question? Ask us!</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Type your message here and hit enter to send...</source>
+      <translation>Shkruaj mesazhin tuaj ketu dhe jepi &apos;Enter&apos; per ta derguar...</translation>
+    </message>
+    <message>
+      <source>Send</source>
+      <translation>Dergo</translation>
     </message>
     <message>
       <source>Department is offline</source>
@@ -1971,14 +2426,6 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Type your message here and hit enter to send...</source>
-      <translation>Shkruaj mesazhin tuaj ketu dhe jepi &apos;Enter&apos; per ta derguar...</translation>
-    </message>
-    <message>
-      <source>Send</source>
-      <translation>Dergo</translation>
-    </message>
-    <message>
       <source>Personal assistant</source>
       <translation>Asistent personal</translation>
     </message>
@@ -1989,6 +2436,10 @@
     <message>
       <source>There are no online operators at the moment, please leave your message</source>
       <translation>Nuk ka operatorë në linjë në këtë moment, ju lutem lini një mesazh</translation>
+    </message>
+    <message>
+      <source>Me</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Choose your language</source>
@@ -2009,10 +2460,6 @@
     <message>
       <source>You do not have permission to chat! Please contact site owner.</source>
       <translation>Ju nuk keni te drejte per te biseduar! Ju lutem kontaktoni pronarin e faqes.</translation>
-    </message>
-    <message>
-      <source>Invalid captcha code, please enable Javascript!</source>
-      <translation>Kodi eshte i pavlefshem,ju lutem aktivizoni Javascript!</translation>
     </message>
     <message>
       <source>Please enter your name</source>
@@ -2055,15 +2502,11 @@
       <translation>eshte e nevojshme</translation>
     </message>
     <message>
-      <source>Invalid file extension</source>
+      <source>Your request was not processed as expected - but don&apos;t worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Invalid file extension!</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>To big file!</source>
+      <source>Please choose a star</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2094,6 +2537,14 @@
       <translation>Një anëtar i personelit ndihmës e ka mbyllur këtë chat</translation>
     </message>
     <message>
+      <source>You are number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>in the queue. Please wait...</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Pending a support staff member to join, you can write your questions, and as soon as a support staff member confirms this chat, he will get your messages</source>
       <translation>Ne pritje te nje anetari te stafit per tu bashkuar,ju mund te shkuani pyetjet tuaja dhe ne momentin qe nje anetar i stafit konfirmon kete bisede,ai do te marri mesazhet tuaja.</translation>
     </message>
@@ -2109,10 +2560,6 @@
   <context>
     <name>chat/closedchats</name>
     <message>
-      <source>Closed chats list</source>
-      <translation>Mbyll listen e bisedave</translation>
-    </message>
-    <message>
       <source>Information</source>
       <translation>Informacion</translation>
     </message>
@@ -2127,6 +2574,10 @@
     <message>
       <source>Empty...</source>
       <translation>Bosh...</translation>
+    </message>
+    <message>
+      <source>Closed chats list</source>
+      <translation>Mbyll listen e bisedave</translation>
     </message>
     <message>
       <source>Chats list</source>
@@ -2199,61 +2650,41 @@
     </message>
   </context>
   <context>
+    <name>chat/syncuser</name>
+    <message>
+      <source>Support staff member has closed this chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Edit nick</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat was automatically transferred to</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>from</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat was automatically closed by cron</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Support has closed the chat window, but You can leave messages, and the administrator will read them later.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>You do not have permission to view this chat, or the chat was deleted</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>chat/errors/entertext</name>
     <message>
       <source>Please enter text!</source>
       <translation>Ju lutem vendosni tekstin!</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/geoadjustment</name>
-    <message>
-      <source>GEO adjustment</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Apply to chat widget status indicator these rules also? performance decrease is associated with this option</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Make chat status normal for these countries, countries can be separated by comma &quot;de,gb,us,fr&quot; means chat would be shown as usual only for these countries.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>For</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>all</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>custom</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>E.g. ar,pl</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Other countries, put widget/chat status to</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>offline status</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>hidden/disabled, widget will not be shown</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>For unmatched countries put chat status to</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>normal status</source>
-      <translation>gjendje normale</translation>
     </message>
   </context>
   <context>
@@ -2284,6 +2715,10 @@
     </message>
     <message>
       <source>XMPP</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>GTalk</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2339,10 +2774,6 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>GTalk</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Use GTalk for messaging</source>
       <translation type="unfinished"/>
     </message>
@@ -2371,7 +2802,11 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>This message will be send to your e-mail</source>
+      <source>Please enter to what gmail address test message should be send?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This message will be send to test e-mail</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2406,6 +2841,61 @@
       <source>XMPP message was sent succesfuly</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <source>Invalid test e-mail address</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/geoadjustment</name>
+    <message>
+      <source>Apply to chat widget status indicator these rules also? performance decrease is associated with this option</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Make chat status normal for these countries, countries can be separated by comma &quot;de,gb,us,fr&quot; means chat would be shown as usual only for these countries.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>For</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>all</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>custom</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>E.g. ar,pl</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Other countries, put widget/chat status to</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>offline status</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>hidden/disabled, widget will not be shown</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>For unmatched countries put chat status to</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>normal status</source>
+      <translation>gjendje normale</translation>
+    </message>
+    <message>
+      <source>GEO adjustment</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>chat/onlineusers</name>
@@ -2414,16 +2904,16 @@
       <translation>Konfigurimi GEO</translation>
     </message>
     <message>
+      <source>Map location</source>
+      <translation>Harta e vendndodhjes</translation>
+    </message>
+    <message>
       <source>GEO Enabled</source>
       <translation>GEO e Aktivizuar</translation>
     </message>
     <message>
       <source>Use this service</source>
       <translation>Perdor kete sherbim</translation>
-    </message>
-    <message>
-      <source>Save</source>
-      <translation>Ruaj</translation>
     </message>
     <message>
       <source>Use mod_geoip2</source>
@@ -2510,8 +3000,8 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Map location</source>
-      <translation>Harta e vendndodhjes</translation>
+      <source>Save</source>
+      <translation>Ruaj</translation>
     </message>
     <message>
       <source>Drag a marker where you want to have map centered by default. Zoom is also saved.</source>
@@ -2524,6 +3014,10 @@
     <message>
       <source>Send message</source>
       <translation>Dergo mesazh</translation>
+    </message>
+    <message>
+      <source>Dashboard</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>City</source>
@@ -2646,16 +3140,20 @@
       <translation>Pastro listen</translation>
     </message>
     <message>
-      <source>Online visitors</source>
-      <translation>Vizitore ne linje</translation>
-    </message>
-    <message>
       <source>User tracking is disabled, enable it at</source>
       <translation>Gjurmimi i perdoruesit eshte i c&apos;aktivizuar,aktivizoje ate tek</translation>
     </message>
     <message>
       <source>Chat configuration</source>
       <translation>Konfigurimi i chatit</translation>
+    </message>
+    <message>
+      <source>Online visitors list</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Online users on map</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Enable/Disable sound about new visitor</source>
@@ -2666,8 +3164,8 @@
       <translation>Aktivio/C&apos;aktivizo njoftimet nga shfletuesi per vizitore te ri</translation>
     </message>
     <message>
-      <source>Online users on map</source>
-      <translation type="unfinished"/>
+      <source>Online visitors</source>
+      <translation>Vizitore ne linje</translation>
     </message>
     <message>
       <source>User has message from operator</source>
@@ -2688,10 +3186,6 @@
     <message>
       <source>minutes</source>
       <translation>minutat</translation>
-    </message>
-    <message>
-      <source>Online visitors list</source>
-      <translation type="unfinished"/>
     </message>
     <message>
       <source>online users</source>
@@ -2762,32 +3256,20 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Status</source>
-      <translation>Gjendja</translation>
-    </message>
-    <message>
       <source>Action</source>
       <translation>Veprim</translation>
     </message>
     <message>
-      <source>has sent a message to the user</source>
-      <translation>i ka dërguar një mesazh për përdoruesit</translation>
-    </message>
-    <message>
-      <source>No one has sent a message to the user yet</source>
-      <translation>Ende skush nuk i ka dërguar një mesazh për përdoruesit</translation>
-    </message>
-    <message>
-      <source>first visit</source>
-      <translation>Vizita e pare</translation>
-    </message>
-    <message>
-      <source>last visit</source>
-      <translation>Vizita e fundit</translation>
-    </message>
-    <message>
       <source>User has not seen a message from the operator, or the message window is still open.</source>
       <translation>Perdoruesi nuk e ka pare mesazhin nga operatori,ose dritarja e mesazhit eshte akoma e hapur</translation>
+    </message>
+    <message>
+      <source>Seen</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Unseen</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>User has seen the message from the operator.</source>
@@ -2798,12 +3280,48 @@
       <translation>Perdoruesi nuk ka asnje mesazh nga operatori</translation>
     </message>
     <message>
+      <source>Chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Returning</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>New</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>has sent a message to the user</source>
+      <translation>i ka dërguar një mesazh për përdoruesit</translation>
+    </message>
+    <message>
+      <source>first visit</source>
+      <translation>Vizita e pare</translation>
+    </message>
+    <message>
+      <source>last visit</source>
+      <translation>Vizita e fundit</translation>
+    </message>
+    <message>
       <source>Files upload for users is active</source>
       <translation>Ngarkimi i skedareve per perdoruesit eshte aktiv</translation>
     </message>
     <message>
       <source>Files upload for operators is active</source>
       <translation>Ngarkimi i skedareve per operatoret eshte aktiv</translation>
+    </message>
+    <message>
+      <source>Preview chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visits</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>From</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Country code variable does not exist!</source>
@@ -2877,24 +3395,12 @@
   <context>
     <name>chat/listchatconfig</name>
     <message>
-      <source>Chat configuration</source>
-      <translation>Konfigurimi i bisedes</translation>
-    </message>
-    <message>
       <source>Notifications about new chats</source>
       <translation>Njoftimet per bisedat e reja</translation>
     </message>
     <message>
       <source>Copyright settings</source>
       <translation>Konfigurimet e autorit</translation>
-    </message>
-    <message>
-      <source>Application name</source>
-      <translation>Emri i aplikacionit</translation>
-    </message>
-    <message>
-      <source>Site settings</source>
-      <translation>Konfigurimet e faqes</translation>
     </message>
     <message>
       <source>Online tracking</source>
@@ -2905,6 +3411,22 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Visitor activity</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Workflow</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Application name</source>
+      <translation>Emri i aplikacionit</translation>
+    </message>
+    <message>
+      <source>Site settings</source>
+      <translation>Konfigurimet e faqes</translation>
+    </message>
+    <message>
       <source>Cookie related</source>
       <translation type="unfinished"/>
     </message>
@@ -2913,11 +3435,15 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Workflow</source>
+      <source>Online if</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Screen sharing</source>
+      <source>(Widget is open) or (closed and user has activity in last 5 minutes and ping respond)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>(Widget is open or closed) and (user has activity in last 5 minutes and ping respond)</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2929,6 +3455,18 @@
       <translation>Konfigurimet u rifreskuan</translation>
     </message>
     <message>
+      <source>This determines should status widget change it&apos;s status once operator logins. Recommended value 290</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Screen sharing</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat configuration</source>
+      <translation>Konfigurimi i bisedes</translation>
+    </message>
+    <message>
       <source>List chat configuration</source>
       <translation>Konfigurimet e listes se bisedave</translation>
     </message>
@@ -2936,7 +3474,19 @@
   <context>
     <name>system/configuration</name>
     <message>
+      <source>Supported: online_operators, departments_stats, pending_chats, unread_chats, transfered_chats, active_chats, closed_chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Request notification permission</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Supported: dashboard,online_map,online_users,pending_chats,online_map,active_chats,unread_chats,closed_chats,online_operators</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Supported: online_operators, departments_stats, online_visitors, pending_chats, unread_chats, transfered_chats, active_chats, closed_chats</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2948,20 +3498,8 @@
       <translation>Konfigurimi i sistemit</translation>
     </message>
     <message>
-      <source>System</source>
-      <translation>Sistemi</translation>
-    </message>
-    <message>
       <source>Time zone settings</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Update information</source>
-      <translation>Rifreskim informacioni</translation>
-    </message>
-    <message>
-      <source>SMTP settings</source>
-      <translation>Konfigurimet SMTP</translation>
     </message>
     <message>
       <source>E-mail templates</source>
@@ -2984,67 +3522,7 @@
       <translation>Lista e roleve</translation>
     </message>
     <message>
-      <source>Embed code</source>
-      <translation>Kodi i ngulitur</translation>
-    </message>
-    <message>
-      <source>Live help embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>FAQ embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Questionary embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chatbox embed code</source>
-      <translation>Kodi i ngulitur i kutise se bisedes</translation>
-    </message>
-    <message>
-      <source>Browse offers embed code</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Live help configuration</source>
-      <translation>Konfigurmi i ndihmes direkte</translation>
-    </message>
-    <message>
-      <source>Departments</source>
-      <translation>Departamentet</translation>
-    </message>
-    <message>
-      <source>Blocked users</source>
-      <translation>Perdoruesit e bllokuar</translation>
-    </message>
-    <message>
-      <source>Chat configuration</source>
-      <translation>Konfigurimi i bisedes</translation>
-    </message>
-    <message>
       <source>GEO detection configuration</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>GEO adjustment</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Synchronization and sound settings</source>
-      <translation>Konfigurimi i sinkronizimit dhe zerit</translation>
-    </message>
-    <message>
-      <source>Start chat form settings</source>
-      <translation>Fillo biseden nga konfigurimi</translation>
-    </message>
-    <message>
-      <source>Canned messages</source>
-      <translation>Mesazhet e konservuara</translation>
-    </message>
-    <message>
-      <source>Pro active chat invitations</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -3052,7 +3530,27 @@
       <translation>Pergjigje automatike</translation>
     </message>
     <message>
-      <source>XMPP settings</source>
+      <source>Blocked users</source>
+      <translation>Perdoruesit e bllokuar</translation>
+    </message>
+    <message>
+      <source>Browse offers embed code</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Canned messages</source>
+      <translation>Mesazhet e konservuara</translation>
+    </message>
+    <message>
+      <source>Chat archive</source>
+      <translation>Arkivimi i bisedave</translation>
+    </message>
+    <message>
+      <source>Chat configuration</source>
+      <translation>Konfigurimi i bisedes</translation>
+    </message>
+    <message>
+      <source>Live help embed code</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -3060,16 +3558,16 @@
       <translation>Lista e bisedave</translation>
     </message>
     <message>
-      <source>Chat archive</source>
-      <translation>Arkivimi i bisedave</translation>
+      <source>Chatbox embed code</source>
+      <translation>Kodi i ngulitur i kutise se bisedes</translation>
     </message>
     <message>
-      <source>Statistic</source>
-      <translation>Statistikat</translation>
+      <source>Mail settings</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Maintenance</source>
-      <translation>Mirembajtia</translation>
+      <source>FAQ embed code</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Files</source>
@@ -3082,6 +3580,38 @@
     <message>
       <source>List of files</source>
       <translation>Lista e skedareve</translation>
+    </message>
+    <message>
+      <source>GEO adjustment</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Maintenance</source>
+      <translation>Mirembajtia</translation>
+    </message>
+    <message>
+      <source>Update information</source>
+      <translation>Rifreskim informacioni</translation>
+    </message>
+    <message>
+      <source>Pro active chat invitations</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Questionary embed code</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Start chat form settings</source>
+      <translation>Fillo biseden nga konfigurimi</translation>
+    </message>
+    <message>
+      <source>Statistic</source>
+      <translation>Statistikat</translation>
+    </message>
+    <message>
+      <source>Surveys</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Theming</source>
@@ -3098,6 +3628,38 @@
     <message>
       <source>Default theme</source>
       <translation>Tema Baze</translation>
+    </message>
+    <message>
+      <source>Automatic translations</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>XMPP settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Speech</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Departments</source>
+      <translation>Departamentet</translation>
+    </message>
+    <message>
+      <source>Synchronization and sound settings</source>
+      <translation>Konfigurimi i sinkronizimit dhe zerit</translation>
+    </message>
+    <message>
+      <source>Embed code</source>
+      <translation>Kodi i ngulitur</translation>
+    </message>
+    <message>
+      <source>Live help configuration</source>
+      <translation>Konfigurmi i ndihmes direkte</translation>
+    </message>
+    <message>
+      <source>System</source>
+      <translation>Sistemi</translation>
     </message>
     <message>
       <source>File configuration</source>
@@ -3150,12 +3712,24 @@
       <translation>Operator i caktuar</translation>
     </message>
     <message>
-      <source>Clean cache</source>
-      <translation>Pastro Cache</translation>
+      <source>collapse/expand</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Home</source>
-      <translation>Faqja kryesore</translation>
+      <source>Active chats</source>
+      <translation>Bisedat aktive</translation>
+    </message>
+    <message>
+      <source>Closed chats</source>
+      <translation>Bisedat e mbyllura</translation>
+    </message>
+    <message>
+      <source>Pending chats</source>
+      <translation>Bisedat ne pritje</translation>
+    </message>
+    <message>
+      <source>Unread messages</source>
+      <translation>Mesazhet e pa lexuara</translation>
     </message>
     <message>
       <source>Chats transferred to you directly</source>
@@ -3166,64 +3740,96 @@
       <translation>Transferuar tek departamenti jot</translation>
     </message>
     <message>
-      <source>Pending chats</source>
-      <translation>Bisedat ne pritje</translation>
+      <source>Download XLS</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Active chats</source>
-      <translation>Bisedat aktive</translation>
+      <source>All departments</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Unread messages</source>
-      <translation>Mesazhet e pa lexuara</translation>
+      <source>Number of elements in list</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Closed chats</source>
-      <translation>Bisedat e mbyllura</translation>
+      <source>Departments stats</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Configuration</source>
-      <translation>Konfigurimet</translation>
-    </message>
-    <message>
-      <source>Chats list</source>
-      <translation>Lista e bisedave</translation>
-    </message>
-    <message>
-      <source>Chat rooms</source>
-      <translation>Dhoma e bisedave</translation>
-    </message>
-    <message>
-      <source>New chat request</source>
-      <translation>Kerkese e re per bisede</translation>
-    </message>
-    <message>
-      <source>Menu</source>
-      <translation>Menu</translation>
+      <source>Online operators</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Online visitors</source>
       <translation>Vizitoret ne linje</translation>
     </message>
     <message>
-      <source>Extra modules</source>
-      <translation>Elemente shtese</translation>
-    </message>
-    <message>
-      <source>Questionary</source>
+      <source>Transfered chats</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>FAQ</source>
+      <source>Clean cache</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Home</source>
+      <translation>Faqja kryesore</translation>
+    </message>
+    <message>
+      <source>Modules</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Browse offers</source>
+      <translation>Shfleto ofertat</translation>
     </message>
     <message>
       <source>Chatbox</source>
       <translation>Kuti Bisede</translation>
     </message>
     <message>
-      <source>Browse offers</source>
-      <translation>Shfleto ofertat</translation>
+      <source>FAQ</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Questionary</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>New chat request</source>
+      <translation>Kerkese e re per bisede</translation>
+    </message>
+    <message>
+      <source>Chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Dashboard</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Menu</source>
+      <translation>Menu</translation>
+    </message>
+    <message>
+      <source>Expand or collapse left menu</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat tabs</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Configuration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats list</source>
+      <translation>Lista e bisedave</translation>
     </message>
     <message>
       <source>Account</source>
@@ -3277,37 +3883,6 @@
     </message>
   </context>
   <context>
-    <name>chat/modifychat</name>
-    <message>
-      <source>Modify chat</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>E-mail</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Recipient e-mail</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Nick</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Phone</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Update chat</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chat information was updated</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
     <name>chat/operatorschats</name>
     <message>
       <source>Operators chats list</source>
@@ -3316,13 +3891,6 @@
     <message>
       <source>Operators chats</source>
       <translation>Bisedat e operatoreve</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/part/operator_profile</name>
-    <message>
-      <source>Skype call</source>
-      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3354,6 +3922,493 @@
     <message>
       <source>Pending chats</source>
       <translation>Bisedat e pritje</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/startchatformsettings</name>
+    <message>
+      <source>Start a chat form settings</source>
+      <translation>Fillo biseden nga konfigurimet</translation>
+    </message>
+    <message>
+      <source>At least one field has to be visible and required in the popup and page widget</source>
+      <translation>Te pakten nje fushe duhet te jete e dukshme dhe detyrueshme tek faqja</translation>
+    </message>
+    <message>
+      <source>Custom fields generator, these fields will be visible in start chat forms</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Field label</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default value</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Type</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Text</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hidden</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visible on</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Offline and online form</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Only offline</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Only online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Size (between 1 and 12)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Field identifier</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Is required</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Add a field</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>left</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>right</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visible only in offline form</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visible only in online form</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Size</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Identifier</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Remove</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enable leave a message functionality automatically if there are no online operators</source>
+      <translation>Aktivizo lenien e nje mesazhi automatik nqs nuk ka asnje operator ne linje</translation>
+    </message>
+    <message>
+      <source>Online form settings</source>
+      <translation>Konfigurimi i Formes &apos;ne linje&apos; </translation>
+    </message>
+    <message>
+      <source>Offline form settings</source>
+      <translation>Konfigurimi i formes &apos;jashte linje&apos;</translation>
+    </message>
+    <message>
+      <source>Additional form settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Custom fields</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Name</source>
+      <translation>Emri</translation>
+    </message>
+    <message>
+      <source>This field is visible in the popup</source>
+      <translation>Kjo fushe eshte e dukshme ne hapje</translation>
+    </message>
+    <message>
+      <source>This field is visible in the page widget</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This field is invisible but prefilled data is collected</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This field is</source>
+      <translation>Kjo fushe eshte</translation>
+    </message>
+    <message>
+      <source>Required</source>
+      <translation>E detyrueshme</translation>
+    </message>
+    <message>
+      <source>Optional</source>
+      <translation>Me deshire</translation>
+    </message>
+    <message>
+      <source>E-mail</source>
+      <translation>E-Mail</translation>
+    </message>
+    <message>
+      <source>Message</source>
+      <translation>Mesazhi</translation>
+    </message>
+    <message>
+      <source>Automatically start chat then user starts typing. Only message field has to be required</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Start chat process in the background as soon user submits form. Only message field has to be required</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Phone</source>
+      <translation>Telefoni</translation>
+    </message>
+    <message>
+      <source>Terms of service acceptance checkbox</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Checked by default</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>E-mail is always required</source>
+      <translation>E-Mail eshte gjithmone i detyrueshem</translation>
+    </message>
+    <message>
+      <source>Allow to attatch a file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Show operator profile above input fields</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Remove space after operator profile</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hide message label</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Show messages box above input fields, usefull for UX combinations.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Initial user message height in pixels</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose at least one field for a popup</source>
+      <translation>Ju lutem zgjidhni te pakten nje fushe per hapjen</translation>
+    </message>
+    <message>
+      <source>Please choose at least one field for a page widget</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Start chat form settings</source>
+      <translation>Filli biseden nga konfigurimet</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/statistic</name>
+    <message>
+      <source>Statistic</source>
+      <translation>Statistikat</translation>
+    </message>
+    <message>
+      <source>Chats statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Total statistic</source>
+      <translation>Statistikat totale</translation>
+    </message>
+    <message>
+      <source>Last 24 hours statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User</source>
+      <translation>Perdorues</translation>
+    </message>
+    <message>
+      <source>Thumbs up</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of Thumbs Up</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Thumbs down</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of Thumbs Down</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Country</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of chats by country</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Average in seconds</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Wait time</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Messages</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Month</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Closed</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operators</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Pending</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats number by statuses</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Time</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>AVG wait time in seconds, max 10 mininutes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitors initiated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Proactive</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Proactive chats number vs visitors initiated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitors</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>System</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Messages types</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of chats per hour, average chat duration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hourly statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Country statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Users statisic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of chats by user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of messages by user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Average chat duration by user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>All operators statistic will be downloaded</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>AVG visitor wait time by operator</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Last 24h statistic</source>
+      <translation>Statistikat e 24 orevete fundit</translation>
+    </message>
+    <message>
+      <source>Parameter</source>
+      <translation>Parametrat</translation>
+    </message>
+    <message>
+      <source>Value</source>
+      <translation>Vlera</translation>
+    </message>
+    <message>
+      <source>Total chats</source>
+      <translation>Totali i bisedave</translation>
+    </message>
+    <message>
+      <source>Total pending chats</source>
+      <translation>Totali i bisedave ne pritje</translation>
+    </message>
+    <message>
+      <source>Total active chats</source>
+      <translation>Totali i bisedave aktive</translation>
+    </message>
+    <message>
+      <source>Total closed chats</source>
+      <translation>Totali i bisedave te mbyllura</translation>
+    </message>
+    <message>
+      <source>Chatbox chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Total messages (including visitors, system and operators messages)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Total messages (only visitors)</source>
+      <translation>Totali i mesazheve(vetem vizitoret)</translation>
+    </message>
+    <message>
+      <source>Total messages (only system messages)</source>
+      <translation>Totali i mesazheve(vetem mesazhet e sistemit)</translation>
+    </message>
+    <message>
+      <source>Total messages (only operators)</source>
+      <translation>Totali i mesazheve(vetem operatoret)</translation>
+    </message>
+    <message>
+      <source>Operators statistic, top 100 by chats number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Total messages</source>
+      <translation>Totali i mesazheve</translation>
+    </message>
+    <message>
+      <source>Votes</source>
+      <translation>Votat</translation>
+    </message>
+    <message>
+      <source>Last activity</source>
+      <translation>Aktiviteti i fundit</translation>
+    </message>
+    <message>
+      <source>ago</source>
+      <translation>me pare</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/unreadchats</name>
+    <message>
+      <source>Unread chats list</source>
+      <translation>Lista e mesazheve te palexuara</translation>
+    </message>
+    <message>
+      <source>Information</source>
+      <translation>Informacion</translation>
+    </message>
+    <message>
+      <source>Empty...</source>
+      <translation>Bosh...</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/modifychat</name>
+    <message>
+      <source>Modify chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>E-mail</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Recipient e-mail</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Nick</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Phone</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Update chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat information was updated</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/part/operator_profile</name>
+    <message>
+      <source>Skype call</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3474,113 +4529,6 @@
     <message>
       <source>Type your message to the operator</source>
       <translation>Shkruaj mesazhin tuaj per operatorin</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/startchatformsettings</name>
-    <message>
-      <source>Start a chat form settings</source>
-      <translation>Fillo biseden nga konfigurimet</translation>
-    </message>
-    <message>
-      <source>At least one field has to be visible and required in the popup and page widget</source>
-      <translation>Te pakten nje fushe duhet te jete e dukshme dhe detyrueshme tek faqja</translation>
-    </message>
-    <message>
-      <source>Enable leave a message functionality automatically if there are no online operators</source>
-      <translation>Aktivizo lenien e nje mesazhi automatik nqs nuk ka asnje operator ne linje</translation>
-    </message>
-    <message>
-      <source>Online form settings</source>
-      <translation>Konfigurimi i Formes &apos;ne linje&apos; </translation>
-    </message>
-    <message>
-      <source>Name</source>
-      <translation>Emri</translation>
-    </message>
-    <message>
-      <source>This field is visible in the popup</source>
-      <translation>Kjo fushe eshte e dukshme ne hapje</translation>
-    </message>
-    <message>
-      <source>This field is visible in the page widget</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>This field is invisible but prefilled data is collected</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>This field is</source>
-      <translation>Kjo fushe eshte</translation>
-    </message>
-    <message>
-      <source>Required</source>
-      <translation>E detyrueshme</translation>
-    </message>
-    <message>
-      <source>Optional</source>
-      <translation>Me deshire</translation>
-    </message>
-    <message>
-      <source>E-mail</source>
-      <translation>E-Mail</translation>
-    </message>
-    <message>
-      <source>Message</source>
-      <translation>Mesazhi</translation>
-    </message>
-    <message>
-      <source>Phone</source>
-      <translation>Telefoni</translation>
-    </message>
-    <message>
-      <source>Terms of service acceptance checkbox</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Offline form settings</source>
-      <translation>Konfigurimi i formes &apos;jashte linje&apos;</translation>
-    </message>
-    <message>
-      <source>E-mail is always required</source>
-      <translation>E-Mail eshte gjithmone i detyrueshem</translation>
-    </message>
-    <message>
-      <source>Allow to attatch a file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Additional form settings</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Show operator profile above input fields</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Remove space after operator profile</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Hide message label</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Initial user message height in pixels</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Please choose at least one field for a popup</source>
-      <translation>Ju lutem zgjidhni te pakten nje fushe per hapjen</translation>
-    </message>
-    <message>
-      <source>Please choose at least one field for a page widget</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Start chat form settings</source>
-      <translation>Filli biseden nga konfigurimet</translation>
     </message>
   </context>
   <context>
@@ -3715,197 +4663,14 @@
     </message>
   </context>
   <context>
-    <name>chat/statistic</name>
-    <message>
-      <source>Statistic</source>
-      <translation>Statistikat</translation>
-    </message>
-    <message>
-      <source>User</source>
-      <translation>Perdorues</translation>
-    </message>
-    <message>
-      <source>Thumbs up</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of Thumbs Up</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Thumbs down</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of Thumbs Down</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Country</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of chats by country</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Messages</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of messages by user</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Month</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Closed</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Active</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Operators</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Pending</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chats number by statuses</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Visitors initiated</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Proactive</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Proactive chats number vs visitors initiated</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Visitors</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>System</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Messages types</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of chats per hour, average chat duration</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chats statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Hourly statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Country statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Users statisic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total statistic</source>
-      <translation>Statistikat totale</translation>
-    </message>
-    <message>
-      <source>Parameter</source>
-      <translation>Parametrat</translation>
-    </message>
-    <message>
-      <source>Value</source>
-      <translation>Vlera</translation>
-    </message>
-    <message>
-      <source>Total chats</source>
-      <translation>Totali i bisedave</translation>
-    </message>
-    <message>
-      <source>Total pending chats</source>
-      <translation>Totali i bisedave ne pritje</translation>
-    </message>
-    <message>
-      <source>Total active chats</source>
-      <translation>Totali i bisedave aktive</translation>
-    </message>
-    <message>
-      <source>Total closed chats</source>
-      <translation>Totali i bisedave te mbyllura</translation>
-    </message>
-    <message>
-      <source>Chatbox chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total messages (including visitors, system and operators messages)</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total messages (only visitors)</source>
-      <translation>Totali i mesazheve(vetem vizitoret)</translation>
-    </message>
-    <message>
-      <source>Total messages (only system messages)</source>
-      <translation>Totali i mesazheve(vetem mesazhet e sistemit)</translation>
-    </message>
-    <message>
-      <source>Total messages (only operators)</source>
-      <translation>Totali i mesazheve(vetem operatoret)</translation>
-    </message>
-    <message>
-      <source>Last 24h statistic</source>
-      <translation>Statistikat e 24 orevete fundit</translation>
-    </message>
-    <message>
-      <source>Operators last 24h statistic, top 100 by chats number</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total messages</source>
-      <translation>Totali i mesazheve</translation>
-    </message>
-    <message>
-      <source>Votes</source>
-      <translation>Votat</translation>
-    </message>
-    <message>
-      <source>Last activity</source>
-      <translation>Aktiviteti i fundit</translation>
-    </message>
-    <message>
-      <source>ago</source>
-      <translation>me pare</translation>
-    </message>
-  </context>
-  <context>
     <name>chat/transferchat</name>
     <message>
       <source>Transfer to a user</source>
       <translation>Transfero tek nje perdorues</translation>
+    </message>
+    <message>
+      <source>Transfer to a department</source>
+      <translation>Transfero tek nje departament</translation>
     </message>
     <message>
       <source>Logged in users</source>
@@ -3920,27 +4685,8 @@
       <translation>Transfero</translation>
     </message>
     <message>
-      <source>Transfer to a department</source>
-      <translation>Transfero tek nje departament</translation>
-    </message>
-    <message>
       <source>Departments</source>
       <translation>Departamentet</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/unreadchats</name>
-    <message>
-      <source>Unread chats list</source>
-      <translation>Lista e mesazheve te palexuara</translation>
-    </message>
-    <message>
-      <source>Information</source>
-      <translation>Informacion</translation>
-    </message>
-    <message>
-      <source>Empty...</source>
-      <translation>Bosh...</translation>
     </message>
   </context>
   <context>
@@ -4300,6 +5046,14 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Follow user scroll position</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>On click navigate user browser</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Click blue eye at the top to request screen share</source>
       <translation type="unfinished"/>
     </message>
@@ -4362,6 +5116,26 @@
       <translation>Te dhenat e llogarise</translation>
     </message>
     <message>
+      <source>Assigned departments</source>
+      <translation>Cakto departamentet</translation>
+    </message>
+    <message>
+      <source>Visible lists</source>
+      <translation>Listat e dukshme</translation>
+    </message>
+    <message>
+      <source>Pending chats</source>
+      <translation>Bisedat ne pritje</translation>
+    </message>
+    <message>
+      <source>Speech</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Permissions</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Do not enter a password unless you want to change it</source>
       <translation>Mos futni një fjalëkalim nëse nuk doni qe ta ndryshoni atë</translation>
     </message>
@@ -4410,6 +5184,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>I receive other operators permissions request</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Skype</source>
       <translation>Skype</translation>
     </message>
@@ -4422,6 +5200,10 @@
       <translation>Foto</translation>
     </message>
     <message>
+      <source>Delete</source>
+      <translation>Fshi</translation>
+    </message>
+    <message>
       <source>Update</source>
       <translation>Rifresko</translation>
     </message>
@@ -4430,16 +5212,8 @@
       <translation>Kthehu</translation>
     </message>
     <message>
-      <source>Assigned departments</source>
-      <translation>Cakto departamentet</translation>
-    </message>
-    <message>
       <source>All departments</source>
       <translation>Te gjitha departamentet</translation>
-    </message>
-    <message>
-      <source>Visible lists</source>
-      <translation>Listat e dukshme</translation>
     </message>
     <message>
       <source>Pending chats tab enabled</source>
@@ -4458,28 +5232,28 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Personal canned messages</source>
-      <translation>Mesazhet personale te konservuara</translation>
-    </message>
-    <message>
-      <source>Pending chats</source>
-      <translation>Bisedat ne pritje</translation>
-    </message>
-    <message>
       <source>I can see all pending chats, not only assigned to me</source>
       <translation>Mund te shoh te gjitha bisedat ne pritje,te cilat nuk jane caktuar tek une</translation>
+    </message>
+    <message>
+      <source>Show permissions</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Account updated</source>
       <translation>Rifreskimi i llogarise</translation>
     </message>
     <message>
-      <source>Delete</source>
-      <translation>Fshi</translation>
+      <source>User receives other operators permissions request</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>User can see all pending chats, not only assigned to him</source>
       <translation>Perdorusi mund te shikoje te gjitha bisedat ne pritje, te cilat nuk i jane caktuar</translation>
+    </message>
+    <message>
+      <source>Personal canned messages</source>
+      <translation>Mesazhet personale te konservuara</translation>
     </message>
     <message>
       <source>Please enter a username!</source>
@@ -4911,20 +5685,20 @@
   <context>
     <name>core/paginator</name>
     <message>
-      <source>Page</source>
-      <translation>Faqe</translation>
+      <source>Go to page</source>
+      <translation>Shko tek faqja</translation>
     </message>
     <message>
       <source>of</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Found</source>
-      <translation>U gjet</translation>
+      <source>Page</source>
+      <translation>Faqe</translation>
     </message>
     <message>
-      <source>Go to page</source>
-      <translation>Shko tek faqja</translation>
+      <source>Found</source>
+      <translation>U gjet</translation>
     </message>
   </context>
   <context>
@@ -5003,6 +5777,17 @@
     </message>
     <message>
       <source>List of roles</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>permission/getpermissionssummary</name>
+    <message>
+      <source>Request permission</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose at least one permission</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -5103,6 +5888,33 @@
     </message>
   </context>
   <context>
+    <name>permission/request</name>
+    <message>
+      <source>Request permission</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Request permissions</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Permission requested</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose a user!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This user can not receive permision request!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Permissions were not provided</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>permission/roleassigngroup</name>
     <message>
       <source>Title</source>
@@ -5186,6 +5998,14 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Voting options</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Answers</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Save</source>
       <translation type="unfinished"/>
     </message>
@@ -5195,14 +6015,6 @@
     </message>
     <message>
       <source>Cancel</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Voting options</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Answers</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5406,6 +6218,145 @@
     </message>
   </context>
   <context>
+    <name>speech/language</name>
+    <message>
+      <source>Choose speech recognition language for this chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Dialect</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default speech recognition language</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>speech/speech</name>
+    <message>
+      <source>Use application default recognition language</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Use application default recognition dialect</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>survey/collected</name>
+    <message>
+      <source>Chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Stars</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Time</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Department name</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>survey/fill</name>
+    <message>
+      <source>star</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>stars</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Preview chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>How well did we do?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Poor</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Excellent</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Thank you for your feedback...</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please complete this short evaluation survey</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>users/autologin</name>
+    <message>
+      <source>Auto login settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This module can be used if you are generating autologin link. See site for code examples</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enabled</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Secret hash used for authentification token generation, min 10 characters</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Settings updated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Autologin hash has expired</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not find a user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not find a provided user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Invalid autologin hash</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Auto login module is not enabled</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>system/languages</name>
     <message>
       <source>Languages configuration</source>
@@ -5416,11 +6367,11 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Language</source>
+      <source>General language settings</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>General language settings</source>
+      <source>Language</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5471,7 +6422,19 @@
   <context>
     <name>system/smtp</name>
     <message>
-      <source>SMTP settings</source>
+      <source>Mail settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Sender address</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default from e-mail address</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default from name</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5644,14 +6607,6 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Missing updates from new versions.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>You are running current version. No updates required</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Live Helper Chat update information</source>
       <translation type="unfinished"/>
     </message>
@@ -5744,6 +6699,14 @@
     <name>user/new</name>
     <message>
       <source>Invisible mode</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>I receive other operators permissions request</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User receives other operators permissions request</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5848,6 +6811,10 @@
     <message>
       <source>Title</source>
       <translation>Titulli</translation>
+    </message>
+    <message>
+      <source>Disabled</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Update</source>
@@ -6024,6 +6991,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>You were logged out because another user logged under same account</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Incorrect username or password</source>
       <translation type="unfinished"/>
     </message>
@@ -6123,6 +7094,18 @@
   <context>
     <name>chat/chatexport</name>
     <message>
+      <source>Department name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Pending chats number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active chats number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Visitor Name</source>
       <translation type="unfinished"/>
     </message>
@@ -6132,6 +7115,10 @@
     </message>
     <message>
       <source>Phone</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Wait time</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -6159,47 +7146,47 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Minutes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Vote status</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Mail send</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Referrer</source>
+      <source>Page</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Came from</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Link</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <source>Chat content</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User ID</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat average in seconds</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
-    <name>chat/syncuser</name>
+    <name>chat/closechatadmin</name>
     <message>
-      <source>Chat was automatically transferred to</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>from</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chat was automatically closed by cron</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Support staff member has closed this chat</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>You do not have permission to view this chat, or chat was deleted</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Support has closed the chat window, but You can leave messages, and the administrator will read them later.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>You do not have permission to view this chat, or the chat was deleted</source>
-      <translation type="unfinished"/>
+      <source>has closed the chat!</source>
+      <translation>ka mbyllur biseden</translation>
     </message>
   </context>
   <context>
@@ -6351,11 +7338,15 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>From e-mail, if mail was not sent for some reason, this mail will get a failed delivery message</source>
+      <source>From e-mail</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Allow to change from e-mail</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Use user e-mail as from address</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -6384,6 +7375,21 @@
     </message>
   </context>
   <context>
+    <name>abstract/survey</name>
+    <message>
+      <source>Name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Max stars for feedback</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Survey</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>chat/accepttrasnfer</name>
     <message>
       <source>has joined the chat!</source>
@@ -6391,17 +7397,6 @@
     </message>
     <message>
       <source>has accepted a chat!</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>chat/closechatadmin</name>
-    <message>
-      <source>has closed the chat!</source>
-      <translation>ka mbyllur biseden</translation>
-    </message>
-    <message>
-      <source>has redirected user to contact form!</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -6451,6 +7446,10 @@
   <context>
     <name>chat/voteaction</name>
     <message>
+      <source>User has updated his profile information</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Thumbs up</source>
       <translation type="unfinished"/>
     </message>
@@ -6474,6 +7473,74 @@
     <name>file/configurations</name>
     <message>
       <source>Please enter valid file type!</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/editnick</name>
+    <message>
+      <source>Your information</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Updated!</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/chatpreview</name>
+    <message>
+      <source>Chat preview</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/dashboardwidgets</name>
+    <message>
+      <source>Choose what widgets you want to see</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Settings updated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Online operators</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Online visitors</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Departments stats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Pending chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Unread chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Transfered chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Closed chats</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/refreshcustomfields</name>
+    <message>
+      <source>Data refreshed</source>
       <translation type="unfinished"/>
     </message>
   </context>

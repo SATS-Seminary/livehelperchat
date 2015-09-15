@@ -4,6 +4,8 @@ $tpl = erLhcoreClassTemplate::getInstance('lhuser/edit.tpl.php');
 
 $UserData = erLhcoreClassUser::getSession()->load( 'erLhcoreClassModelUser', (int)$Params['user_parameters']['user_id'] );
 
+$tpl->set('tab',$Params['user_parameters_unordered']['tab'] == 'canned' ? 'tab_canned' : '');
+
 if (isset($_POST['Update_account']) || isset($_POST['Save_account']))
 {
    $definition = array(
@@ -45,12 +47,15 @@ if (isset($_POST['Update_account']) || isset($_POST['Save_account']))
 		),
 		'UserInvisible' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
-		),
+		),		
 		'DefaultGroup' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::OPTIONAL, 'int',
 				null,
 				FILTER_REQUIRE_ARRAY
-		)
+		),
+   		'ReceivePermissionRequest' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
+   		)
     );
 
     if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
@@ -111,6 +116,12 @@ if (isset($_POST['Update_account']) || isset($_POST['Save_account']))
     	$UserData->invisible_mode = 1;
     } else {
     	$UserData->invisible_mode = 0;
+    }
+    
+    if ( $form->hasValidData( 'ReceivePermissionRequest' ) && $form->ReceivePermissionRequest == true ) {
+    	$UserData->rec_per_req = 1;
+    } else {
+    	$UserData->rec_per_req = 0;
     }
     
     if ( $form->hasValidData( 'JobTitle' ) && $form->JobTitle != '')
@@ -185,6 +196,9 @@ if (isset($_POST['Update_account']) || isset($_POST['Save_account']))
     	}
     }
 
+    // Allow extension to do extra validation
+    erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.edit_user',array('userData' => & $UserData, 'errors' => & $Errors));
+    
     if (count($Errors) == 0)
     {
         // Update password if neccesary
@@ -212,7 +226,9 @@ if (isset($_POST['Update_account']) || isset($_POST['Save_account']))
 
         $CacheManager = erConfigClassLhCacheConfig::getInstance();
         $CacheManager->expireCache();
-
+       
+        erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.user_modified',array('userData' => & $UserData));
+        
         if (isset($_POST['Save_account'])) {
             erLhcoreClassModule::redirect('user/userlist');
             exit;
@@ -269,14 +285,16 @@ if (isset($_POST['UpdateDepartaments_account']))
        $UserData->all_departments = 0;
        $globalDepartament[] = -1;
    }
-
-   erLhcoreClassUser::getSession()->update($UserData);
-
+   
    if (isset($_POST['UserDepartament']) && count($_POST['UserDepartament']) > 0)
    {
-       $globalDepartament = array_merge($_POST['UserDepartament'],$globalDepartament);
+       $globalDepartament = array_merge($_POST['UserDepartament'],$globalDepartament);       
    }
-
+   
+   $UserData->departments_ids = implode(',', $globalDepartament);
+   
+   erLhcoreClassUser::getSession()->update($UserData);
+   
    if (count($globalDepartament) > 0)
    {
        erLhcoreClassUserDep::addUserDepartaments($globalDepartament,$Params['user_parameters']['user_id'],$UserData);

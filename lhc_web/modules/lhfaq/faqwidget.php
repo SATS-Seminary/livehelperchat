@@ -203,13 +203,13 @@ if ( isset($_POST['send']) )
 	
 	if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
 		if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600 || $hashCaptcha != sha1($_SERVER['REMOTE_ADDR'].$form->$nameField.erConfigClassLhConfig::getInstance()->getSetting( 'site', 'secrethash' ))){
-			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
 		}
 	} else {		
 		// Captcha validation
 		if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600)
 		{
-			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Invalid captcha code, please enable Javascript!');
+			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
 		}
 	}
 	
@@ -218,8 +218,6 @@ if ( isset($_POST['send']) )
 		$item_new->url = $dynamic_url;
 	}
 
-
-
 	if (count($Errors) == 0) {
 		$item_new->active = 0;
 		$item_new->saveThis();		
@@ -227,6 +225,8 @@ if ( isset($_POST['send']) )
 		$item_new = new erLhcoreClassFaq();
 		$tpl->set('success',true);
 
+		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('faq.filled_by_user', array('faq' => & $item_new));
+		
 		if (isset($_SESSION[erLhcoreClassIPDetect::getIP()]['form'])) {
 			unset($_SESSION[erLhcoreClassIPDetect::getIP()]['form']);
 		}
@@ -246,7 +246,7 @@ $Result['content'] = $tpl->fetch();
 $Result['pagelayout'] = 'widget';
 $Result['dynamic_height'] = true;
 $Result['dynamic_height_message'] = 'lhc_sizing_faq';
-$Result['dynamic_height_append'] = 10;
+$Result['dynamic_height_append'] = 0;
 if ($embedMode == true) {
 	$Result['dynamic_height_message'] = 'lhc_sizing_faq_embed';
 	$Result['pagelayout_css_append'] = 'embed-widget';

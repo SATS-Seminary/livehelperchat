@@ -1,25 +1,25 @@
 <h1><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','HTML code');?></h1>
 
 <div class="row">
-    <div class="columns large-6">
+    <div class="col-md-6">
         <label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Choose a language');?></label>
-        <select id="LocaleID">
+        <select class="form-control" id="LocaleID">
             <?php foreach ($locales as $locale ) : ?>
             <option value="<?php echo $locale?>/"><?php echo $locale?></option>
             <?php endforeach; ?>
         </select>
     </div>
-    <div class="columns large-6">
+    <div class="col-md-6">
 	   <label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Choose prefered http mode');?></label>
-		    <select id="HttpMode">         
+		    <select class="form-control" id="HttpMode">         
 		            <option value=""><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Based on site (default)');?></option>
 		            <option value="http:">http:</option>
 		            <option value="https:">https:</option>      
 		    </select>    	    
     </div>
-    <div class="columns large-6 end">
+    <div class="col-md-6 end">
     	<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Theme')?></label>
-        <select id="ThemeID">
+        <select class="form-control" id="ThemeID">
         	<option value="0"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Default');?></option>
 			<?php foreach (erLhAbstractModelWidgetTheme::getList(array('limit' => 1000)) as $theme) : ?>
 			   <option value="<?php echo $theme->id?>"><?php echo htmlspecialchars($theme->name)?></option>
@@ -39,7 +39,7 @@ function generateEmbedCode(){
     var siteAccess = $('#LocaleID').val() == default_site_access ? '' : $('#LocaleID').val();
     var id_theme = $('#ThemeID').val() > 0 ? '/(theme)/'+$('#ThemeID').val() : '';
     
-    var id_tag = '<!-- Place this tag where you want the Live Helper Questionary module to render. -->'+"\n"+'<div id="lhc_questionary_embed_container" ></div>'+"\n\n<!-- Place this tag after the Live Helper Questionary module tag. -->\n";
+    var id_tag = <?php include(erLhcoreClassDesign::designtpl('lhquestionary/embedcode_title.tpl.php'));?>+"\n"+'<div id="lhc_questionary_embed_container" ></div>'+"\n\n"+<?php include(erLhcoreClassDesign::designtpl('lhquestionary/embedcode_title_after.tpl.php'));?>+"\n";
 	
     var script = '<script type="text/javascript">'+"\n"+
       '(function() {'+"\n"+

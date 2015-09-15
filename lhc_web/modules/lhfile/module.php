@@ -14,19 +14,42 @@ $ViewList['uploadfile'] = array(
 		'uparams' => array(),
 );
 
+$ViewList['uploadfileonline'] = array(
+		'params' => array('vid'),
+		'uparams' => array(),
+);
+
 $ViewList['chatfileslist'] = array(
 		'params' => array('chat_id'),
 		'uparams' => array(),
 		'functions' => array( 'use_operator' )
 );
 
+$ViewList['onlinefileslist'] = array(
+		'params' => array('online_user_id'),
+		'uparams' => array(),
+		'functions' => array( 'use_operator' )
+);
+
+$ViewList['useronlinefileslist'] = array(
+		'params' => array('vid'),
+		'uparams' => array(),
+		'functions' => array( )
+);
+
 $ViewList['downloadfile'] = array(
 		'params' => array('file_id','hash'),
-		'uparams' => array(),
+		'uparams' => array('inline'),
 );
 
 $ViewList['uploadfileadmin'] = array(
 		'params' => array('chat_id'),
+		'uparams' => array(),
+		'functions' => array( 'use_operator' )
+);
+
+$ViewList['uploadfileadminonlineuser'] = array(
+		'params' => array('online_user_id'),
 		'uparams' => array(),
 		'functions' => array( 'use_operator' )
 );

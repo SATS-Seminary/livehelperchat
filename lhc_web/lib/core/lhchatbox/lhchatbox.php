@@ -16,7 +16,7 @@ class erLhcoreClassChatbox {
 
 				$chatbox = new erLhcoreClassModelChatbox();
 				$chatbox->identifier = $identifier;
-				$chatbox->name = $data['chatbox_default_name'];
+				$chatbox->name = (isset($_GET['chtbx_name']) && $_GET['chtbx_name'] != '') ? $_GET['chtbx_name'] : $data['chatbox_default_name'];
 
 				$chat = new erLhcoreClassModelChat();
 				$chat->status = erLhcoreClassModelChat::STATUS_CHATBOX_CHAT;
@@ -38,6 +38,8 @@ class erLhcoreClassChatbox {
 				$chatbox->chat_id = $chat->id;
 				$chatbox->saveThis();
 
+				erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chatbox.created', array('chatbox' => & $chatbox));
+				
 				return $chatbox;
 			} else {
 				return array_shift($items);
@@ -78,7 +80,9 @@ class erLhcoreClassChatbox {
 
     				$chatbox->chat_id = $chat->id;
     				$chatbox->saveThis();
-
+    				
+    				erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chatbox.created', array('chatbox' => & $chatbox));
+    				
     				return $chatbox;
     			} else {
 					return array_shift($items);

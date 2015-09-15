@@ -6,6 +6,8 @@ $UserData = new erLhcoreClassModelUser();
 $UserDepartaments = isset($_POST['UserDepartament']) ? $_POST['UserDepartament'] : array();
 $show_all_pending = 1;
 
+$tpl->set('tab',$Params['user_parameters_unordered']['tab'] == 'canned' ? 'tab_canned' : '');
+
 if (isset($_POST['Update_account']))
 {
    $definition = array(
@@ -37,6 +39,9 @@ if (isset($_POST['Update_account']))
 				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
 		), 
 		'showAllPendingEnabled' => new ezcInputFormDefinitionElement(
+				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
+		), 
+		'ReceivePermissionRequest' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
 		), 
    		'JobTitle' => new ezcInputFormDefinitionElement(
@@ -159,14 +164,23 @@ if (isset($_POST['Update_account']))
     	$UserData->invisible_mode = 0;
     }
     
+    if ( $form->hasValidData( 'ReceivePermissionRequest' ) && $form->ReceivePermissionRequest == true ) {
+        $UserData->rec_per_req = 1;
+    } else {
+        $UserData->rec_per_req = 0;
+    }
+    
     $globalDepartament = array();
     
     if (isset($_POST['all_departments']) && $_POST['all_departments'] == 'on') {
     	$UserData->all_departments = 1;
     	$globalDepartament[] = 0;
     } else {
-    	$UserData->all_departments = 0;
+    	$UserData->all_departments = 0;    	
     }
+    
+    // Allow extension to do extra validation
+    erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.new_user',array('userData' => & $UserData, 'errors' => & $Errors));
     
     if (count($Errors) == 0)
     {
@@ -186,7 +200,11 @@ if (isset($_POST['Update_account']))
         {
            erLhcoreClassUserDep::addUserDepartaments($globalDepartament,$UserData->id,$UserData);
         }
-
+        
+        $UserData->departments_ids = implode(',', $globalDepartament);
+        erLhcoreClassUser::getSession()->update($UserData);
+        
+        
         erLhcoreClassModelGroupUser::removeUserFromGroups($UserData->id);
 
         foreach ($UserData->user_groups_id as $group_id) {
@@ -228,7 +246,9 @@ if (isset($_POST['Update_account']))
         }
 
         erLhcoreClassModelUserSetting::setSetting('show_all_pending',$show_all_pending,$UserData->id);
-              
+        
+        erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.user_created',array('userData' => & $UserData));
+        
         erLhcoreClassModule::redirect('user/userlist');
         exit;
 
