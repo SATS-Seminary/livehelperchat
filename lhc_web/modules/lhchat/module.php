@@ -111,14 +111,22 @@ $ViewList['delete'] = array(
 
 $ViewList['syncadmininterface'] = array(
     'params' => array(),
-    'uparams' => array('departmentd','operatord','actived','pendingd','closedd','unreadd','limita','limitp','limitc','limitu','limito','limitd'),
+    'uparams' => array('departmentd','operatord','actived','pendingd','closedd','unreadd','limita','limitp','limitc','limitu','limito','limitd','activedprod','unreaddprod','pendingdprod','closeddprod','psort'),
     'ajax' => true,
     'functions' => array( 'use' ),
-    'multiple_arguments' => array ( 'operatord', 'actived', 'closedd' , 'pendingd', 'unreadd','departmentd')
+    'multiple_arguments' => array ( 'operatord', 'actived', 'closedd' , 'pendingd', 'unreadd','departmentd','activedprod','unreaddprod','pendingdprod','closeddprod')
 );
 
-$ViewList['lists'] = array(
+$ViewList['loadinitialdata'] = array(
     'params' => array(),
+    'uparams' => array(),
+    'ajax' => true,
+    'functions' => array( 'use' )
+);
+
+$ViewList['list'] = array(
+    'params' => array(),
+    'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst','chat_status','hum','product_id'),
     'functions' => array( 'use' )
 );
 
@@ -173,37 +181,6 @@ $ViewList['syncadmin'] = array(
     'functions' => array( 'use' )
 );
 
-$ViewList['activechats'] = array(
-    'params' => array(),
-    'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst'),
-    'functions' => array( 'use' )
-);
-
-$ViewList['closedchats'] = array(
-    'params' => array(),
-    'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst'),
-    'functions' => array( 'use' )
-);
-
-$ViewList['operatorschats'] = array(
-    'params' => array(),
-	'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst'),
-    'functions' => array( 'use' )
-);
-
-$ViewList['unreadchats'] = array(
-    'script' => 'unreadchats.php',
-    'params' => array(),
-	'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst'),
-    'functions' => array( 'use' )
-);
-
-$ViewList['pendingchats'] = array(
-    'params' => array(),
-    'uparams' => array('nick','email','timefrom','timeto','department_id','user_id','print','xls','fbst'),
-    'functions' => array( 'use' )
-    );
-
 $ViewList['addmsgadmin'] = array(
     'params' => array('chat_id'),
     'functions' => array( 'use' )
@@ -237,7 +214,7 @@ $ViewList['addonlineoperationiframe'] = array(
 $ViewList['saveremarks'] = array(
     'params' => array('chat_id'),
     'functions' => array( 'use' )
-    );
+);
 
 $ViewList['saveonlinenotes'] = array(
     'params' => array('online_user_id'),
@@ -293,7 +270,7 @@ $ViewList['usertyping'] = array(
 
 $ViewList['checkchatstatus'] = array(
     'params' => array('chat_id','hash'),
-    'uparams' => array('mode','theme')
+    'uparams' => array('mode','theme','dot')
 );
 
 $ViewList['transferuser'] = array(
@@ -314,17 +291,17 @@ $ViewList['blockedusers'] = array(
 
 $ViewList['getstatus'] = array(
     'params' => array(),
-    'uparams' => array('ua','ma','operator','theme','noresponse','priority','disable_pro_active','click','position','hide_offline','check_operator_messages','top','units','leaveamessage','department','identifier','survey'),
+    'uparams' => array('ua','ma','operator','theme','noresponse','priority','disable_pro_active','click','position','hide_offline','check_operator_messages','top','units','leaveamessage','department','identifier','survey','dot'),
 	'multiple_arguments' => array ( 'department', 'ua' )
 );
 
 $ViewList['chatcheckstatus'] = array(
     'params' => array(),
-    'uparams' => array('status','department','vid','uactiv','wopen','uaction','hash','hash_resume'),
+    'uparams' => array('status','department','vid','uactiv','wopen','uaction','hash','hash_resume','dot'),
 	'multiple_arguments' => array ( 'department' )
 );
 
-$ViewList['getstatusembed'] = array(
+$ViewList['getstatusembed'] = array (
     'params' => array(),
     'uparams' => array('ua','operator','theme','hide_offline','leaveamessage','department','priority','survey'),
 	'multiple_arguments' => array ( 'department','ua' )
@@ -332,30 +309,30 @@ $ViewList['getstatusembed'] = array(
 
 $ViewList['startchat'] = array (
     'params' => array(),
-    'uparams' => array('ua','switchform','operator','theme','er','vid','hash_resume','sound','hash','offline','leaveamessage','department','priority','chatprefill','survey'),
-	'multiple_arguments' => array ( 'department','ua' )
+    'uparams' => array('ua','switchform','operator','theme','er','vid','hash_resume','sound','hash','offline','leaveamessage','department','priority','chatprefill','survey','prod','phash','pvhash'),
+	'multiple_arguments' => array ( 'department', 'ua', 'prod' )
 );
 
-$ViewList['chatwidget'] = array(
+$ViewList['chatwidget'] = array (
     'params' => array(),
-    'uparams' => array('ua','switchform','operator','theme','vid','sound','hash','hash_resume','mode','offline','leaveamessage','department','priority','chatprefill','survey'),
-	'multiple_arguments' => array ( 'department', 'ua' )
+    'uparams' => array('ua','switchform','operator','theme','vid','sound','hash','hash_resume','mode','offline','leaveamessage','department','priority','chatprefill','survey','sdemo','prod','phash','pvhash','fullheight'),
+	'multiple_arguments' => array ( 'department', 'ua', 'prod' )
 );
 
 $ViewList['reopen'] = array(
     'params' => array('chat_id','hash'),
-    'uparams' => array('mode','embedmode','theme'),
+    'uparams' => array('mode','embedmode','theme','fullheight'),
 );
 
 $ViewList['readoperatormessage'] = array(
     'params' => array(),
-    'uparams' => array('operator','theme','priority','vid','department','playsound','ua','survey'),
+    'uparams' => array('operator','theme','priority','vid','department','playsound','ua','survey','fullheight'),
 	'multiple_arguments' => array ( 'department', 'ua' )
 );
 
 $ViewList['chatcheckoperatormessage'] = array(
     'params' => array(),
-    'uparams' => array('tz','operator','theme','priority','vid','count_page','identifier','department','ua','survey','uactiv','wopen'),
+    'uparams' => array('tz','operator','theme','priority','vid','count_page','identifier','department','ua','survey','uactiv','wopen','fullheight'),
 	'multiple_arguments' => array ( 'department','ua' )
 );
 
@@ -367,7 +344,7 @@ $ViewList['logpageview'] = array(
 
 $ViewList['chatwidgetclosed'] = array(
     'params' => array(),
-    'uparams' => array('vid','hash'),
+    'uparams' => array('vid','hash','eclose'),
 );
 
 $ViewList['chat'] = array(
@@ -393,11 +370,11 @@ $ViewList['bbcodeinsert'] = array(
 
 $ViewList['chatwidgetchat'] = array(
     'params' => array('chat_id','hash'),
-	'uparams' => array('sound','mode','theme','cstarted','survey')
+	'uparams' => array('sound','mode','theme','cstarted','survey','pchat','fullheight')
 );
 
 $ViewList['userclosechat'] = array(
-    'params' => array('chat_id','hash')
+    'params' => array('chat_id','hash','eclose')
 );
 
 $ViewList['onlineusers'] = array(
@@ -485,6 +462,11 @@ $ViewList['sendchat'] = array(
 		'params' => array('chat_id','hash')
 );
 
+$ViewList['transferchatrefilter'] = array(
+    'params' => array('chat_id'),
+    'functions' => array( 'use' )
+);
+
 $FunctionList['use'] = array('explain' => 'General permission to use chat module');
 $FunctionList['singlechatwindow'] = array('explain' =>'Allow operator to use single chat window functionality');
 $FunctionList['allowchattabs'] = array('explain' =>'Allow operator to user chat rooms functionality');
@@ -511,6 +493,7 @@ $FunctionList['take_screenshot'] = array('explain' => 'Allow operator to take vi
 $FunctionList['modifychat'] = array('explain' => 'Allow operator modify main chat information');
 $FunctionList['allowredirect'] = array('explain' => 'Allow operator to redirect user to another page');
 $FunctionList['administrategeoconfig'] = array('explain' => 'Allow operator to edit geo detection configuration');
+$FunctionList['manage_product'] = array('explain' => 'Allow operator to manage products');
 
 
 ?>

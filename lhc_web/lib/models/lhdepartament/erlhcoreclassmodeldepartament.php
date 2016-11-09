@@ -11,6 +11,7 @@ class erLhcoreClassModelDepartament {
                'xmpp_recipients'     	=> $this->xmpp_recipients,
                'xmpp_group_recipients'  => $this->xmpp_group_recipients,
                'priority'     			=> $this->priority,
+               'sort_priority'     		=> $this->sort_priority,
                'department_transfer_id' => $this->department_transfer_id,
                'transfer_timeout'    	=> $this->transfer_timeout,
                'identifier'    			=> $this->identifier,
@@ -29,6 +30,7 @@ class erLhcoreClassModelDepartament {
                'online_hours_active'    => $this->online_hours_active,
                'disabled'    			=> $this->disabled,
                'hidden'    				=> $this->hidden,
+               'visible_if_online'    	=> $this->visible_if_online,
                'delay_lm' 				=> $this->delay_lm,
                'inform_unread' 			=> $this->inform_unread,
                'inform_unread_delay' 	=> $this->inform_unread_delay,
@@ -227,6 +229,7 @@ class erLhcoreClassModelDepartament {
     public $name = '';
     public $email = '';
     public $priority = 0;
+    public $sort_priority = 0;
     public $department_transfer_id = 0;
     public $transfer_timeout = 0;
     public $identifier = '';    
@@ -257,6 +260,7 @@ class erLhcoreClassModelDepartament {
     public $attr_int_1 = 0;
     public $attr_int_2 = 0;
     public $attr_int_3 = 0;
+    public $visible_if_online = 0;
     
     public $active_chats_counter = 0;
     public $pending_chats_counter = 0;

@@ -1,20 +1,17 @@
-<?php 
-$profileShown = false;
-if (($user = $visitor->operator_user) !== false) : ?>
-<?php $profileShown = true; $hideThumbs = true;$extraMessage = $user->job_title != '' ? htmlspecialchars($user->job_title) : erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Personal assistant');?>
-<?php include_once(erLhcoreClassDesign::designtpl('lhchat/part/operator_profile.tpl.php'));?>
-<?php endif;?>
+<?php include(erLhcoreClassDesign::designtpl('lhchat/readoperatormessage/read_message_profile.tpl.php'));?>
 
 <form action="" id="ReadOperatorMessage" method="post" onsubmit="return <?php if (isset($start_data_fields['message_auto_start']) && $start_data_fields['message_auto_start'] == true) : ?>lhinst.prestartChat('<?php echo time()?>',$(this))<?php else : ?>lhinst.addCaptcha('<?php echo time()?>',$(this))<?php endif?>">
 
-<div id="messages" class="read-operator-message">
-     <div class="msgBlock" id="messagesBlock">
-     	<?php include(erLhcoreClassDesign::designtpl('lhchat/lists/operator_message_row.tpl.php'));?>
-     	<?php if (isset($start_data_fields['show_messages_box']) && $start_data_fields['show_messages_box'] == true) : ?>
-     	<?php $formIdentifier = '#ReadOperatorMessage';?>
-     	<?php include(erLhcoreClassDesign::designtpl('lhchat/startchatformsettings/presend_script.tpl.php'));?>
-     	<?php endif;?>
-     </div>
+<div id="messages" class="read-operator-message<?php if($fullheight) : ?> fullheight<?php endif ?>">
+    <div id="messagesBlockWrap">
+		<div class="msgBlock" id="messagesBlock">
+			<?php include(erLhcoreClassDesign::designtpl('lhchat/lists/operator_message_row.tpl.php'));?>
+			<?php if (isset($start_data_fields['show_messages_box']) && $start_data_fields['show_messages_box'] == true) : ?>
+			<?php $formIdentifier = '#ReadOperatorMessage';?>
+			<?php include(erLhcoreClassDesign::designtpl('lhchat/startchatformsettings/presend_script.tpl.php'));?>
+			<?php endif;?>
+		 </div>
+	</div>
 </div>
 
 <?php if (isset($errors)) : ?>
@@ -23,32 +20,62 @@ if (($user = $visitor->operator_user) !== false) : ?>
 </div>
 <?php endif; ?>
 
-<?php 
+<?php $formResubmitId = 'ReadOperatorMessage'; ?>
+<?php include(erLhcoreClassDesign::designtpl('lhchat/part/auto_resubmit.tpl.php'));?>
+
+<?php
+
 $hasExtraField = false;
-if ($visitor->requires_username == 1 || $visitor->requires_email == 1 || $visitor->requires_phone == 1) : $hasExtraField = true;?><div class="row"><?php endif;?>
+$extraFields = array();
+
+if ($visitor->requires_username == 1 && !in_array('username', $input_data->hattr)) {
+	$hasExtraField = true;
+}
+
+if ($visitor->requires_email == 1 && !in_array('email', $input_data->hattr)) {
+	$hasExtraField = true;
+}
+
+if ($visitor->requires_phone == 1 && !in_array('phone', $input_data->hattr)) {
+	$hasExtraField = true;
+}
+
+if ($hasExtraField == true) : ?><div class="row"><?php endif;?>
 
 <?php if ($visitor->requires_username == 1) : ?>
-<div class="col-xs-6 form-group">
-	<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Name');?>*</label>
-	<input type="text" class="form-control" name="Username" value="<?php echo htmlspecialchars($input_data->username);?>" />
-</div>
+	<?php if (in_array('username', $input_data->hattr)) : ?>
+	<input type="hidden" class="form-control" name="Username" value="<?php echo htmlspecialchars($input_data->username);?>" />
+	<?php else : $allHiddenFields = false; ?>
+	<div class="col-xs-6 form-group">
+		<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Name');?>*</label>
+		<input type="text" class="form-control" name="Username" value="<?php echo htmlspecialchars($input_data->username);?>" />
+	</div>
+	<?php endif; ?>
 <?php endif; ?>
 
 <?php if ($visitor->requires_phone == 1) : ?>
-<div class="col-xs-6 form-group">
-	<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Phone');?>*</label>
-	<input type="text" class="form-control" name="Phone" value="<?php echo htmlspecialchars($input_data->phone);?>" placeholder="Min <?php echo erLhcoreClassModelChatConfig::fetch('min_phone_length')->current_value?> <?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','characters');?>" />
-</div>
+	<?php if (in_array('phone', $input_data->hattr)) : ?>
+	<input type="hidden" class="form-control" name="Phone" value="<?php echo htmlspecialchars($input_data->phone);?>" />
+	<?php else : $allHiddenFields = false;?>
+	<div class="col-xs-6 form-group">
+		<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Phone');?>*</label>
+		<input type="text" class="form-control" name="Phone" value="<?php echo htmlspecialchars($input_data->phone);?>" placeholder="Min <?php echo erLhcoreClassModelChatConfig::fetch('min_phone_length')->current_value?> <?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','characters');?>" />
+	</div>
+	<?php endif; ?>
 <?php endif; ?>
 
 <?php if ($visitor->requires_email == 1) : ?>
-<div class="col-xs-6 form-group">
-	<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','E-mail');?>*</label>
-	<input type="text" class="form-control" name="Email" value="<?php echo htmlspecialchars($input_data->email);?>" />
-</div>
+	<?php if (in_array('email', $input_data->hattr)) : ?>
+	<input type="hidden" class="form-control" name="Email" value="<?php echo htmlspecialchars($input_data->email);?>" />
+	<?php else : $allHiddenFields = false;?>
+	<div class="col-xs-6 form-group">
+		<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','E-mail');?>*</label>
+		<input type="text" class="form-control" name="Email" value="<?php echo htmlspecialchars($input_data->email);?>" />
+	</div>
+	<?php endif; ?>
 <?php endif; ?>
 
-<?php if ($visitor->requires_username == 1 || $visitor->requires_email == 1 || $visitor->requires_phone == 1) : ?></div><?php endif;?>
+<?php if ($hasExtraField == true) : ?></div><?php endif;?>
 
 <?php $adminCustomFieldsMode = 'on';?>
 <?php include(erLhcoreClassDesign::designtpl('lhchat/part/admin_form_variables.tpl.php'));?>

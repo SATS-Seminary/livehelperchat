@@ -1,8 +1,9 @@
-<div class="panel panel-default panel-dashboard" data-panel-id="closed_chats">
+<div class="panel panel-default panel-dashboard" data-panel-id="closed_chats" ng-init="lhc.getToggleWidget('closedc_widget_exp')">
 	<div class="panel-heading">
-		<a href="<?php echo erLhcoreClassDesign::baseurl('chat/closedchats')?>"><i class="material-icons chat-closed">chat</i> <?php include(erLhcoreClassDesign::designtpl('lhfront/dashboard/panels/titles/closed_chats.tpl.php'));?> ({{closed_chats.list.length}}{{closed_chats.list.length == lhc.limitc ? '+' : ''}})</a>
+		<a href="<?php echo erLhcoreClassDesign::baseurl('chat/list')?>/(chat_status)/2"><i class="material-icons chat-closed">chat</i> <?php include(erLhcoreClassDesign::designtpl('lhfront/dashboard/panels/titles/closed_chats.tpl.php'));?> ({{closed_chats.list.length}}{{closed_chats.list.length == lhc.limitc ? '+' : ''}})</a>
+		<a title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('pagelayout/pagelayout','collapse/expand')?>" ng-click="lhc.toggleWidget('closedc_widget_exp')" class="fs24 pull-right material-icons exp-cntr">{{lhc.toggleWidgetData['closedc_widget_exp'] == false ? 'expand_less' : 'expand_more'}}</a>
 	</div>
-	<div>           
+	<div ng-if="lhc.toggleWidgetData['closedc_widget_exp'] !== true">           
           <?php $optinsPanel = array('panelid' => 'closedd','limitid' => 'limitc'); ?>
 		  <?php include(erLhcoreClassDesign::designtpl('lhfront/dashboard/panels/parts/options.tpl.php'));?>           
            
@@ -26,7 +27,8 @@
 						<div id="popover-content-{{chat.id}}" class="hide">
 						    <i class="material-icons">access_time</i> {{chat.time_created_front}}<br/>
 							<i class="material-icons">account_box</i> {{chat.plain_user_name}}<br />
-							<i class="material-icons">home</i> {{chat.department_name}}
+							<i class="material-icons">home</i> {{chat.department_name}}<br />
+							<span ng-show="chat.product_name"><i class="material-icons">&#xE8CC;</i>{{chat.product_name}}</span>
 						</div>
 						
 						
@@ -35,7 +37,7 @@
 						<div class="abbr-list" title="{{chat.plain_user_name}}">{{chat.plain_user_name}}</div>
 					</td>
 					<td>
-						<div class="abbr-list" title="{{chat.department_name}}">{{chat.department_name}}</div>
+						<div class="abbr-list" title="{{chat.department_name}}{{chat.product_name ? ' | '+chat.product_name : ''}}">{{chat.department_name}}{{chat.product_name ? ' | '+chat.product_name : ''}}</div>
 					</td>
 				</tr>
 			</table>

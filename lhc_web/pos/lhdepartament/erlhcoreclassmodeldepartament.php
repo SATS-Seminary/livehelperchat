@@ -130,6 +130,11 @@ $def->properties['disabled']->columnName   = 'disabled';
 $def->properties['disabled']->propertyName = 'disabled';
 $def->properties['disabled']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
+$def->properties['visible_if_online'] = new ezcPersistentObjectProperty();
+$def->properties['visible_if_online']->columnName   = 'visible_if_online';
+$def->properties['visible_if_online']->propertyName = 'visible_if_online';
+$def->properties['visible_if_online']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
 $def->properties['hidden'] = new ezcPersistentObjectProperty();
 $def->properties['hidden']->columnName   = 'hidden';
 $def->properties['hidden']->propertyName = 'hidden';
@@ -203,6 +208,11 @@ $def->properties['attr_int_3'] = new ezcPersistentObjectProperty();
 $def->properties['attr_int_3']->columnName   = 'attr_int_3';
 $def->properties['attr_int_3']->propertyName = 'attr_int_3';
 $def->properties['attr_int_3']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+$def->properties['sort_priority'] = new ezcPersistentObjectProperty();
+$def->properties['sort_priority']->columnName   = 'sort_priority';
+$def->properties['sort_priority']->propertyName = 'sort_priority';
+$def->properties['sort_priority']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
 return $def;
 

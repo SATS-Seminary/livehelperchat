@@ -26,7 +26,9 @@ class erLhcoreClassModelChat {
                'operator_typing_id' 	=> $this->operator_typing_id,
                'phone'           		=> $this->phone,
                'has_unread_messages'    => $this->has_unread_messages,
+               'has_unread_op_messages' => $this->has_unread_op_messages,
                'last_user_msg_time'     => $this->last_user_msg_time,
+               'last_op_msg_time'     	=> $this->last_op_msg_time,
                'last_msg_id'     		=> $this->last_msg_id,
                'mail_send'     			=> $this->mail_send,
                'lat'     				=> $this->lat,
@@ -44,6 +46,7 @@ class erLhcoreClassModelChat {
 
        		   'online_user_id'     	=> $this->online_user_id,
        		   'unread_messages_informed' => $this->unread_messages_informed,
+       		   'unread_op_messages_informed' => $this->unread_op_messages_informed,
        		   'reinform_timeout'     	=> $this->reinform_timeout,
 
        		   // Wait timeout attribute
@@ -80,6 +83,13 @@ class erLhcoreClassModelChat {
            
                // Operator language
                'chat_locale_to'    		=> $this->chat_locale_to,
+           
+               // Was chat unanswered before user has left a chat
+               // Currently there isn’t a statistic that shows the number of users that has left the chat before operator has accepted the chat.
+               'unanswered_chat'    	=> $this->unanswered_chat,
+           
+               // Product ID
+               'product_id'    	        => $this->product_id,
        );
    }
 
@@ -122,6 +132,11 @@ class erLhcoreClassModelChat {
 	   	
 	   	// Survey
 	   	$q->deleteFrom( 'lh_abstract_survey_item' )->where( $q->expr->eq( 'chat_id', $this->id ) );
+	   	$stmt = $q->prepare();
+	   	$stmt->execute();
+	   	
+	   	// Paid chats
+	   	$q->deleteFrom( 'lh_chat_paid' )->where( $q->expr->eq( 'chat_id', $this->id ) );
 	   	$stmt = $q->prepare();
 	   	$stmt->execute();
 
@@ -267,6 +282,23 @@ class erLhcoreClassModelChat {
        			}
 
        			return $this->department;
+       		break;
+
+       	case 'product':
+       			$this->product = false;
+       			if ($this->product_id > 0) {
+       				try {
+       					$this->product = erLhAbstractModelProduct::fetch($this->product_id,true);
+       				} catch (Exception $e) {
+                        
+       				}
+       			}
+       			return $this->product;
+       		break;
+
+       	case 'product_name':
+       			$this->product_name = (string)$this->product;
+       			return $this->product_name;
        		break;
 
        	case 'department_name':
@@ -417,7 +449,9 @@ class erLhcoreClassModelChat {
    const STATUS_SUB_DEFAULT = 0;
    const STATUS_SUB_OWNER_CHANGED = 1;
    const STATUS_SUB_CONTACT_FORM = 2;
-   
+   const STATUS_SUB_USER_CLOSED_CHAT = 3;
+   const STATUS_SUB_START_ON_KEY_UP = 4;
+      
    const USER_STATUS_JOINED_CHAT = 0;
    const USER_STATUS_CLOSED_CHAT = 1;
    const USER_STATUS_PENDING_REOPEN = 2;
@@ -497,10 +531,24 @@ class erLhcoreClassModelChat {
    public $wait_timeout_repeat = 0;
    
    public $unread_messages_informed = 0;
+   
    public $reinform_timeout = 0;
+   
+   // Last operator message time
+   public $last_op_msg_time = 0;
+   
+   // Does chat has unread messages from operator
+   public $has_unread_op_messages = 0; 
+   
+   // Was visitor informed about unread message
+   public $unread_op_messages_informed = 0;
    
    // Time when user closed a chat window
    public $user_closed_ts = 0;
+   
+   public $unanswered_chat = 0;
+   
+   public $product_id = 0;
    
    // Time since last assignment
    public $tslasign = 0;

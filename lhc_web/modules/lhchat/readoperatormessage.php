@@ -5,15 +5,16 @@ header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT
 $tpl = erLhcoreClassTemplate::getInstance( 'lhchat/readoperatormessage.tpl.php');
 $tpl->set('referer','');
 $tpl->set('referer_site','');
+$tpl->set('theme',false);
 
 $userInstance = erLhcoreClassModelChatOnlineUser::handleRequest(array('message_seen_timeout' => erLhcoreClassModelChatConfig::fetch('message_seen_timeout')->current_value, 'check_message_operator' => true, 'vid' => (string)$Params['user_parameters_unordered']['vid']));
 $tpl->set('visitor',$userInstance);
 
 $inputData = new stdClass();
-$inputData->username = '';
 $inputData->question = '';
-$inputData->email = '';
-$inputData->phone = '';
+$inputData->email = isset($_GET['prefill']['email']) ? (string)$_GET['prefill']['email'] : '';
+$inputData->phone = isset($_GET['prefill']['phone']) ? (string)$_GET['prefill']['phone'] : '';
+$inputData->username = isset($_GET['prefill']['username']) ? (string)$_GET['prefill']['username'] : '';
 
 if (is_array($Params['user_parameters_unordered']['department']) && count($Params['user_parameters_unordered']['department']) == 1){
 	erLhcoreClassChat::validateFilterIn($Params['user_parameters_unordered']['department']);
@@ -36,6 +37,8 @@ $inputData->value_sizes = array();
 $inputData->ua = $Params['user_parameters_unordered']['ua'];
 $inputData->hattr = array();
 $inputData->value_items_admin = array(); // These variables get's filled from start chat form settings
+$inputData->via_hidden = array(); // These variables get's filled from start chat form settings
+
 
 // If chat was started based on key up, we do not need to store a message
 //  because user is still typing it. We start chat in the background just.
@@ -60,6 +63,8 @@ if ($userInstance->visitor_tz != '') {
 
 $tpl->set('playsound',(string)$Params['user_parameters_unordered']['playsound'] == 'true' && !isset($_POST['askQuestion']) && erLhcoreClassModelChatConfig::fetch('sound_invitation')->current_value == 1);
 
+$fullHeight = (isset($Params['user_parameters_unordered']['fullheight']) && $Params['user_parameters_unordered']['fullheight'] == 'true') ? true : false;
+
 $startData = erLhcoreClassModelChatConfig::fetch('start_chat_data');
 $startDataFields = (array)$startData->data;
 
@@ -74,6 +79,7 @@ if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_p
 		$theme = erLhAbstractModelWidgetTheme::fetch($Params['user_parameters_unordered']['theme']);
 		$Result['theme'] = $theme;
 		$modeAppendTheme = '/(theme)/'.$theme->id;
+		$tpl->set('theme',$Result['theme']);
 	} catch (Exception $e) {
 
 	}
@@ -84,17 +90,21 @@ if (isset($Params['user_parameters_unordered']['theme']) && (int)$Params['user_p
 			$theme = erLhAbstractModelWidgetTheme::fetch($defaultTheme);
 			$Result['theme'] = $theme;
 			$modeAppendTheme = '/(theme)/'.$theme->id;
+			$tpl->set('theme',$Result['theme']);
 		} catch (Exception $e) {
 		
 		}
 	}
 }
 
+$modeAppendTheme .= '/(fullheight)/';
+$modeAppendTheme .= ($fullHeight) ? 'true' : 'false';
+
 if (isset($_POST['askQuestion']))
 {
     $validationFields = array();
     $validationFields['Question'] =  new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw' );
-    $validationFields['DepartamentID'] =  new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1) );
+    $validationFields['DepartamentID'] =  new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => -1) );
     $validationFields['DepartmentIDDefined'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'int', array('min_range' => 1), FILTER_REQUIRE_ARRAY);
     $validationFields['operator'] =  new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1) );
     $validationFields['Email'] =  new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'validate_email' );
@@ -117,6 +127,12 @@ if (isset($_POST['askQuestion']))
 	    FILTER_REQUIRE_ARRAY
 	);
 	
+	$validationFields['via_hidden'] = new ezcInputFormDefinitionElement(
+	    ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+	    null,
+	    FILTER_REQUIRE_ARRAY
+	);
+	
 	
     if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
     	// Start session if required only
@@ -133,6 +149,11 @@ if (isset($_POST['askQuestion']))
     $form = new ezcInputForm( INPUT_POST, $validationFields );
     $Errors = array();
     
+    if ( $form->hasValidData( 'hattr' ) && !empty($form->hattr))
+    {
+    	$inputData->hattr = $form->hattr;
+    }
+    
     if ($form->hasValidData( 'DepartmentIDDefined' )) {
     	$inputData->departament_id_array = $form->DepartmentIDDefined;
     }
@@ -144,13 +165,17 @@ if (isset($_POST['askQuestion']))
     }
     
     if ( (!$form->hasValidData( 'Username' ) || trim($form->Username) == '') && $userInstance->requires_username == 1) {
-        $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your name');
+    	if (!in_array('username', $inputData->hattr)) {
+        	$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your name');
+    	}
     } elseif ( $form->hasValidData( 'Username' ) ) {
         $inputData->username = $chat->nick = $form->Username;
     }
 
     if ( (!$form->hasValidData( 'Phone' ) || ($form->Phone == '' || mb_strlen($form->Phone) < erLhcoreClassModelChatConfig::fetch('min_phone_length')->current_value)) && ($userInstance->requires_phone == 1)) {
-    	$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your phone');
+    	if (!in_array('phone', $inputData->hattr)) {
+    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter your phone');
+    	}
     } elseif ($form->hasValidData( 'Phone' )) {
     	$chat->phone = $inputData->phone = $form->Phone;
     }
@@ -162,7 +187,9 @@ if (isset($_POST['askQuestion']))
 
     if ($userInstance->requires_email == 1) {
     	if ( !$form->hasValidData( 'Email' ) ) {
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter a valid email address');
+    		if (!in_array('email', $inputData->hattr)) {
+    			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please enter a valid email address');
+    		}
     	} else {
     		$inputData->email = $chat->email = $form->Email;
     	}
@@ -221,11 +248,15 @@ if (isset($_POST['askQuestion']))
 	    if ($form->hasValidData( 'value_items_admin' )){
 	        $inputData->value_items_admin = $valuesArray = $form->value_items_admin;
 	    }
+	    
+	    if ($form->hasValidData( 'via_hidden' )){
+	        $inputData->via_hidden = $form->via_hidden;
+	    }
 	
 	    if (is_array($customAdminfields)){
 	        foreach ($customAdminfields as $key => $adminField) {
 	
-	            if (isset($form->value_items_admin[$key]) && isset($adminField['isrequired']) && $adminField['isrequired'] == 'true' && ($adminField['visibility'] == 'all' || $adminField['visibility'] == 'on') && (!isset($valuesArray[$key]) || trim($valuesArray[$key]) == '')) {
+	            if (isset($inputData->value_items_admin[$key]) && isset($adminField['isrequired']) && $adminField['isrequired'] == 'true' && ($adminField['visibility'] == 'all' || $adminField['visibility'] == 'on') && (!isset($valuesArray[$key]) || trim($valuesArray[$key]) == '')) {
 	                $Errors[] = trim($adminField['fieldname']).': '.erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','is required');
 	            }
 	
@@ -242,16 +273,16 @@ if (isset($_POST['askQuestion']))
 		
     if (erLhcoreClassModelChatConfig::fetch('session_captcha')->current_value == 1) {
     	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600 || $hashCaptcha != sha1($_SERVER['REMOTE_ADDR'].$form->$nameField.erConfigClassLhConfig::getInstance()->getSetting( 'site', 'secrethash' ))){
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
+    		$Errors['captcha'] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
     	}
     } else {
     	// Captcha validation
     	if ( !$form->hasValidData( $nameField ) || $form->$nameField == '' || $form->$nameField < time()-600)
     	{
-    		$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
+    		$Errors['captcha'] = erTranslationClassLhTranslation::getInstance()->getTranslation("chat/startchat","Your request was not processed as expected - but don't worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.");
     	}
     }
-    
+      
     if ($form->hasValidData( 'operator' ) && erLhcoreClassModelUser::getUserCount(array('filter' => array('id' => $form->operator, 'disabled' => 0))) > 0) {
     	$inputData->operator = $chat->user_id = $form->operator;
     }
@@ -264,12 +295,22 @@ if (isset($_POST['askQuestion']))
     		$chat->user_tz_identifier = '';
     	}
     }
-        
+
     $chat->dep_id = $inputData->departament_id;
-    
+
     // Assign default department
     if ($form->hasValidData( 'DepartamentID' ) && erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $form->DepartamentID,'disabled' => 0))) > 0) {
     	$inputData->departament_id = $chat->dep_id = $form->DepartamentID;
+	} elseif ($form->hasValidData( 'DepartamentID' ) && $form->DepartamentID == -1) {
+
+	    $chat->dep_id == 0;
+
+	    if (isset($Result['theme']) && $Result['theme'] !== false && $Result['theme']->department_title != '') {
+	        $Errors['department'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please choose').' '.htmlspecialchars($Result['theme']->department_title).'!';
+	    } else {
+	        $Errors['department'] = erTranslationClassLhTranslation::getInstance()->getTranslation('chat/startchat','Please choose department!');
+	    }
+
     } elseif ($chat->dep_id == 0 || erLhcoreClassModelDepartament::getCount(array('filter' => array('id' => $chat->dep_id,'disabled' => 0))) == 0) {
         
         // Perhaps extension overrides default department?
@@ -347,6 +388,8 @@ if (isset($_POST['askQuestion']))
            $msg->time = time();
            erLhcoreClassChat::getSession()->save($msg);
            
+           $chat->unanswered_chat = 1;
+           
            $messageInitial = $msg;
        
            if ($userInstance->invitation !== false) {
@@ -390,7 +433,9 @@ if (isset($_POST['askQuestion']))
     	       		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.auto_responder_triggered',array('chat' => & $chat));
     	       	}
            }
-       }
+       } else {
+	       $chat->status_sub = erLhcoreClassModelChat::STATUS_SUB_START_ON_KEY_UP;
+	   }
        
        // Set chat attributes for transfer workflow logic
        if ($chat->department !== false && $chat->department->department_transfer_id > 0) {
@@ -459,6 +504,11 @@ if (!ezcInputForm::hasPostData()) {
                     ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
                     null,
                     FILTER_REQUIRE_ARRAY
+            ),
+            'via_hidden' => new ezcInputFormDefinitionElement(
+                    ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw',
+                    null,
+                    FILTER_REQUIRE_ARRAY
             )
 	);
 	
@@ -504,9 +554,16 @@ if (!ezcInputForm::hasPostData()) {
 	{
 	    $inputData->value_items_admin = $form->value_items_admin;
 	}
+	
+	
+	if ($form->hasValidData( 'via_hidden' ))
+	{
+	    $inputData->via_hidden = $form->via_hidden;
+	}
 }
 
 $tpl->set('input_data',$inputData);
+$tpl->set('fullheight',$fullHeight);
 
 if (isset($_GET['URLReferer']))
 {
@@ -534,6 +591,7 @@ if (isset($_POST['r']))
 erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.readoperatormessage',array('tpl' => $tpl, 'params' => & $Params));
 
 $Result['content'] = $tpl->fetch();
+$Result['fullheight'] = $fullHeight;
 $Result['pagelayout'] = 'widget';
 $Result['dynamic_height'] = true;
 $Result['dynamic_height_message'] = 'lhc_sizing_chat';

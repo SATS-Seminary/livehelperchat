@@ -15,6 +15,7 @@ return array_merge(array (
         'erLhcoreClassIPDetect' => 'lib/core/lhcore/lhipdetect.php',
 
         'erConfigClassLhCacheConfig' => 'lib/core/lhconfig/lhcacheconfig.php',
+        'erLhcoreClassRestAPIHandler' => 'lib/core/lhrestapi/lhrestapivalidator.php',
 
         'erLhcoreClassTransfer' => 'lib/core/lhcore/lhtransfer.php',
         'PHPMailer'             => 'lib/core/lhcore/class.phpmailer.php',
@@ -38,6 +39,7 @@ return array_merge(array (
         'erLhcoreClassAdminChatValidatorHelper'=> 'lib/core/lhchat/lhchatadminvalidatorhelper.php',
         'erLhcoreClassChatCommand'=> 'lib/core/lhchat/lhchatcommand.php',
         'erLhcoreClassChatHelper' => 'lib/core/lhchat/lhchathelper.php',
+        'erLhcoreClassUserValidator' => 'lib/core/lhuser/lhuservalidator.php',
 
 
         'erLhcoreClassBBCode'       => 'lib/core/lhbbcode/lhbbcode.php',
@@ -63,6 +65,7 @@ return array_merge(array (
 
         'erLhcoreClassModelGroupRole'   => 'lib/models/lhpermission/erlhcoreclassmodelgrouprole.php',
         'erLhcoreClassModelChat'        => 'lib/models/lhchat/erlhcoreclassmodelchat.php',
+        'erLhcoreClassModelChatPaid'    => 'lib/models/lhchat/erlhcoreclassmodelchatpaid.php',
         'erLhcoreClassModelmsg'         => 'lib/models/lhchat/erlhcoreclassmodelmsg.php',
         'erLhcoreClassModelCannedMsg'   => 'lib/models/lhchat/erlhcoreclassmodelcannedmsg.php',
         'erLhcoreClassModelChatConfig'  => 'lib/models/lhchat/erlhcoreclassmodelchatconfig.php',
@@ -98,7 +101,12 @@ return array_merge(array (
 		'erLhAbstractModelForm'  					=> 'lib/models/lhabstract/erlhabstractmodelform.php',
 		'erLhAbstractModelFormCollected'  			=> 'lib/models/lhabstract/erlhabstractmodelformcollected.php',
 		'erLhAbstractModelWidgetTheme'  			=> 'lib/models/lhabstract/erlhabstractmodelwidgettheme.php',
-		
+		'erLhAbstractModelAdminTheme'  			    => 'lib/models/lhabstract/erlhabstractmodeladmintheme.php',
+		'erLhcoreClassThemeValidator'  			    => 'lib/core/lhtheme/lhthemevalidator.php',
+
+		'erLhAbstractModelProduct'  			    => 'lib/models/lhabstract/erlhabstractmodelproduct.php',
+		'erLhAbstractModelRestAPIKey'  			    => 'lib/models/lhabstract/erlhabstractmodelrestapikey.php',
+
 		'erLhcoreClassFormRenderer'  		=> 'lib/core/lhform/lhformrenderer.php',
 		'erLhcoreClassAbstract' 			=> 'lib/core/lhabstract/lhabstract.php',
 		'erLhcoreClassChatMail' 		 	=> 'lib/core/lhchat/lhchatmail.php',
@@ -186,6 +194,10 @@ return array_merge(array (
         'erLhcoreClassTranslate'                    => 'lib/core/lhtranslate/lhtranslate.php',
         'erLhcoreClassTranslateBing'                => 'lib/core/lhtranslate/lhbingtranslate.php',
         'erLhcoreClassTranslateGoogle'              => 'lib/core/lhtranslate/lhgoogletranslate.php',
+	
+		'erLhcoreClassDBTrait'       				=> 'lib/core/lhcore/lhdbtrait.php',
+		'lhSecurity'       				            => 'lib/core/lhexternal/lhsecurity.php',
+		'erLhcoreClassChatPaid'       				=> 'lib/core/lhchat/lhchatpaid.php',
 		
 ),
 include('var/autoloads/lhextension_autoload.php')

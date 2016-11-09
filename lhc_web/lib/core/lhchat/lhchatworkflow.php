@@ -1,7 +1,7 @@
 <?php
 
 class erLhcoreClassChatWorkflow {
-
+        
     /**
      * Message for timeout
      */
@@ -104,7 +104,7 @@ class erLhcoreClassChatWorkflow {
     	$chat->updateThis();
 
     	// Execute callback if it exists
-    	$extensions = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'extensions' );
+    	$extensions = erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'extensions' );
     	$instance = erLhcoreClassSystem::instance();
 
     	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.unread_chat_workflow',array('chat' => & $chat));
@@ -127,13 +127,18 @@ class erLhcoreClassChatWorkflow {
     	}
 
     	if (in_array('xmp', $options['options'])) {
-    		erLhcoreClassXMP::sendXMPMessage($chat);
+    	    $errors = array();
+            erLhcoreClassChatEventDispatcher::getInstance()->dispatch('xml.before_send_xmp_message', array('chat' => & $chat, 'errors' => & $errors));
+
+            if (empty($errors)) {
+                erLhcoreClassXMP::sendXMPMessage($chat);
+            }
     	}
     	
     	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chat_unread_message',array('chat' => & $chat));
     	
     	// Execute callback if it exists
-    	$extensions = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'extensions' );
+    	$extensions = erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'extensions' );
     	$instance = erLhcoreClassSystem::instance();
     	 
     	foreach ($extensions as $ext) {
@@ -150,8 +155,13 @@ class erLhcoreClassChatWorkflow {
     		erLhcoreClassChatMail::sendMailUnacceptedChat($chat,9);
     	}
     	
-    	if (in_array('xmp_accepted', $options['options'])) {    	
-    		erLhcoreClassXMP::sendXMPMessage($chat,array('template' => 'xmp_accepted_message','recipients_setting' => 'xmp_users_accepted'));
+    	if (in_array('xmp_accepted', $options['options'])) {
+            $errors = array();
+            erLhcoreClassChatEventDispatcher::getInstance()->dispatch('xml.before_send_xmp_message', array('chat' => & $chat, 'errors' => & $errors));
+
+            if (empty($errors)) {
+                erLhcoreClassXMP::sendXMPMessage($chat, array('template' => 'xmp_accepted_message', 'recipients_setting' => 'xmp_users_accepted'));
+            }
     	}
     	
     	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.chat_accepted',array('chat' => & $chat));
@@ -168,13 +178,18 @@ class erLhcoreClassChatWorkflow {
     	}
 
     	if (in_array('xmp', $options['options'])) {
-    		erLhcoreClassXMP::sendXMPMessage($chat);
+            $errors = array();
+            erLhcoreClassChatEventDispatcher::getInstance()->dispatch('xml.before_send_xmp_message', array('chat' => & $chat, 'errors' => & $errors));
+
+            if (empty($errors)) {
+                erLhcoreClassXMP::sendXMPMessage($chat);
+            }
     	}
     	
     	erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.new_chat',array('chat' => & $chat));
     	
     	// Execute callback if it exists
-    	$extensions = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'extensions' );
+    	$extensions = erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'extensions' );
     	$instance = erLhcoreClassSystem::instance();
     	
     	foreach ($extensions as $ext) {
@@ -209,8 +224,14 @@ class erLhcoreClassChatWorkflow {
     				$chat->last_msg_id = $msg->id;
     			}
     			
-    			$chat->updateThis();  
+    			$chat->chat_duration = erLhcoreClassChat::getChatDurationToUpdateChatID($chat->id);
+    			
+    			$chat->updateThis();
+
+                erLhcoreClassChat::closeChatCallback($chat,$chat->user);
+    			
     			erLhcoreClassChat::updateActiveChats($chat->user_id);
+
     			$closedChatsNumber++;
 	    	}
 	    	
@@ -232,7 +253,11 @@ class erLhcoreClassChatWorkflow {
 	    	    }
 	    	     
 	    	    $chat->updateThis();
+
+                erLhcoreClassChat::closeChatCallback($chat,$chat->user);
+
 	    	    erLhcoreClassChat::updateActiveChats($chat->user_id);
+
 	    	    $closedChatsNumber++;
 	    	}	    	
     	}
@@ -250,6 +275,15 @@ class erLhcoreClassChatWorkflow {
     		foreach (erLhcoreClassChat::getList(array('limit' => 500,'filtergt' => array('last_user_msg_time' => 0), 'filterlt' => array('last_user_msg_time' => $delay), 'filter' => array('status' => erLhcoreClassModelChat::STATUS_CLOSED_CHAT))) as $chat) {
     			$chat->removeThis(); 
     			erLhcoreClassChat::updateActiveChats($chat->user_id);
+    			
+    			if ($chat->department !== false) {
+    			    erLhcoreClassChat::updateDepartmentStats($chat->department);
+    			}
+
+                erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.delete', array(
+                    'chat' => & $chat
+                ));
+
     			$purgedChatsNumber++;
 	    	}	
     	}    	
@@ -327,10 +361,12 @@ class erLhcoreClassChatWorkflow {
      		
      		$additionalData = $chat->additional_data_array;
      		
-     		foreach ($additionalData as $row) {
-     		    if (isset($row->identifier) && $row->identifier != ''){
-     		        $replaceArray['{'.$row->identifier.'}'] = $row->value;
-     		    }
+     		if (is_array($additionalData)) {
+         		foreach ($additionalData as $row) {
+         		    if (isset($row->identifier) && $row->identifier != ''){
+         		        $replaceArray['{'.$row->identifier.'}'] = $row->value;
+         		    }
+         		}
      		}
      		
      		erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.workflow.canned_message_replace',array('chat' => $chat, 'replace_array' => & $replaceArray));
@@ -353,6 +389,25 @@ class erLhcoreClassChatWorkflow {
      		 
      		$chat->updateThis();     		     		
      	}     	
+     }
+
+     public static function autoInformVisitor($minutesTimeout)
+     {
+     	if ($minutesTimeout > 0) {
+     		$items = erLhcoreClassChat::getList(array('limit' => 10, 'filterlt' => array('last_op_msg_time' => (time() - (1*60))), 'filter' => array('has_unread_op_messages' => 1, 'unread_op_messages_informed' => 0)));
+
+     		// Update chats instantly
+     		foreach ($items as $item) {
+     			$item->has_unread_op_messages = 0;
+     			$item->unread_op_messages_informed = 1;
+     			$item->updateThis();
+     		}
+
+     		// Now inform visitors
+     		foreach ($items as $item) {
+     			erLhcoreClassChatMail::informVisitorUnreadMessage($item);
+     		}
+     	}
      }
 }
 

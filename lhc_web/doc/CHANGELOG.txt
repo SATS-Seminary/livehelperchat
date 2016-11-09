@@ -1,3 +1,119 @@
+2.50v
+
+1. Now it's possible to inform user about unread messages from operator.
+2. In survey editing window you can choose what fields are required and what not.
+3. You can now prefill also proactive invitation.
+
+You have to have running for first enhancement.
+php cron.php -s site_admin -c cron/workflow
+
+execute doc/update_db/update_125.sql for update
+
+2.49v
+
+1. Survey now can have custom fields
+
+execute doc/update_db/update_124.sql for update
+
+2.48v
+
+1. XMPP Support for PHP7
+2. Full height layout update for proactive invitation
+3. Proactive invitation now supports tag
+
+execute doc/update_db/update_123.sql for update
+
+2.47v
+
+1. REST API call to change operator status to online/offline
+2. Google Maps API update. You can now have google maps API key defined in back office.
+3. On mizimize header of widget was hidden, it's fixed now.
+4. And a lot of others small changes.
+
+execute doc/update_db/update_122.sql for update
+
+
+2.46v
+
+1. Option to disable iframes rendering. It just increases security in some cases.
+2. href links in co-browsing will be replaced with javascript:void(0), so in order operator to click invalid link he will have to type it manually.
+
+execute doc/update_db/update_121.sql for update
+
+2.45v
+
+1. Admin themes
+execute doc/update_db/update_120.sql for update
+
+2.44v
+
+1. Rest API Initial version
+
+execute doc/update_db/update_119.sql for update
+
+2.43v
+
+1. Chat lists will have option to filter by product
+2. Chat's widgets can be filtered by product
+3. Custom field in users account which would be used instead of Name surname if filled.
+
+execute doc/update_db/update_118.sql for update
+
+2.42v
+
+1. Product concept, few products can be assigned to single department [Sponsored]
+2. Passwords are stored using password_hash function. [Improved security]
+3. Cleanup user part [General]
+4. 5.4 PHP required
+5. https://github.com/LiveHelperChat/livehelperchat/issues/789
+6. Option to securely encrypt passed data to additional form data. [Sponsored]
+7. Paid chats concept, tutorial article is comming. [Sponsored]
+
+execute doc/update_db/update_117.sql for update
+
+2.41v
+
+1. New statistic - unanswered chats. Chat becames unanswered if
+
+a. User starts chat and there is message field and chat is pending.
+b. Operator accepts a chat but visitor has already closed chat widget chat remains unanswered.
+c. If chat started in proactive mode and user filled message and chat is not accepted yet.
+d. Unanswered chat flag is removed.
+
+2. User row has 3 additional attributes which can be used for extensions.
+attr_int_1
+attr_int_2
+attr_int_3
+
+execute doc/update_db/update_116.sql for update
+
+2.40v
+1. Option to force close chat on widget close button. At the moment it just closes widget. But on operator side there is no indication for that. 
+2. Custom field for sort priority
+3. https://github.com/LiveHelperChat/livehelperchat/issues/800
+4. https://github.com/LiveHelperChat/livehelperchat/issues/810
+5. https://github.com/LiveHelperChat/livehelperchat/issues/803
+6. https://github.com/LiveHelperChat/livehelperchat/issues/796
+
+execute doc/update_db/update_115.sql for update
+
+2.39v
+
+1. https://github.com/LiveHelperChat/livehelperchat/issues/772 - option in theme to define optional field which would be visible in department
+2. https://github.com/LiveHelperChat/livehelperchat/issues/715
+3. One more time new chat messages interface. Messages can be styled in theme editing window.
+4. Option to turn off/on voting thumbs
+5. Option to have custom text instaed of Department. Let say location.
+
+execute doc/update_db/update_114.sql for update
+
+2.38v
+
+1. https://github.com/LiveHelperChat/livehelperchat/issues/771
+2. Option to enable disable need help widget directly from theme.
+
+execute doc/update_db/update_113.sql for update
+
 2.37v
 
 1. User can drag and sort frontpage widgets as he wants. Widgets order and what widgets user can see are based on user individually.

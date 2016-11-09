@@ -55,6 +55,9 @@ class erLhcoreClassDepartament{
 	   			'Priority' => new ezcInputFormDefinitionElement(
 	   					ezcInputFormDefinitionElement::OPTIONAL, 'int'
 	   			),
+	   			'SortPriority' => new ezcInputFormDefinitionElement(
+	   					ezcInputFormDefinitionElement::OPTIONAL, 'int'
+	   			),
 	   			'TansferDepartmentID' => new ezcInputFormDefinitionElement(
 	   					ezcInputFormDefinitionElement::OPTIONAL, 'int',array('min_range' => 1)
 	   			),
@@ -109,6 +112,9 @@ class erLhcoreClassDepartament{
 	   			'AutoAssignActive' => new ezcInputFormDefinitionElement(
 	   					ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
 	   			),
+	   			'VisibleIfOnline' => new ezcInputFormDefinitionElement(
+	   					ezcInputFormDefinitionElement::OPTIONAL, 'boolean'
+	   			),
 	   			'MaxNumberActiveChats' => new ezcInputFormDefinitionElement(
 	   					ezcInputFormDefinitionElement::OPTIONAL, 'int'
 	   			),
@@ -149,7 +155,7 @@ class erLhcoreClassDepartament{
 	   		$department->name = $form->Name;
 	   	}
 	   	
-	   	if ( erLhcoreClassUser::instance()->hasAccessTo('lhdepartament','actautoassignment') ) {
+	   	if ( erLhcoreClassUser::instance()->hasAccessTo('lhdepartment','actautoassignment') ) {
 		   	if ( $form->hasValidData( 'AutoAssignActive' ) && $form->AutoAssignActive == true )	{
 		   		$department->active_balancing = 1;
 		   	} else {
@@ -171,7 +177,7 @@ class erLhcoreClassDepartament{
 		   	}
 	   	}
 	   	
-	   	if ( erLhcoreClassUser::instance()->hasAccessTo('lhdepartament','actworkflow') ) {
+	   	if ( erLhcoreClassUser::instance()->hasAccessTo('lhdepartment','actworkflow') ) {
 		   	if ( $form->hasValidData( 'TansferDepartmentID' ) )
 		   	{
 		   		$department->department_transfer_id = $form->TansferDepartmentID;
@@ -243,6 +249,12 @@ class erLhcoreClassDepartament{
 	   	} else {
 	   		$department->priority = 0;
 	   	}
+	   	
+	   	if ( $form->hasValidData( 'SortPriority' ) ) {
+	   		$department->sort_priority = $form->SortPriority;
+	   	} else {
+	   		$department->sort_priority = 0;
+	   	}
 	   		   	
 	   	if ( $form->hasValidData( 'inform_close' ) && $form->inform_close === true ) {
 	   		$department->inform_close = 1;
@@ -250,11 +262,16 @@ class erLhcoreClassDepartament{
 	   		$department->inform_close = 0;
 	   	}
 	   		   	
-	   		   	
 	   	if ( $form->hasValidData( 'inform_unread' ) && $form->inform_unread === true ) {
 	   		$department->inform_unread = 1;
 	   	} else {
 	   		$department->inform_unread = 0;
+	   	}
+	   	
+	   	if ( $form->hasValidData( 'VisibleIfOnline' ) && $form->VisibleIfOnline === true ) {
+	   		$department->visible_if_online = 1;
+	   	} else {
+	   		$department->visible_if_online = 0;
 	   	}
 	   		   	
 	   	if ($form->hasValidData( 'inform_unread_delay' )) {

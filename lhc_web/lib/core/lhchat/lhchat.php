@@ -52,15 +52,19 @@ class erLhcoreClassChat {
 			'chat_variables',
 			'wait_timeout_repeat',
 			// Angular remake
-			'referrer'
+			'referrer',
+			'last_op_msg_time',
+			'has_unread_op_messages',
+			'unread_op_messages_informed',
+			//'product_id'
 	);
 	
     /**
      * Gets pending chats
      */
-    public static function getPendingChats($limit = 50, $offset = 0, $filterAdditional = array())
+    public static function getPendingChats($limit = 50, $offset = 0, $filterAdditional = array(), $filterAdditionalMainAttr = array(), $limitationDepartment = array())
     {
-    	$limitation = self::getDepartmentLimitation();
+    	$limitation = self::getDepartmentLimitation('lh_chat',$limitationDepartment);
 
     	// Does not have any assigned department
     	if ($limitation === false) { return array(); }
@@ -78,7 +82,7 @@ class erLhcoreClassChat {
     	$filter['limit'] = $limit;
     	$filter['offset'] = $offset;
     	$filter['smart_select'] = true;
-    	$filter['sort'] = 'priority DESC, id DESC';
+    	$filter['sort'] = isset($filterAdditionalMainAttr['sort']) ? $filterAdditionalMainAttr['sort'] : 'priority DESC, id DESC';
 
     	if (!empty($filterAdditional)) {
     		$filter = array_merge_recursive($filter,$filterAdditional);
@@ -407,13 +411,23 @@ class erLhcoreClassChat {
     	return $result;
     }
 
-    public static function getDepartmentLimitation($tableName = 'lh_chat') {
-    	$currentUser = erLhcoreClassUser::instance();
+    public static function getDepartmentLimitation($tableName = 'lh_chat', $params = array()) {
+    	
     	$LimitationDepartament = '';
-    	$userData = $currentUser->getUserData(true);
+    	
+    	if (!isset($params['user'])) {
+        	$currentUser = erLhcoreClassUser::instance();
+        	$userData = $currentUser->getUserData(true);
+        	$userId = $currentUser->getUserID();
+    	} else {
+    	    $userData = $params['user'];
+    	    $userId = $userData->id;
+    	}
+    	
+    	
     	if ( $userData->all_departments == 0 )
     	{
-    		$userDepartaments = erLhcoreClassUserDep::getUserDepartaments($currentUser->getUserID());
+    		$userDepartaments = erLhcoreClassUserDep::getUserDepartaments($userId);
 
     		if (count($userDepartaments) == 0) return false;
 
@@ -690,6 +704,40 @@ class erLhcoreClassChat {
        }
 
        return $rowsNumber >= 1;
+    }
+
+    /**
+     * Returns departments with atleast one logged 
+     */
+    public static function getLoggedDepartmentsIds($departmentsIds, $exclipic = false)
+    {
+        $isOnlineUser = (int)erLhcoreClassModelChatConfig::fetch('sync_sound_settings')->data['online_timeout'];
+
+        $db = ezcDbInstance::get();
+
+        if ($exclipic == true)
+        {
+            $stmt = $db->prepare("SELECT dep_id AS found FROM lh_userdep WHERE (last_activity > :last_activity AND hide_online = 0) AND dep_id IN (" . implode(',', $departmentsIds) . ")");
+            $stmt->bindValue(':last_activity',(time()-$isOnlineUser),PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        } else {
+            
+            $stmt = $db->prepare("SELECT count(id) AS found FROM lh_userdep WHERE (last_activity > :last_activity AND hide_online = 0) AND (dep_id = 0 OR dep_id IN (" . implode(',', $departmentsIds) . "))");
+            $stmt->bindValue(':last_activity',(time()-$isOnlineUser),PDO::PARAM_INT);
+            $stmt->execute();
+            
+            $rowsNumber = $stmt->fetchColumn();
+            
+            // Return same departments because one of operators are online and has assigned all departments
+            if ($rowsNumber > 0) {
+                return $departmentsIds;
+            } else {
+                return array();
+            }
+        }
     }
 
     public static function getRandomOnlineUserID($params = array()) {
@@ -1026,7 +1074,7 @@ class erLhcoreClassChat {
    }
    
    public static function closeChatCallback($chat, $operator = false) {
-	   	$extensions = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'extensions' );
+	   	$extensions = erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'extensions' );
 
 	   	$instance = erLhcoreClassSystem::instance();
 
@@ -1066,7 +1114,7 @@ class erLhcoreClassChat {
    
    public static function canReopen(erLhcoreClassModelChat $chat, $skipStatusCheck = false) {
    		if ( ($chat->status == erLhcoreClassModelChat::STATUS_CLOSED_CHAT || $skipStatusCheck == true)) {
-			if ($chat->last_user_msg_time > time()-600 || $chat->last_user_msg_time == 0){
+			if (($chat->status_sub != erLhcoreClassModelChat::STATUS_SUB_USER_CLOSED_CHAT || $skipStatusCheck == true) && ($chat->last_user_msg_time > time()-600 || $chat->last_user_msg_time == 0)) {
 				return true;
 			} else {
 				return false;
@@ -1081,7 +1129,7 @@ class erLhcoreClassChat {
 		   		$parts = explode('_', $chatPart);
 		   		$chat = erLhcoreClassModelChat::fetch($parts[0]);
 		   		
-		   		if ( ($chat->last_user_msg_time > time()-600 || $chat->last_user_msg_time == 0) && (!isset($params['reopen_closed']) || $params['reopen_closed'] == 1 || ($params['reopen_closed'] == 0 && $chat->status != erLhcoreClassModelChat::STATUS_CLOSED_CHAT))) {
+		   		if (($chat->status_sub != erLhcoreClassModelChat::STATUS_SUB_USER_CLOSED_CHAT) && ($chat->last_user_msg_time > time()-600 || $chat->last_user_msg_time == 0) && (!isset($params['reopen_closed']) || $params['reopen_closed'] == 1 || ($params['reopen_closed'] == 0 && $chat->status != erLhcoreClassModelChat::STATUS_CLOSED_CHAT))) {
 		   			return array('id' => $parts[0],'hash' => $parts[1]);
 		   		} else {
 					return false;
@@ -1282,6 +1330,84 @@ class erLhcoreClassChat {
                            }
                        }
                    }
+               }
+           }
+       }
+   }
+   
+   /**
+    * Sets chats status directly
+    * */
+   public static function setOnlineStatusDirectly($chatLists)
+   {
+       $onlineUserId = array();
+        
+       foreach ($chatLists as $chat) {
+           if (isset($chat->online_user_id) && $chat->online_user_id > 0) {
+               $onlineUserId[] = (int)$chat->online_user_id;
+           }
+       }
+        
+       if (!empty($onlineUserId)) {
+           $response = erLhcoreClassChatEventDispatcher::getInstance()->dispatch('chat.setonlinestatus_directly',array('list' => & $chatLists, 'online_users_id' => $onlineUserId));
+            
+           // Event listener has done it's job
+           if (isset($response['status']) && $response['status'] === erLhcoreClassChatEventDispatcher::STOP_WORKFLOW) {
+               return ;
+           }
+   
+           $onlineVisitors = erLhcoreClassModelChatOnlineUser::getList( array (
+               'sort' => false,
+               'filterin' => array (
+                   'id' => $onlineUserId
+               )
+           ), array (
+               'vid',
+               'current_page',
+               'invitation_seen_count',
+               'page_title',
+               'chat_id',
+               'last_visit',
+               'first_visit',
+               'user_agent',
+               'user_country_name',
+               'user_country_code',
+               'operator_message',
+               'operator_user_id',
+               'operator_user_proactive',
+               'message_seen',
+               'message_seen_ts',
+               'pages_count',
+               'tt_pages_count',
+               'lat',
+               'lon',
+               'city',
+               'identifier',
+               'time_on_site',
+               'tt_time_on_site',
+               'referrer',
+               'invitation_id',
+               'total_visits',
+               'invitation_count',
+               'requires_email',
+               'requires_username',
+               'requires_phone',
+               'dep_id',
+               'reopen_chat',
+               'operation',
+               'operation_chat',
+               'screenshot_id',
+               'online_attr',
+               'online_attr_system',
+               'visitor_tz',
+               'notes'
+           ));
+   
+           foreach ($chatLists as & $chat) {
+               if (isset($chat->online_user_id) && $chat->online_user_id > 0 && isset($onlineVisitors[$chat->online_user_id])) {
+                   $chat->user_status_front = self::setActivityByChatAndOnlineUser($chat, $onlineVisitors[$chat->online_user_id]);
+               } else {
+                   $chat->user_status_front = 1;
                }
            }
        }
@@ -1499,6 +1625,53 @@ class erLhcoreClassChat {
 	   	$stmt->execute();
 	   	$time = $stmt->fetchColumn();
    	   	return $time > 0 ? $time : 0;   		
+   }
+   
+   /**
+    * @see https://github.com/LiveHelperChat/livehelperchat/pull/809
+    *
+    * @param array $value
+    * */
+   public static function safe_json_encode($value) {
+        
+       $encoded = json_encode($value);
+        
+       switch (json_last_error()) {
+           case JSON_ERROR_NONE:
+               return $encoded;
+           case JSON_ERROR_DEPTH:
+               return 'Maximum stack depth exceeded'; // or trigger_error() or throw new Exception()
+           case JSON_ERROR_STATE_MISMATCH:
+               return 'Underflow or the modes mismatch'; // or trigger_error() or throw new Exception()
+           case JSON_ERROR_CTRL_CHAR:
+               return 'Unexpected control character found';
+           case JSON_ERROR_SYNTAX:
+               return 'Syntax error, malformed JSON'; // or trigger_error() or throw new Exception()
+           case JSON_ERROR_UTF8:
+               $clean = self::utf8ize($value);
+               return safe_json_encode($clean);
+           default:
+               return 'Unknown error'; // or trigger_error() or throw new Exception()
+                
+       }
+   }
+    
+   /**
+    * Make conversion if required
+    *
+    * @param unknown $mixed
+    *
+    * @return string
+    */
+   public static function utf8ize($mixed) {
+       if (is_array($mixed)) {
+           foreach ($mixed as $key => $value) {
+               $mixed[$key] = self::utf8ize($value);
+           }
+       } else if (is_string ($mixed)) {
+           return utf8_encode($mixed);
+       }
+       return $mixed;
    }
    
    // Static attribute for class

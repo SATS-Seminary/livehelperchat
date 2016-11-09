@@ -2,136 +2,124 @@
   <context>
     <name>listchatconfig</name>
     <message>
-      <source/>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source/>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source/>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source/>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>How many days voting widget should not be expanded after last show</source>
-      <translation>למשך כמה ימים יש להציג את אפשרות ההצבעה לאחר שהוצגו פעם אחרונה?</translation>
+      <translation>כמה ימים אשף ההצבעה לא יוצג אחרי מופע אחרון?</translation>
     </message>
     <message>
       <source>Use secure cookie, check this if you want to force SSL all the time</source>
-      <translation>אכוף שימוש בעוגיות מאובטחות. סמן אם אתה רוצה לכפות שימוש ב SSL</translation>
+      <translation>השתמש ב-Cookie מאובטח. בחר באפשרות זו אם ברצונך לכפות תעבורת SSL תמיד.</translation>
     </message>
     <message>
       <source>Which ip should be allowed to update DB by executing http request, separate by comma?</source>
-      <translation>איזה כתובת IP מורשות לעדכן את מסד הנתונים על ידי קריאות HTTP, מופרדות בפסיק?</translation>
+      <translation>איזו כתובת IP להתיר לצורך עדכון מסד הנתונים על ידי בקשת http? הפרדה עם פסיק.</translation>
     </message>
     <message>
       <source>Enable online site visitors tracking</source>
-      <translation>אפשר מעקב אחר מבקרים באתר</translation>
+      <translation>לאפשר מעקב על מבקרי האתר המקוונים</translation>
     </message>
     <message>
       <source>Should mouse movement be tracked as activity measure, if not checked only basic events would be tracked</source>
-      <translation type="unfinished"/>
+      <translation>צריך תנועת העכבר להיות במעקב כאמצעי פעילות, אם לא בדק רק בסיסי אירועים תחת מעקב</translation>
     </message>
     <message>
       <source>Track is user still on site, chat status checks also has to be enabled</source>
-      <translation>עקוב אם המשתמש עדיין באתר. שים לב שיש לאפשר גם בדיקת סטטוס בכדי שאפשרות זו תעבוד.</translation>
+      <translation>המסלול הוא המשתמש עדיין באתר, בדיקת מצב צ&apos;אט יש גם תהיה זמינה</translation>
     </message>
     <message>
       <source>Track online visitors even if there is no online operators</source>
-      <translation>עקוב אחר משתמשים באתר אפילו כאשר אין מפעילי צ&apos;אט זמינים</translation>
+      <translation>מעקב אחר מבקרים מקוון גם אם יש ללא אופרטורים באינטרנט</translation>
     </message>
     <message>
       <source>Track users footprint. For this also online visitors tracking should be enabled</source>
-      <translation>עקוב אחר מסלולי מבקרים. כדי לאפשר זאת יש לוודא שגם מעקב אחר מבקרים מאופשר.</translation>
+      <translation>מעקב אחר משתמשים טביעת רגל. בשביל זה גם מבקרים מקוון מעקב להפכה לזמינה</translation>
     </message>
     <message>
       <source>Set your domain to enable user tracking across different domain subdomains.</source>
-      <translation>קבע את שם המתחם שלך בכדי לאפשר מעקב אחר משתמשים שעוברים בין תתי שמות מתחם שונים.</translation>
+      <translation>להגדיר את התחום שלך כדי לאפשר מעקב אחר משתמש על פני תחומי משנה תחום אחר.</translation>
     </message>
     <message>
       <source>Track users activity on site?</source>
-      <translation type="unfinished"/>
+      <translation>לעקוב אחר פעילות המשתמשים באתר?</translation>
     </message>
     <message>
       <source>How many days keep records of online users.</source>
-      <translation>כמה ימי לשמור היסטוריה של משתמשים אונליין.</translation>
+      <translation>כמה ימים לשמור רשומות של משתמשים באינטרנט.</translation>
     </message>
     <message>
       <source>Suggest user to leave a message then user chooses offline department</source>
-      <translation>הצע למשתמשים לשלוח הודעה ולבחור מחלקה מתאימה</translation>
+      <translation>מציע למשתמש להשאיר הודעה ואז המשתמש בוחר מחלקת מנותק</translation>
     </message>
     <message>
       <source>Play sound on invitation to chat.</source>
-      <translation>השמע צליל בעת הזמנה לשיחה.</translation>
+      <translation>השמע צליל על ההזמנה כדי לשוחח.</translation>
     </message>
     <message>
       <source>Show users option to switch language at widget</source>
-      <translation>הצג למשתמשים אפשרות לשינוי שפה</translation>
+      <translation>להציג למשתמשים את האפשרות להחליף שפה-יישומון</translation>
     </message>
     <message>
       <source>Between what languages user should be able to switch</source>
-      <translation>לאילו שפות המשתמש יכול לעבור</translation>
+      <translation>בין אילו שפות המשתמש צריך להיות מסוגל לעבור</translation>
     </message>
     <message>
       <source>Host where NodeJs is running</source>
-      <translation type="unfinished"/>
+      <translation>מחשב מארח בו פועל NodeJs</translation>
     </message>
     <message>
       <source>Location of SocketIO JS library</source>
-      <translation type="unfinished"/>
+      <translation>המיקום של ספריית SocketIO JS</translation>
     </message>
     <message>
       <source>Connect to NodeJs in https mode</source>
-      <translation type="unfinished"/>
+      <translation>להתחבר NodeJs במצב https</translation>
     </message>
     <message>
       <source>socket.io path, optional</source>
-      <translation type="unfinished"/>
+      <translation>socket.io נתיב, אופציונלי</translation>
     </message>
     <message>
       <source>NodeJS support enabled</source>
-      <translation type="unfinished"/>
+      <translation>תמיכה NodeJS</translation>
     </message>
     <message>
       <source>Do not ask permission for users to see their screen</source>
-      <translation>אל תבקש הרשאות ממשתמשים כדי לראות את המסך שלהם</translation>
+      <translation>איני מבקש הרשאה למשתמשים לראות את המסך שלהם</translation>
     </message>
     <message>
       <source>Use session captcha. LHC have to be installed on the same domain or subdomain.</source>
-      <translation>השתמש בCAPTCHA. חובה להתקין LHC באותו תת מתחם כדי שאפשרות זו תעבוד כראוי.</translation>
+      <translation>השתמש הפעלה captcha. LHC חייב להיות מותקן באותו תחום או תחום משנה.</translation>
     </message>
     <message>
       <source>Should cronjob run unanswered chats workflow and execute unaswered chats callback, 0 - no, any other number bigger than 0 is a minits how long chat have to be not accepted before executing callback.</source>
-      <translation>האם על הCRONJOB לבדוק שיחות שלא נענו לבצע שיחה חוזרת לשיחות שלא נענו? 0 = לא. כל מספר אחר = כמה דקות לחכות לכל שיחה לפני שהיא מסומנת כשיחה שלא נענתה ושיש לחזור אליה.</translation>
+      <translation>ובלחיצה צריך להפעיל זרימת העבודה השיחות שלא נענו ובצע unaswered השיחות callback, 0 -. לא, כל מספר אחר גדול יותר מאשר 0 minits כמה זמן צ&apos;אט יש לא יתקבל לפני ביצוע התקשרות חזרה.</translation>
     </message>
     <message>
       <source>Should cronjob run departments transfer workflow, even if user leaves a chat</source>
-      <translation>האם על CRONJOB להמשיך ולהעביר שיחה למחלקה גם כאשר המשתמש עזב את השיחה?</translation>
+      <translation>צריך ובלחיצה לנהל מחלקות להעביר זרימת עבודה, גם אם המשתמש עוזב שיחה</translation>
     </message>
     <message>
       <source>Reopen chat functionality enabled</source>
-      <translation>אפשר פתיחה מחדש של שיחות</translation>
+      <translation>פתיחה מחדש של פונקציונליות הצ&apos;אט זמינה</translation>
     </message>
     <message>
       <source>Reopen closed chat as new? Otherwise it will be reopened as active.</source>
-      <translation>האם לפתוח מחדש שיחה שנסגרה כשיחה חדשה? אם לא אז היא תפתח כשיחה פעילה.</translation>
+      <translation>לפתוח צ&apos;אט סגור כמו חדש? אחרת זה להיות מחדש כפעילה.</translation>
     </message>
     <message>
       <source>Should invitation logic be executed if there is no online operators</source>
-      <translation>האם על המערכת להזמין משתמשים לשיחה גם כאשר אין מפעילי אתר זמינים</translation>
+      <translation>יש לבצע הזמנה לוגיקה אם יש ללא אופרטורים באינטרנט</translation>
     </message>
     <message>
       <source>Pro active chats invitations limitation based on pending chats, (-1) do not limit, (0,1,n+1) number of pending chats can be for invitation to be shown.</source>
-      <translation>הזמנה פרואקטיבית של משתמשים לשיחה על בסיס שיחות ממתינות.(-1)  = ללא הגבלה,(0,1,n+1) = מספר השיחות הממתינות לפני שהזמנה תוצג למשתמשים.</translation>
+      <translation>שיחות פעילות פרו הזמנות הגבלה המבוססת על ממתינים צ&apos;אטים, (-1) אינן מגבילות, (0, 1, n + 1) מספר הממתינים צ&apos;אטים יכול להיות עבור הזמנה יוצג.</translation>
     </message>
     <message>
       <source>Is pro active chat invitation active. Online users tracking also has to be enabled</source>
-      <translation>האם לאפשר הזמנת משתמשים לשיחה באופן פרואקטיבי? כדי להפעיל אפשרות זאת יש לאפשר מעקב אחר משתמשים</translation>
+      <translation>הזמנה לצ&apos;אט פעילים פרו פעילה. משתמשים מחוברים לאתר גם צריך להיות זמין</translation>
+    </message>
+    <message>
+      <source>On chat close exit chat</source>
+      <translation>צ&apos;אט קרוב לצאת צ&apos;אט</translation>
     </message>
     <message>
       <source/>
@@ -139,31 +127,31 @@
     </message>
     <message>
       <source>Need help tooltip timeout, after how many hours show again tooltip?</source>
-      <translation>כמה שעות יש להסתיר את הסמלון של קבלת עזרה לאחר שנסגר על ידי המשתמש?</translation>
+      <translation>צריך עזרה שתיאור זמן קצוב, לאחר כמה שעות להראות שוב תיאור הכלי?</translation>
     </message>
     <message>
       <source>Show need help tooltip?</source>
-      <translation>להציג סמלון של עזרה?</translation>
+      <translation>הצג צריך עזרה תיאור הכלי?</translation>
     </message>
     <message>
       <source>Minimum phone number length</source>
-      <translation>אורך מינימאלי של מספר טלפון</translation>
+      <translation>אורך מספר הטלפון מינימלי</translation>
     </message>
     <message>
       <source>Messages box height</source>
-      <translation>גובה תיבת ההודעות</translation>
+      <translation>גובה תיבת הודעות</translation>
     </message>
     <message>
       <source>Proactive message timeout in hours. After how many hours proactive chat mesasge should be shown again.</source>
-      <translation type="unfinished"/>
+      <translation>פסק הזמן של ההודעה פרואקטיבית תוך שעות. לאחר כמה שעות צ&apos;אט פרואקטיבית mesasge צריך יוצג שוב.</translation>
     </message>
     <message>
       <source>Maximum message length in characters</source>
       <translation>אורך ההודעה המרבי של תווים</translation>
     </message>
     <message>
-      <source>List online operators.</source>
-      <translation>רשימת מפעילים זמינים.</translation>
+      <source>List online operators, 0 - no, 1 - yes.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Ignore users online statuses and use departments online hours</source>
@@ -180,6 +168,10 @@
     <message>
       <source>Hide disabled department widget</source>
       <translation>הסתר מחלקת וידג&apos;ט מנוטרלת</translation>
+    </message>
+    <message>
+      <source>Hide close button in dropdown</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Home page tabs order</source>
@@ -206,11 +198,15 @@
       <translation>חסום אפשרות להדפסת שיחה</translation>
     </message>
     <message>
-      <source>Disable option in widget to open new window. Restore icon will be hidden</source>
-      <translation>נטרל את האפשרות לפתוח חלון חדש בווידג&apos;ט. סמל שחזור יוסתר</translation>
+      <source>Hide &apos;New Window&apos; option in Connector Widget</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Disable JS execution in Co-Browsing operator window</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Disable iframes in sharing mode</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -359,16 +355,44 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Messages style</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Need help widget</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Main widget text</source>
+      <source>Chat widget</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Custom CSS</source>
       <translation>CSS מותאם אישית</translation>
+    </message>
+    <message>
+      <source>Live preview</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitor messages style</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator messages style</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>General settings</source>
+      <translation>הגדרות כלליות</translation>
+    </message>
+    <message>
+      <source>Text changes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Disabled</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Name</source>
@@ -381,6 +405,14 @@
     <message>
       <source>Need help header text</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Need help tooltip timeout, after how many hours show again tooltip?</source>
+      <translation>צריך עזרה שתיאור זמן קצוב, לאחר כמה שעות להראות שוב תיאור הכלי?</translation>
+    </message>
+    <message>
+      <source>Show need help tooltip?</source>
+      <translation>הצג צריך עזרה תיאור הכלי?</translation>
     </message>
     <message>
       <source>Need help standard text</source>
@@ -487,19 +519,19 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Text then user starts chat based on proactive invitation</source>
+      <source>Text when user starts chat based on proactive invitation</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Text then operator closes a chat</source>
+      <source>Text when operator closes a chat</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Text then user starts a chat and is waiting for operator to join a chat</source>
+      <source>Text when user starts a chat and is waiting for operator to join a chat</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Text then user starts a chat but department is offline</source>
+      <source>Text when user starts a chat but department is offline</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -551,6 +583,50 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Visitor buble background color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitor title color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitor text color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator buble background color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator title color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator text color</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Show voting thumbs?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Use different title for department? E.g Location</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Location</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Additional option before department selection</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Choose department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Widget themes</source>
       <translation type="unfinished"/>
     </message>
@@ -578,8 +654,8 @@
       <translation>זקוק/ה לעזרה?</translation>
     </message>
     <message>
-      <source>Our staff is always ready to help</source>
-      <translation>נציגינו מוכנים לעזור תמיד</translation>
+      <source>Our staff are always ready to help</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Live help is offline...</source>
@@ -613,16 +689,16 @@
       <translation>מופעל</translation>
     </message>
     <message>
+      <source>Department</source>
+      <translation>מחלקה</translation>
+    </message>
+    <message>
       <source>Language, leave empty for all. E.g lit, rus, ger etc...</source>
       <translation>שפה, השאר ריק לכולן. למשל lit,rus,ger וכו&apos;</translation>
     </message>
     <message>
       <source>Position</source>
       <translation>מיקום</translation>
-    </message>
-    <message>
-      <source>Department</source>
-      <translation>מחלקה</translation>
     </message>
     <message>
       <source>Wait message. Visible when users starts chat and is waiting for someone to accept a chat.</source>
@@ -637,7 +713,7 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Show visitor this message then wait timeout passes.</source>
+      <source>Show visitor this message when wait timeout passes</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -713,6 +789,10 @@
       <translation>הודעת המתנה. מוצג כאשר משתמשים מתחילים צ&apos;אט ומחכים שמישהו יקבל את השיחה</translation>
     </message>
     <message>
+      <source>Show visitor this message then wait timeout passes.</source>
+      <translation>הצג למשתמש הודעה זו כאשר עובר זמן מסוים</translation>
+    </message>
+    <message>
       <source>Pro active chat invitations</source>
       <translation>הזמנה פרו אקטיבית לצ&apos;אט</translation>
     </message>
@@ -776,7 +856,7 @@
     </message>
     <message>
       <source>Theme</source>
-      <translation type="unfinished"/>
+      <translation>ערכת נושא</translation>
     </message>
     <message>
       <source>Default</source>
@@ -840,7 +920,7 @@
     </message>
     <message>
       <source>Middle left side of the screen</source>
-      <translation type="unfinished"/>
+      <translation>צד שמאל של המסך</translation>
     </message>
     <message>
       <source>Disable responsive layout for status widget.</source>
@@ -936,7 +1016,7 @@
     </message>
     <message>
       <source>Hide status when offline</source>
-      <translation type="unfinished"/>
+      <translation>הסתר סטטוס במצב לא מחובר</translation>
     </message>
     <message>
       <source>Show a leave a message form when there are no online operators</source>
@@ -987,7 +1067,19 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Disable online tracking, overrides system configuration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Survey at the end of chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
+      <source>Show product selection based on selected departments</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -1009,6 +1101,14 @@
     <message>
       <source>Invisible, only JS API will be included</source>
       <translation>בלתי נראה, רק ה JS API יכלל</translation>
+    </message>
+    <message>
+      <source>Full height right</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Full height left</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Popup window width</source>
@@ -1057,6 +1157,18 @@
     <message>
       <source>System configuration</source>
       <translation>תצורת מערכת</translation>
+    </message>
+    <message>
+      <source>Chat expired</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Invalid hash</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat was removed</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1118,144 +1230,6 @@
     </message>
   </context>
   <context>
-    <name>chat/activechats</name>
-    <message>
-      <source>Information</source>
-      <translation>מידע</translation>
-    </message>
-    <message>
-      <source>Open in a new window</source>
-      <translation>פתח בחלון חדש</translation>
-    </message>
-    <message>
-      <source>Close chat</source>
-      <translation>סגור צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Delete chat</source>
-      <translation>מחיקת צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Empty...</source>
-      <translation>ריק...</translation>
-    </message>
-    <message>
-      <source>Active chats list</source>
-      <translation>רשימת צ&apos;אטים פעילים</translation>
-    </message>
-    <message>
-      <source>Chats lists</source>
-      <translation>רשימות צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Active chats</source>
-      <translation>צ&apos;אטים פעילים</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/lists/search_panel</name>
-    <message>
-      <source>Delete selected</source>
-      <translation>מחק בחירה</translation>
-    </message>
-    <message>
-      <source>Nick</source>
-      <translation>כינוי</translation>
-    </message>
-    <message>
-      <source>E-mail</source>
-      <translation>דוא&quot;ל</translation>
-    </message>
-    <message>
-      <source>Date range from to</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Department</source>
-      <translation>מחלקה</translation>
-    </message>
-    <message>
-      <source>User</source>
-      <translation>משתמש</translation>
-    </message>
-    <message>
-      <source>Vote status</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Any</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Not Voted</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Up Voted</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Down vote</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Search</source>
-      <translation>חיפוש</translation>
-    </message>
-    <message>
-      <source>Print</source>
-      <translation>הדפס</translation>
-    </message>
-    <message>
-      <source>XLS</source>
-      <translation>XLS</translation>
-    </message>
-    <message>
-      <source>XLS (with content)</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Select department</source>
-      <translation>בחר מחלקה</translation>
-    </message>
-    <message>
-      <source>Select user</source>
-      <translation>בחר משתמש</translation>
-    </message>
-    <message>
-      <source>Type to search</source>
-      <translation>סוג החיפוש</translation>
-    </message>
-    <message>
-      <source>Choose department</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Group by</source>
-      <translation>קבץ לפי</translation>
-    </message>
-    <message>
-      <source>Month</source>
-      <translation>חודש</translation>
-    </message>
-    <message>
-      <source>Day</source>
-      <translation>יום</translation>
-    </message>
-    <message>
-      <source>Group results by operator</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Minimum chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Optional</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
     <name>chat/chat</name>
     <message>
       <source>Show/Hide right column</source>
@@ -1306,16 +1280,16 @@
       <translation>סגור</translation>
     </message>
     <message>
+      <source>Enter your message</source>
+      <translation>הקלד את הודעתך:</translation>
+    </message>
+    <message>
       <source>Send</source>
       <translation>שלח</translation>
     </message>
     <message>
       <source>BB Code</source>
       <translation>קוד BB</translation>
-    </message>
-    <message>
-      <source>Enter your message</source>
-      <translation>הקלד את הודעתך:</translation>
     </message>
     <message>
       <source>Chatbox is disabled.</source>
@@ -1405,7 +1379,7 @@
     </message>
     <message>
       <source>Blocked users</source>
-      <translation type="unfinished"/>
+      <translation>משתמשים חסומים</translation>
     </message>
     <message>
       <source>Please enter an IP to block</source>
@@ -1537,6 +1511,10 @@
       <translation>דוא&quot;ל</translation>
     </message>
     <message>
+      <source>Visible only if online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Disabled</source>
       <translation>מנוטרל</translation>
     </message>
@@ -1553,8 +1531,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Priority</source>
-      <translation>עדיפות</translation>
+      <source>Priority, used for chats priority</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Priority, used for departments sort</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Automate online hours</source>
@@ -1705,12 +1687,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>To what department chat should be transfered if it is not accepted</source>
-      <translation>לאיזו מחלקה להעביר שיחה אם היא לא התקבלה</translation>
+      <source>To what department chat should be transferred if it is not accepted</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Timeout in seconds before chat is transfered to another department. Minimum 5 seconds.</source>
-      <translation>זמן להעברת שיחה למחלקה אחרת. מינימום 5 שניות</translation>
+      <source>Timeout in seconds before chat is transferred to another department. Minimum 5 seconds.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Execute new chat logic again for recipient department?</source>
@@ -1733,8 +1715,8 @@
       <translation>תצורת מערכת</translation>
     </message>
     <message>
-      <source>departments</source>
-      <translation>מחלקות</translation>
+      <source>Departments</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Edit a department</source>
@@ -1859,6 +1841,10 @@
       <translation>מחלקה</translation>
     </message>
     <message>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
       <source>Country</source>
       <translation>מדינה</translation>
     </message>
@@ -1974,6 +1960,18 @@
       <source>has accepted the chat!</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <source>Auto responder got error</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Form data not valid</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Has no access to this chat</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>chat/translation</name>
@@ -2074,28 +2072,16 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Could not detect language</source>
-      <translation>שפה לא זוהתה</translation>
-    </message>
-    <message>
       <source>Could not translate</source>
       <translation>לא ניתן לתרגם</translation>
     </message>
     <message>
+      <source>Could not detect language</source>
+      <translation>שפה לא זוהתה</translation>
+    </message>
+    <message>
       <source>Translation configuration</source>
       <translation>הגדרות תרגום</translation>
-    </message>
-    <message>
-      <source>Chat messages automatic translations has been stopped</source>
-      <translation>תרגום אוטומטי של הודעות הצ&apos;אט הופסק</translation>
-    </message>
-    <message>
-      <source>Messages has been translated</source>
-      <translation>הודעה תורגמה</translation>
-    </message>
-    <message>
-      <source>Please choose translation languages manually and click Auto translate</source>
-      <translation>אנא בחר ידנית שפת תרגום ולחץ על תרגום אוטומטי</translation>
     </message>
   </context>
   <context>
@@ -2136,32 +2122,8 @@
       <translation>פתח בחלון חדש</translation>
     </message>
     <message>
-      <source>Add chat</source>
-      <translation>הוסף שיחה</translation>
-    </message>
-    <message>
-      <source>Start chat</source>
-      <translation>התחל צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Last activity</source>
-      <translation>פעילות אחרונה</translation>
-    </message>
-    <message>
-      <source>ago</source>
-      <translation>לפני</translation>
-    </message>
-    <message>
-      <source>Redirect user to contact form.</source>
-      <translation>מפנה את המשתמש לטופס יצירת קשר</translation>
-    </message>
-    <message>
-      <source>Are you sure?</source>
-      <translation>האם אתה בטוח?</translation>
-    </message>
-    <message>
-      <source>Accept chat</source>
-      <translation>קבל צ&apos;אט</translation>
+      <source>No previous chats</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>h.</source>
@@ -2174,6 +2136,34 @@
     <message>
       <source>s.</source>
       <translation>ש.</translation>
+    </message>
+    <message>
+      <source>ago</source>
+      <translation>לפני</translation>
+    </message>
+    <message>
+      <source>Add chat</source>
+      <translation>הוסף שיחה</translation>
+    </message>
+    <message>
+      <source>Start chat</source>
+      <translation>התחל צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Last activity</source>
+      <translation>פעילות אחרונה</translation>
+    </message>
+    <message>
+      <source>Redirect user to contact form.</source>
+      <translation>מפנה את המשתמש לטופס יצירת קשר</translation>
+    </message>
+    <message>
+      <source>Are you sure?</source>
+      <translation>האם אתה בטוח?</translation>
+    </message>
+    <message>
+      <source>Accept chat</source>
+      <translation>קבל צ&apos;אט</translation>
     </message>
     <message>
       <source>Empty...</source>
@@ -2212,8 +2202,12 @@
       <translation>פעילות אחרונה לפני</translation>
     </message>
     <message>
-      <source>Wait time</source>
+      <source>Sort</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Wait time</source>
+      <translation>זמן המתנה</translation>
     </message>
     <message>
       <source>Delete chat</source>
@@ -2259,7 +2253,14 @@
       <translation>צילום מסך</translation>
     </message>
     <message>
-      <source>Screenshot ready...</source>
+      <source>Screenshot store error</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/chatpreview</name>
+    <message>
+      <source>Chat preview</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -2401,6 +2402,14 @@
       <translation>יש לך שאלה? שאל/י אותנו!</translation>
     </message>
     <message>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
+      <source>Choose a product</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Type your message here and hit enter to send...</source>
       <translation>הקלד/י הודעתך ולחץ/י אנטר לשליחה</translation>
     </message>
@@ -2493,12 +2502,32 @@
       <translation>קובץ לא תקין</translation>
     </message>
     <message>
+      <source>Could not find a product!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose a product!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose department!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Could not determine a default department!</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>is required</source>
       <translation>נדרש</translation>
+    </message>
+    <message>
+      <source>Could not decrypt data!</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Your request was not processed as expected - but don&apos;t worry it was not your fault. Please re-submit your request. If you experience the same issue you will need to contact us via other means.</source>
@@ -2552,53 +2581,30 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Pending a support staff member to join, you can write your questions, and as soon as a support staff member confirms this chat, they will get your messages</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Visitor has been redirected to contact form</source>
       <translation>המשתמש הופנה לטופס יצירת קשר</translation>
     </message>
   </context>
   <context>
-    <name>chat/closedchats</name>
-    <message>
-      <source>Information</source>
-      <translation>מידע</translation>
-    </message>
-    <message>
-      <source>Open in a new window</source>
-      <translation>פתח בחלון חדש</translation>
-    </message>
-    <message>
-      <source>Delete chat</source>
-      <translation>מחיקת צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Empty...</source>
-      <translation>ריק...</translation>
-    </message>
-    <message>
-      <source>Closed chats list</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chats list</source>
-      <translation>רשימות צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Closed chats</source>
-      <translation>צ&apos;אטים סגורים</translation>
-    </message>
-  </context>
-  <context>
     <name>chat/user_settings</name>
-    <message>
-      <source>Enable/Disable sound about new messages from the operator</source>
-      <translation type="unfinished"/>
-    </message>
     <message>
       <source>Print</source>
       <translation>הדפס</translation>
     </message>
     <message>
       <source>Send chat transcript to your e-mail</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>End the chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enable/Disable sound about new messages from the operator</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -2616,6 +2622,49 @@
     <message>
       <source>Change my status to online/offline</source>
       <translation>שנה את מצבי למחובר/לא מחובר</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/dashboardwidgets</name>
+    <message>
+      <source>Choose what widgets you want to see</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Settings updated</source>
+      <translation>הגדרות עודכנו</translation>
+    </message>
+    <message>
+      <source>Online operators</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Online visitors</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Departments stats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Pending chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Unread chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Transfered chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Closed chats</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -2639,6 +2688,17 @@
     <message>
       <source>Data updated</source>
       <translation>המידע עודכן</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/editnick</name>
+    <message>
+      <source>Your information</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Updated!</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3007,6 +3067,10 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Google Maps API key, saved automatically. After pasting the key, refresh the page.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Settings updated</source>
       <translation>ההגדרות עודכנו</translation>
     </message>
@@ -3015,8 +3079,12 @@
       <translation>שלח הודעה</translation>
     </message>
     <message>
-      <source>Dashboard</source>
+      <source>Chat list</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Dashboard</source>
+      <translation>לוח בקרה</translation>
     </message>
     <message>
       <source>City</source>
@@ -3080,6 +3148,10 @@
     </message>
     <message>
       <source>User is not having any chat right now</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operator</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -3151,8 +3223,8 @@
       <translation>רשימת מבקרים פעילים</translation>
     </message>
     <message>
-      <source>Online users on map</source>
-      <translation>משתמשים מחוברים על מפה</translation>
+      <source>Online visitors on map</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Enable/Disable sound about new visitor</source>
@@ -3303,6 +3375,10 @@
       <translation>ביקור אחרון</translation>
     </message>
     <message>
+      <source>From</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Files upload for users is active</source>
       <translation type="unfinished"/>
     </message>
@@ -3316,10 +3392,6 @@
     </message>
     <message>
       <source>Visits</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>From</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -3392,100 +3464,13 @@
     </message>
   </context>
   <context>
-    <name>chat/listchatconfig</name>
-    <message>
-      <source>Notifications about new chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Copyright settings</source>
-      <translation>הגדרות זכויות יוצרים</translation>
-    </message>
-    <message>
-      <source>Online tracking</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Misc</source>
-      <translation>שונות</translation>
-    </message>
-    <message>
-      <source>Visitor activity</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Workflow</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Application name</source>
-      <translation>שם תוכנה</translation>
-    </message>
-    <message>
-      <source>Site settings</source>
-      <translation>הגדרות אתר</translation>
-    </message>
-    <message>
-      <source>Cookie related</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chat related</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Online if</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>(Widget is open) or (closed and user has activity in last 5 minutes and ping respond)</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>(Widget is open or closed) and (user has activity in last 5 minutes and ping respond)</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Update</source>
-      <translation>לעדכן</translation>
-    </message>
-    <message>
-      <source>Settings updated</source>
-      <translation>ההגדרות עודכנו</translation>
-    </message>
-    <message>
-      <source>This determines should status widget change it&apos;s status once operator logins. Recommended value 290</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Screen sharing</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Chat configuration</source>
-      <translation>הגדרות צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>List chat configuration</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
     <name>system/configuration</name>
-    <message>
-      <source>Supported: online_operators, departments_stats, pending_chats, unread_chats, transfered_chats, active_chats, closed_chats</source>
-      <translation type="unfinished"/>
-    </message>
     <message>
       <source>Request notification permission</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Supported: dashboard,online_map,online_users,pending_chats,online_map,active_chats,unread_chats,closed_chats,online_operators</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Supported: online_operators, departments_stats, online_visitors, pending_chats, unread_chats, transfered_chats, active_chats, closed_chats</source>
+      <source>Close button</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -3493,8 +3478,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>System configuration</source>
-      <translation>תצורת מערכת</translation>
+      <source>Supported: online_operators, departments_stats, online_visitors, pending_chats, unread_chats, transfered_chats, active_chats, closed_chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Supported: dashboard,online_map,online_users,pending_chats,online_map,active_chats,unread_chats,closed_chats,online_operators</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Time zone settings</source>
@@ -3507,18 +3496,6 @@
     <message>
       <source>Languages configuration</source>
       <translation>תצורת שפות</translation>
-    </message>
-    <message>
-      <source>Users</source>
-      <translation>משתמשים</translation>
-    </message>
-    <message>
-      <source>List of groups</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>List of roles</source>
-      <translation type="unfinished"/>
     </message>
     <message>
       <source>GEO detection configuration</source>
@@ -3589,6 +3566,10 @@
       <translation>תחזוקה</translation>
     </message>
     <message>
+      <source>Paid chat configuration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Update information</source>
       <translation>עדכון מידע</translation>
     </message>
@@ -3597,8 +3578,16 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
       <source>Questionary embed code</source>
       <translation>קוד הטמעת שאלה</translation>
+    </message>
+    <message>
+      <source>Rest API</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Start chat form settings</source>
@@ -3611,6 +3600,10 @@
     <message>
       <source>Surveys</source>
       <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Synchronization and sound settings</source>
+      <translation>הגדרות סינכרון וקול</translation>
     </message>
     <message>
       <source>Theming</source>
@@ -3629,8 +3622,32 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Back office theming</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Admin themes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default admin theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Automatic translations</source>
       <translation>תרגום אוטומטי</translation>
+    </message>
+    <message>
+      <source>Users</source>
+      <translation>משתמשים</translation>
+    </message>
+    <message>
+      <source>List of groups</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>List of roles</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>XMPP settings</source>
@@ -3645,8 +3662,8 @@
       <translation>מחלקות</translation>
     </message>
     <message>
-      <source>Synchronization and sound settings</source>
-      <translation>הגדרות סינכרון וקול</translation>
+      <source>System configuration</source>
+      <translation>תצורת מערכת</translation>
     </message>
     <message>
       <source>Embed code</source>
@@ -3670,34 +3687,310 @@
     </message>
   </context>
   <context>
-    <name>chat/lists</name>
+    <name>chat/listchatconfig</name>
     <message>
-      <source>Choose what type of list you want to see</source>
-      <translation>בחר איזה סוג רשימה ברצונך לראות</translation>
+      <source>Application name</source>
+      <translation>שם תוכנה</translation>
+    </message>
+    <message>
+      <source>Site settings</source>
+      <translation>הגדרות אתר</translation>
+    </message>
+    <message>
+      <source>(Widget is open) or (closed and user has activity in last 5 minutes and ping respond)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>(Widget is open or closed) and (user has activity in last 5 minutes and ping respond)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Update</source>
+      <translation>לעדכן</translation>
+    </message>
+    <message>
+      <source>Settings updated</source>
+      <translation>ההגדרות עודכנו</translation>
+    </message>
+    <message>
+      <source>Screen sharing</source>
+      <translation>שיתוף מסך</translation>
+    </message>
+    <message>
+      <source>Notifications about new chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Copyright settings</source>
+      <translation>הגדרות זכויות יוצרים</translation>
+    </message>
+    <message>
+      <source>Online tracking</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Misc</source>
+      <translation>שונות</translation>
+    </message>
+    <message>
+      <source>Visitor activity</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Workflow</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat configuration</source>
+      <translation>הגדרות צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Online if</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat related</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Cookie related</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>This determines should status widget change it&apos;s status once operator logins. Recommended value 290</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>List chat configuration</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/pendingchats</name>
+    <message>
+      <source>Information</source>
+      <translation>מידע</translation>
+    </message>
+    <message>
+      <source>Status</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Open in a new window</source>
+      <translation>פתח בחלון חדש</translation>
+    </message>
+    <message>
+      <source>Reject chat</source>
+      <translation>לדחות צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Pending chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Active chat</source>
+      <translation>צ&apos;אט פעיל</translation>
+    </message>
+    <message>
+      <source>Closed chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chatbox chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operators chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Empty...</source>
+      <translation>ריק...</translation>
+    </message>
+    <message>
+      <source>Chats list</source>
+      <translation>רשימות צ&apos;אט</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/activechats</name>
+    <message>
+      <source>Close chat</source>
+      <translation>סגור צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Delete chat</source>
+      <translation>מחיקת צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Open in a new window</source>
+      <translation>פתח בחלון חדש</translation>
+    </message>
+    <message>
+      <source>Empty...</source>
+      <translation>ריק...</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/closedchats</name>
+    <message>
+      <source>Delete chat</source>
+      <translation>מחיקת צ&apos;אט</translation>
+    </message>
+    <message>
+      <source>Empty...</source>
+      <translation>ריק...</translation>
+    </message>
+  </context>
+  <context>
+    <name>chat/lists/search_panel</name>
+    <message>
+      <source>Delete selected</source>
+      <translation>מחק בחירה</translation>
+    </message>
+    <message>
+      <source>Nick</source>
+      <translation>כינוי</translation>
+    </message>
+    <message>
+      <source>E-mail</source>
+      <translation>דוא&quot;ל</translation>
+    </message>
+    <message>
+      <source>Date range from to</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Department</source>
+      <translation>מחלקה</translation>
+    </message>
+    <message>
+      <source>User</source>
+      <translation>משתמש</translation>
+    </message>
+    <message>
+      <source>Vote status</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Any</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Not Voted</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Up Voted</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Down vote</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat status</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Pending chats</source>
-      <translation>צ&apos;אטים בהמתנה</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Active chats</source>
-      <translation>צ&apos;אטים פעילים</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Closed chats</source>
-      <translation>צ&apos;אטים סגורים</translation>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chatbox chats</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Operators chats</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Chats with unread messages</source>
+      <source>Has unread messages</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Chat lists</source>
-      <translation>רשימות צ&apos;אט</translation>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
+      <source>Search</source>
+      <translation>חיפוש</translation>
+    </message>
+    <message>
+      <source>Print</source>
+      <translation>הדפס</translation>
+    </message>
+    <message>
+      <source>XLS</source>
+      <translation>XLS</translation>
+    </message>
+    <message>
+      <source>XLS (with content)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Select department</source>
+      <translation>בחר מחלקה</translation>
+    </message>
+    <message>
+      <source>Select user</source>
+      <translation>בחר משתמש</translation>
+    </message>
+    <message>
+      <source>Select product</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Type to search</source>
+      <translation>סוג החיפוש</translation>
+    </message>
+    <message>
+      <source>Choose department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Group by</source>
+      <translation>קבץ לפי</translation>
+    </message>
+    <message>
+      <source>Month</source>
+      <translation>חודש</translation>
+    </message>
+    <message>
+      <source>Day</source>
+      <translation>יום</translation>
+    </message>
+    <message>
+      <source>Group results by operator</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimum chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Optional</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Username</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Surname</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3747,6 +4040,30 @@
       <translation>כל המחלקות</translation>
     </message>
     <message>
+      <source>Check all</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Only online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Only explicit online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hide hidden</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hide disabled</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Department</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Number of elements in list</source>
       <translation>מספר אלמנטים ברשימה</translation>
     </message>
@@ -3763,12 +4080,12 @@
       <translation>מבקרים פעילים</translation>
     </message>
     <message>
-      <source>Transfered chats</source>
+      <source>Transferred chats</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Clean cache</source>
-      <translation type="unfinished"/>
+      <translation>נקה מטמון</translation>
     </message>
     <message>
       <source>Home</source>
@@ -3803,12 +4120,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Settings</source>
-      <translation type="unfinished"/>
+      <source>Dashboard</source>
+      <translation>לוח בקרה</translation>
     </message>
     <message>
-      <source>Dashboard</source>
-      <translation type="unfinished"/>
+      <source>Settings</source>
+      <translation>הגדרות</translation>
     </message>
     <message>
       <source>Menu</source>
@@ -3879,48 +4196,6 @@
     <message>
       <source>Chats duration was updated</source>
       <translation>משך הצ&apos;אטים עודכן</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/operatorschats</name>
-    <message>
-      <source>Operators chats list</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Operators chats</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>chat/pendingchats</name>
-    <message>
-      <source>Pending chats list</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Information</source>
-      <translation>מידע</translation>
-    </message>
-    <message>
-      <source>Open in a new window</source>
-      <translation>פתח בחלון חדש</translation>
-    </message>
-    <message>
-      <source>Reject chat</source>
-      <translation>לדחות צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Empty...</source>
-      <translation>ריק...</translation>
-    </message>
-    <message>
-      <source>Chats list</source>
-      <translation>רשימות צ&apos;אט</translation>
-    </message>
-    <message>
-      <source>Pending chats</source>
-      <translation>צ&apos;אטים בהמתנה</translation>
     </message>
   </context>
   <context>
@@ -4122,6 +4397,30 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <source>Encryption key, min length 40</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Additional encryption key, min length 40</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please enter resource identifier</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Add resource</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimum 40 characters for encryption key!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Minimum 40 characters for additional encryption key!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Please choose at least one field for a popup</source>
       <translation type="unfinished"/>
     </message>
@@ -4141,18 +4440,6 @@
       <translation>סטטיסטיקה</translation>
     </message>
     <message>
-      <source>Chats statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total statistic</source>
-      <translation>סטטיסטיקה כוללת</translation>
-    </message>
-    <message>
-      <source>Last 24 hours statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>User</source>
       <translation>משתמש</translation>
     </message>
@@ -4161,15 +4448,7 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Number of Thumbs Up</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Thumbs down</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of Thumbs Down</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -4181,16 +4460,12 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Number of chats by country</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Average in seconds</source>
       <translation>ממוצע בשניות</translation>
     </message>
     <message>
       <source>Wait time</source>
-      <translation type="unfinished"/>
+      <translation>זמן המתנה</translation>
     </message>
     <message>
       <source>Messages</source>
@@ -4217,7 +4492,7 @@
       <translation>ממתין</translation>
     </message>
     <message>
-      <source>Chats number by statuses</source>
+      <source>Number</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -4225,19 +4500,11 @@
       <translation>זמן</translation>
     </message>
     <message>
-      <source>AVG wait time in seconds, max 10 mininutes</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>Visitors initiated</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <source>Proactive</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Proactive chats number vs visitors initiated</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -4249,48 +4516,8 @@
       <translation>מערכת</translation>
     </message>
     <message>
-      <source>Messages types</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of chats per hour, average chat duration</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Hourly statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Country statistic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Users statisic</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of chats by user</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Number of messages by user</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Average chat duration by user</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <source>All operators statistic will be downloaded</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>AVG visitor wait time by operator</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Last 24h statistic</source>
-      <translation>סטטיסטיקה - 24 שעות אחרונות</translation>
     </message>
     <message>
       <source>Parameter</source>
@@ -4303,42 +4530,6 @@
     <message>
       <source>Total chats</source>
       <translation>סה&quot;כ צ&apos;אטים</translation>
-    </message>
-    <message>
-      <source>Total pending chats</source>
-      <translation>סה&quot;כ צ&apos;אטים בהמתנה</translation>
-    </message>
-    <message>
-      <source>Total active chats</source>
-      <translation>סה&quot;כ צ&apos;אטים פעילים</translation>
-    </message>
-    <message>
-      <source>Total closed chats</source>
-      <translation>סה&quot;כ צ&apos;אטים סגורים </translation>
-    </message>
-    <message>
-      <source>Chatbox chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Total messages (including visitors, system and operators messages)</source>
-      <translation>סה&quot;כ הודעות (כולל מבקרים, והודעות מערכת ומפעילים)</translation>
-    </message>
-    <message>
-      <source>Total messages (only visitors)</source>
-      <translation>סה&quot;כ הודעות (רק מבקרים)</translation>
-    </message>
-    <message>
-      <source>Total messages (only system messages)</source>
-      <translation>סה&quot;כ הודעות (רק הודעות מערכת)</translation>
-    </message>
-    <message>
-      <source>Total messages (only operators)</source>
-      <translation>סה&quot;כ הודעות (רק מפעילים)</translation>
-    </message>
-    <message>
-      <source>Operators statistic, top 100 by chats number</source>
-      <translation type="unfinished"/>
     </message>
     <message>
       <source>Total messages</source>
@@ -4356,20 +4547,125 @@
       <source>ago</source>
       <translation>לפני</translation>
     </message>
-  </context>
-  <context>
-    <name>chat/unreadchats</name>
     <message>
-      <source>Unread chats list</source>
+      <source>Average chat duration by user</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Information</source>
-      <translation>מידע</translation>
+      <source>AVG visitor wait time by operator</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <source>Empty...</source>
-      <translation>ריק...</translation>
+      <source>AVG wait time in seconds, max 10 mininutes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chatbox chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats number by statuses</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chats statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Country statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hourly statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Last 24h statistic</source>
+      <translation>סטטיסטיקה - 24 שעות אחרונות</translation>
+    </message>
+    <message>
+      <source>Messages types</source>
+      <translation>סוגי הודעות</translation>
+    </message>
+    <message>
+      <source>Number of chats by country</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of chats by user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of chats per hour, average chat duration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of messages by user</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of Thumbs Down</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Number of Thumbs Up</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Operators statistic, top 100 by chats number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Proactive chats number vs visitors initiated</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Last 24 hours statistic</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Total statistic</source>
+      <translation>סטטיסטיקה כוללת</translation>
+    </message>
+    <message>
+      <source>Total active chats</source>
+      <translation>סה&quot;כ צ&apos;אטים פעילים</translation>
+    </message>
+    <message>
+      <source>Total closed chats</source>
+      <translation>סה&quot;כ צ&apos;אטים סגורים </translation>
+    </message>
+    <message>
+      <source>Total messages (including visitors, system and operators messages)</source>
+      <translation>סה&quot;כ הודעות (כולל מבקרים, והודעות מערכת ומפעילים)</translation>
+    </message>
+    <message>
+      <source>Total messages (only operators)</source>
+      <translation>סה&quot;כ הודעות (רק מפעילים)</translation>
+    </message>
+    <message>
+      <source>Total messages (only system messages)</source>
+      <translation>סה&quot;כ הודעות (רק הודעות מערכת)</translation>
+    </message>
+    <message>
+      <source>Total messages (only visitors)</source>
+      <translation>סה&quot;כ הודעות (רק מבקרים)</translation>
+    </message>
+    <message>
+      <source>Total pending chats</source>
+      <translation>סה&quot;כ צ&apos;אטים בהמתנה</translation>
+    </message>
+    <message>
+      <source>Unanswered chats</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Unanswered chats numbers</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Users statisic</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -4658,7 +4954,7 @@
     </message>
     <message>
       <source>Synchronization and sound settings</source>
-      <translation type="unfinished"/>
+      <translation>הגדרות סנכרון וקול</translation>
     </message>
   </context>
   <context>
@@ -4684,26 +4980,46 @@
       <translation>העברה</translation>
     </message>
     <message>
-      <source>Departments</source>
-      <translation>מחלקות</translation>
+      <source>Only departments which are online and explicitly assigned operator are online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Exclude hidden departments</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Exclude disabled departments</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Online</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Offline</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>chat/userjoined</name>
     <message>
-      <source>User has joined the chat!</source>
+      <source>Visitor has joined the chat!</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>User has joined the chat from popup chat window!</source>
+      <source>Visitor has joined the chat from popup chat window!</source>
       <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>chat/userleftchat</name>
     <message>
-      <source>User has left the chat!</source>
-      <translation>המשתמש עזב את הצ&apos;אט</translation>
+      <source>Visitor has left the chat!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Visitor has closed the chat explicitly!</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -4957,6 +5273,10 @@
       <source>more information on how to use it</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <source>Paid chat settings</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>chatbox/list</name>
@@ -5033,6 +5353,10 @@
   <context>
     <name>cobrowse/browse</name>
     <message>
+      <source>Click blue eye at the top to request screen share</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Request screen share</source>
       <translation>בקשת שיתוף מסך </translation>
     </message>
@@ -5050,10 +5374,6 @@
     </message>
     <message>
       <source>On click navigate user browser</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Click blue eye at the top to request screen share</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5101,6 +5421,10 @@
     <message>
       <source>Updated</source>
       <translation>מעודכן</translation>
+    </message>
+    <message>
+      <source>Update</source>
+      <translation>לעדכן</translation>
     </message>
     <message>
       <source>Updating...</source>
@@ -5167,6 +5491,10 @@
       <translation>דוא&quot;ל</translation>
     </message>
     <message>
+      <source>Chat nickname</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Name</source>
       <translation>שם</translation>
     </message>
@@ -5201,10 +5529,6 @@
     <message>
       <source>Delete</source>
       <translation>מחק</translation>
-    </message>
-    <message>
-      <source>Update</source>
-      <translation>לעדכן</translation>
     </message>
     <message>
       <source>Return</source>
@@ -5253,26 +5577,6 @@
     <message>
       <source>Personal canned messages</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Please enter a username!</source>
-      <translation>אנא הכנס שם משתמש!</translation>
-    </message>
-    <message>
-      <source>User exists!</source>
-      <translation>משתמש קיים</translation>
-    </message>
-    <message>
-      <source>Wrong email address</source>
-      <translation>כתובת דוא&quot;ל שגויה</translation>
-    </message>
-    <message>
-      <source>Please enter a name</source>
-      <translation>אנא הזן שם</translation>
-    </message>
-    <message>
-      <source>Passwords mismatch</source>
-      <translation>חוסר התאמת סיסמאות</translation>
     </message>
   </context>
   <context>
@@ -5503,10 +5807,6 @@
   <context>
     <name>file/configuration</name>
     <message>
-      <source>File configuration</source>
-      <translation>הגדרות קובץ</translation>
-    </message>
-    <message>
       <source>Allowed files types for operators</source>
       <translation type="unfinished"/>
     </message>
@@ -5523,6 +5823,10 @@
       <translation>ההגדרות עודכנו</translation>
     </message>
     <message>
+      <source>File configuration</source>
+      <translation>הגדרות קובץ</translation>
+    </message>
+    <message>
       <source>Please enter valid file type!</source>
       <translation type="unfinished"/>
     </message>
@@ -5534,10 +5838,6 @@
   <context>
     <name>file/new</name>
     <message>
-      <source>New file</source>
-      <translation>קובץ חדש</translation>
-    </message>
-    <message>
       <source>File name</source>
       <translation type="unfinished"/>
     </message>
@@ -5548,6 +5848,10 @@
     <message>
       <source>File uploaded</source>
       <translation>קובץ הועלה</translation>
+    </message>
+    <message>
+      <source>New file</source>
+      <translation>קובץ חדש</translation>
     </message>
   </context>
   <context>
@@ -5701,9 +6005,47 @@
     </message>
   </context>
   <context>
+    <name>paidchat/expiredchat</name>
+    <message>
+      <source>Chat</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Chat was closed.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Invalid hash</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Removed paid chat</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>paidchat/settings</name>
+    <message>
+      <source>Paid chat settings</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Enabled</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User can not access old chat if chat is closed</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Secret hash, used for verification</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>permission/editrole</name>
     <message>
-      <source>Role edit</source>
+      <source>Edit role</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -5776,6 +6118,10 @@
     </message>
     <message>
       <source>List of roles</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Role edit</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -5949,6 +6295,60 @@
     <message>
       <source>System configuration</source>
       <translation>תצורת המערכת</translation>
+    </message>
+  </context>
+  <context>
+    <name>lhproduct/index</name>
+    <message>
+      <source>Products</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>theme/index</name>
+    <message>
+      <source>Products</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Theme</source>
+      <translation>ערכת נושא</translation>
+    </message>
+    <message>
+      <source>Widget themes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Import a new theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Admin</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Admin themes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default admin theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Rest API</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Themes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Import theme</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -6217,6 +6617,17 @@
     </message>
   </context>
   <context>
+    <name>lhrestapi/index</name>
+    <message>
+      <source>Rest API</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Rest API Keys</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>speech/language</name>
     <message>
       <source>Choose speech recognition language for this chat</source>
@@ -6316,7 +6727,7 @@
     <name>users/autologin</name>
     <message>
       <source>Auto login settings</source>
-      <translation type="unfinished"/>
+      <translation>הגדרות כניסה אוטומטית</translation>
     </message>
     <message>
       <source>This module can be used if you are generating autologin link. See site for code examples</source>
@@ -6503,7 +6914,7 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>User edit</source>
+      <source>Edit user</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -6525,6 +6936,10 @@
     <message>
       <source>E-mail</source>
       <translation>דוא&quot;ל</translation>
+    </message>
+    <message>
+      <source>Chat nickname</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <source>Name</source>
@@ -6571,20 +6986,16 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Please enter a name</source>
-      <translation>אנא הזן שם</translation>
-    </message>
-    <message>
-      <source>Passwords mismatch</source>
-      <translation>חוסר התאמת סיסמאות</translation>
-    </message>
-    <message>
       <source>System configuration</source>
       <translation>תצורת המערכת</translation>
     </message>
     <message>
       <source>Users</source>
       <translation>משתמשים</translation>
+    </message>
+    <message>
+      <source>User edit</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -6630,29 +7041,91 @@
     </message>
   </context>
   <context>
-    <name>theme/index</name>
+    <name>icclicktocallform/form</name>
     <message>
-      <source>Default theme</source>
+      <source>Settings</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Theme</source>
+      <source>Header settings</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Widget themes</source>
+      <source>Header css</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Import a new theme</source>
+      <source>Static content</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Themes</source>
+      <source>JS</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Import theme</source>
+      <source>CSS</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Header content</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Resource name for replacement</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Empty...</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Invalid CSRF token!</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please enter a name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>File not chosen for</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>lhtheme/admin</name>
+    <message>
+      <source>New admin theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Admin themes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default admin theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Edit admin theme</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>admintheme/form</name>
+    <message>
+      <source>Edit theme</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Updated</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -6667,6 +7140,10 @@
     <name>theme/import</name>
     <message>
       <source>Default theme was set</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Default admin theme was set</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -6745,6 +7222,10 @@
       <translation>חזור על הסיסמה החדשה</translation>
     </message>
     <message>
+      <source>Chat nickname</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Name</source>
       <translation>שם</translation>
     </message>
@@ -6763,30 +7244,6 @@
     <message>
       <source>Departments</source>
       <translation>מחלקות</translation>
-    </message>
-    <message>
-      <source>Please choose a default user group</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Wrong email address</source>
-      <translation>כתובת דוא&quot;ל שגויה</translation>
-    </message>
-    <message>
-      <source>Please enter a name</source>
-      <translation>אנא הזן שם</translation>
-    </message>
-    <message>
-      <source>Please enter a username</source>
-      <translation>אנא הכנס שם משתמש</translation>
-    </message>
-    <message>
-      <source>User exists</source>
-      <translation>משתמש קיים</translation>
-    </message>
-    <message>
-      <source>Passwords mismatch</source>
-      <translation>חוסר התאמת סיסמאות</translation>
     </message>
     <message>
       <source>System configuration</source>
@@ -6932,10 +7389,6 @@
   <context>
     <name>user/grouplist</name>
     <message>
-      <source>Groups</source>
-      <translation>קבוצות</translation>
-    </message>
-    <message>
       <source>Name</source>
       <translation>שם</translation>
     </message>
@@ -6950,6 +7403,10 @@
     <message>
       <source>New group</source>
       <translation>קבוצה חדשה</translation>
+    </message>
+    <message>
+      <source>Groups</source>
+      <translation>קבוצות</translation>
     </message>
     <message>
       <source>System configuration</source>
@@ -6994,8 +7451,16 @@
       <translation>התנתקת כי משתמש אחר נכנס עם פרטים זהים</translation>
     </message>
     <message>
+      <source>CSFR token is invalid, try to resubmit form</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Incorrect username or password</source>
       <translation>שם משתמש או סיסמה שגויה</translation>
+    </message>
+    <message>
+      <source>Logged in successfully</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -7081,6 +7546,25 @@
     <message>
       <source>Message seen</source>
       <translation>הודעה נקראה</translation>
+    </message>
+  </context>
+  <context>
+    <name>abstract/product</name>
+    <message>
+      <source>Name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Priority</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Product</source>
+      <translation>מוצר</translation>
+    </message>
+    <message>
+      <source>API Key</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -7209,6 +7693,37 @@
     <message>
       <source>Please enter a valid to date range!</source>
       <translation>אנא הזן טווח תאריכים חוקי!</translation>
+    </message>
+  </context>
+  <context>
+    <name>user/validator</name>
+    <message>
+      <source>Please enter a username</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User exists</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Passwords mismatch</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>User action type not set</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Wrong email address</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please enter a name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Please choose a default user group</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -7407,6 +7922,32 @@
     </message>
   </context>
   <context>
+    <name>chat/voteaction</name>
+    <message>
+      <source>User has updated his profile information</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Thumbs up</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Thumbs down</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Removed thumb vote</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>chat/refreshcustomfields</name>
+    <message>
+      <source>Data refreshed</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>chat/reopenchat</name>
     <message>
       <source>has reopened the chat!</source>
@@ -7443,25 +7984,6 @@
     </message>
   </context>
   <context>
-    <name>chat/voteaction</name>
-    <message>
-      <source>User has updated his profile information</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Thumbs up</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Thumbs down</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Removed thumb vote</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
     <name>chatarchive/viewarchivedchat</name>
     <message>
       <source>View archived chat</source>
@@ -7473,74 +7995,6 @@
     <message>
       <source>Please enter valid file type!</source>
       <translation>אנא הזן סוג קובץ תקין</translation>
-    </message>
-  </context>
-  <context>
-    <name>chat/editnick</name>
-    <message>
-      <source>Your information</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Updated!</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>chat/chatpreview</name>
-    <message>
-      <source>Chat preview</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>chat/dashboardwidgets</name>
-    <message>
-      <source>Choose what widgets you want to see</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Settings updated</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Online operators</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Active chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Online visitors</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Departments stats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Pending chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Unread chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Transfered chats</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Closed chats</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>chat/refreshcustomfields</name>
-    <message>
-      <source>Data refreshed</source>
-      <translation type="unfinished"/>
     </message>
   </context>
 </TS>

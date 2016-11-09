@@ -26,7 +26,12 @@ class erLhcoreClassModelUser {
             'active_chats_counter' => $this->active_chats_counter,
             'closed_chats_counter' => $this->closed_chats_counter,
             'pending_chats_counter' => $this->pending_chats_counter,
-            'departments_ids' => $this->departments_ids
+            'departments_ids' => $this->departments_ids,
+            'chat_nickname' => $this->chat_nickname,
+            'attr_int_1' => $this->attr_int_1,
+            'attr_int_2' => $this->attr_int_2,
+            'attr_int_3' => $this->attr_int_3,
+            'operation_admin' => $this->operation_admin
         );
    }
       
@@ -40,9 +45,15 @@ class erLhcoreClassModelUser {
 
    public function setPassword($password)
    {
-       $cfgSite = erConfigClassLhConfig::getInstance();
-	   $secretHash = $cfgSite->getSetting( 'site', 'secrethash' );
-       $this->password = sha1($password.$secretHash.sha1($password));
+		
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+       
+		if ($hash) {
+			$this->password = $hash;
+		} else {
+			return false;
+		}		
+       
    }
 
    public static function fetch($user_id, $useCache = false)
@@ -101,7 +112,11 @@ class erLhcoreClassModelUser {
        switch ($param) {
 
        	case 'name_support':
-       			return trim($this->name.' '.$this->surname);
+       			return $this->chat_nickname != '' ? trim($this->chat_nickname) : trim($this->name_official);
+       		break;
+
+       	case 'name_official':
+       			return $this->name_official = trim($this->name.' '.$this->surname);
        		break;
 
        	case 'user_groups_id':
@@ -323,7 +338,7 @@ class erLhcoreClassModelUser {
 
    public function removeFile()
    {   		   	
-	   	if ($this->filename != '' || $this->filename != '') {
+	   	if ($this->filename != '') {
 	   		if ( file_exists($this->filepath . $this->filename) ) {
 	   			unlink($this->filepath . $this->filename);
 	   		}
@@ -340,6 +355,34 @@ class erLhcoreClassModelUser {
 	   	}
    }
 
+	public function setUserGroups() {
+   		
+		erLhcoreClassModelGroupUser::removeUserFromGroups($this->id);
+		
+		foreach ($this->user_groups_id as $group_id) {
+			$groupUser = new erLhcoreClassModelGroupUser();
+			$groupUser->group_id = $group_id;
+			$groupUser->user_id = $this->id;
+			$groupUser->saveThis();
+		}
+		
+   	}
+   
+   	public static function findOne($paramsSearch = array()) {
+   		
+   		$paramsSearch['limit'] = 1;
+   		
+   		$list = self::getUserList($paramsSearch);
+   		
+   		if (! empty($list)) {
+   			reset($list);
+   			return current($list);
+   		}
+   	
+   		return false;
+   		
+   	}   	
+   	
     public $id = null;
     public $username = '';
     public $password = '';
@@ -359,9 +402,15 @@ class erLhcoreClassModelUser {
     public $time_zone = '';
     public $rec_per_req = '';
     public $session_id = '';
+    public $chat_nickname = '';
     public $active_chats_counter = 0;
     public $closed_chats_counter = 0;
     public $pending_chats_counter = 0;
+    public $operation_admin = '';
+    
+    public $attr_int_1 = 0;
+    public $attr_int_2 = 0;
+    public $attr_int_3 = 0;
 }
 
 ?>

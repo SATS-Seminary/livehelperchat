@@ -29,6 +29,11 @@ $def->properties['name']->columnName   = 'name';
 $def->properties['name']->propertyName = 'name';
 $def->properties['name']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 
+$def->properties['chat_nickname'] = new ezcPersistentObjectProperty();
+$def->properties['chat_nickname']->columnName   = 'chat_nickname';
+$def->properties['chat_nickname']->propertyName = 'chat_nickname';
+$def->properties['chat_nickname']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
 $def->properties['skype'] = new ezcPersistentObjectProperty();
 $def->properties['skype']->columnName   = 'skype';
 $def->properties['skype']->propertyName = 'skype';
@@ -119,6 +124,26 @@ $def->properties['session_id'] = new ezcPersistentObjectProperty();
 $def->properties['session_id']->columnName   = 'session_id';
 $def->properties['session_id']->propertyName = 'session_id';
 $def->properties['session_id']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['operation_admin'] = new ezcPersistentObjectProperty();
+$def->properties['operation_admin']->columnName   = 'operation_admin';
+$def->properties['operation_admin']->propertyName = 'operation_admin';
+$def->properties['operation_admin']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['attr_int_1'] = new ezcPersistentObjectProperty();
+$def->properties['attr_int_1']->columnName   = 'attr_int_1';
+$def->properties['attr_int_1']->propertyName = 'attr_int_1';
+$def->properties['attr_int_1']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+$def->properties['attr_int_2'] = new ezcPersistentObjectProperty();
+$def->properties['attr_int_2']->columnName   = 'attr_int_2';
+$def->properties['attr_int_2']->propertyName = 'attr_int_2';
+$def->properties['attr_int_2']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+$def->properties['attr_int_3'] = new ezcPersistentObjectProperty();
+$def->properties['attr_int_3']->columnName   = 'attr_int_3';
+$def->properties['attr_int_3']->propertyName = 'attr_int_3';
+$def->properties['attr_int_3']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
 return $def;
 

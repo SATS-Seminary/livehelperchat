@@ -11,23 +11,28 @@
 
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="general">
-		
+		<div role="tabpanel" class="tab-pane active" id="general">		
 		<div class="row">
 			<div class="col-md-6">
     			<div>
     				<label><input type="checkbox" id="id_internal_popup" checked="checked" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','On a mouse click show the page widget');?></label>
     			</div>        			
 			</div>
-			<div class="col-md-6"><div>
-				<label><input type="checkbox" id="id_hide_then_offline" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Hide status when offline');?></label>
-			</div></div>
-			<div class="col-md-6"><div>
-				<label><input type="checkbox" id="id_check_operator_message" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Automatically check for messages from the operator/invitation messages');?> <span data-tooltip data-width="250" class="has-tip" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','It increases server load, because every 15 seconds is checked for operator message or invitation message.');?>">?</span></label>
-			</div></div>
-			<div class="col-md-6"><div>
-				<label><input type="checkbox" id="id_show_leave_form" checked="checked" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Show a leave a message form when there are no online operators');?></label>
-			</div></div>
+			<div class="col-md-6">
+    			<div>
+    				<label><input type="checkbox" id="id_hide_then_offline" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Hide status when offline');?></label>
+    			</div>
+			</div>
+			<div class="col-md-6">
+    			<div>
+    				<label><input type="checkbox" id="id_check_operator_message" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Automatically check for messages from the operator/invitation messages');?> <span data-tooltip data-width="250" class="has-tip" title="<?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','It increases server load, because every 15 seconds is checked for operator message or invitation message.');?>">?</span></label>
+    			</div>
+			</div>
+			<div class="col-md-6">
+    			<div>
+    				<label><input type="checkbox" id="id_show_leave_form" checked="checked" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Show a leave a message form when there are no online operators');?></label>
+    			</div>
+			</div>
 			<div class="col-md-6">
     			<div>
     			     <label><input type="checkbox" id="id_disable_pro_active_invitations" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Disable pro active invitations, usefull if you want disable them from site part.');?></label>
@@ -38,6 +43,11 @@
     				<label><input type="checkbox" id="id_disable_responsive" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Disable responsive layout for status widget.');?></label>
     			</div>
 			</div>
+			<div class="col-md-6">	
+    			<div>
+    				<label><input type="checkbox" id="id_disable_online_tracking" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Disable online tracking, overrides system configuration');?></label>
+    			</div>
+			</div>			
 		</div>	
 			
 			<hr>
@@ -66,7 +76,7 @@
                     			   <option value="<?php echo $departament->id?>"><?php echo htmlspecialchars($departament->name)?></option>
                     			<?php endforeach; ?>
                     		</select>
-						</div>
+						</div>						
 					</div>
 
 					<div class="col-md-6">
@@ -98,7 +108,29 @@
 						
 					</div>
 				</div>
-			
+				
+				<?php if (erLhcoreClassModelChatConfig::fetch('product_enabled_module')->current_value == 1) : ?>
+				<div class="row">
+				    <div class="col-md-6">
+    				    <div class="form-group">
+        				    <label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Product')?></label> 
+        					<?php echo erLhcoreClassRenderHelper::renderCombobox( array (
+                                    'input_name'     => 'product_id',                    				
+                                    'selected_id'    =>  0,
+                    	            'css_class'      => 'form-control',
+                    	            'display_name'   => 'name_department',
+                    	            'multiple'       => true,
+                                    'list_function'  => 'erLhAbstractModelProduct::getList'
+                            )); ?>
+        				</div>
+    				</div>
+				    <div class="col-md-6">
+    				    <div class="form-group">
+        					<label><input type="checkbox" id="pds" checked="checked" value="on"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Show product selection based on selected departments')?></label>
+        				</div>
+    				</div>
+				</div>
+				<?php endif;?>
 		</div>
 
 		<div role="tabpanel" class="tab-pane" id="design">
@@ -122,6 +154,8 @@
         					<option value="middle_right"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Middle right side of the screen');?></option>
         					<option value="middle_left"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Middle left side of the screen');?></option>
         					<option value="api"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Invisible, only JS API will be included');?></option>
+        					<option value="full_height_right"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Full height right');?></option>
+        					<option value="full_height_left"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Full height left');?></option>
         				</select>
         			</div>
     			</div>
@@ -156,7 +190,6 @@
 				</div>
 			</div>
 			
-
 			<div class="form-group">
 				<label><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','Position from the top, only used if the Middle left or the Middle right side is chosen');?></label>
 				<div class="row">
@@ -194,19 +227,22 @@ var default_site_access = '<?php echo erConfigClassLhConfig::getInstance()->getS
 function generateEmbedCode(){
     var siteAccess = $('#LocaleID').val() == default_site_access ? '' : $('#LocaleID').val();
     var id_internal_popup = $('#id_internal_popup').is(':checked') ? '/(click)/internal' : '';
+    var id_disable_online_tracking = $('#id_disable_online_tracking').is(':checked') ? '/(dot)/true' : '';
+    
     var id_show_leave_form = $('#id_show_leave_form').is(':checked') ? '/(leaveamessage)/true' : '';
     var id_hide_then_offline = $('#id_hide_then_offline').is(':checked') ? '/(hide_offline)/true' : '';
     var id_disable_responsive = $('#id_disable_responsive').is(':checked') ? '/(noresponse)/true' : '';
     var id_check_operator_message = $('#id_check_operator_message').is(':checked') ? '/(check_operator_messages)/true' : '';
     var id_disable_pro_active_invitations = $('#id_disable_pro_active_invitations').is(':checked') ? '/(disable_pro_active)/true' : '';
     var id_department = $('#DepartmentID').val() && $('#DepartmentID').val().length > 0 && $('#DepartmentID').val().join('/') != '0' ? '/(department)/'+$('#DepartmentID').val().join('/') : '';
-
+    var id_product = $('#id_product_id').val() && $('#id_product_id').val().length > 0 && $('#id_product_id').val().join('/') != '0' ? '/(prod)/'+$('#id_product_id').val().join('/') : '';
     
     var id_theme = $('#ThemeID').val() > 0 ? '/(theme)/'+$('#ThemeID').val() : '';
     var id_identifier = $('#id_site_identifier').val() != '' ? '/(identifier)/'+$('#id_site_identifier').val() : '';
     var id_ma = $('#MinimizeID').val() != '' ? '/(ma)/'+$('#MinimizeID').val() : '';
     var id_operator = $('#id_operator').val() > 0 ? '/(operator)/'+$('#id_operator').val() : '';
     var id_survey = $('#id_Survey').val() > 0 ? '/(survey)/'+$('#id_Survey').val() : '';
+    
 
     var id_position =  '/(position)/'+$('#PositionID').val();
    
@@ -242,7 +278,7 @@ function generateEmbedCode(){
         'var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;'+"\n"+
         'var referrer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf(\'://\')+1)) : \'\';'+"\n"+
         'var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : \'\';'+"\n"+
-        'po.src = \''+$('#HttpMode').val()+'//<?php echo $_SERVER['HTTP_HOST']?><?php echo erLhcoreClassDesign::baseurldirect()?>'+siteAccess+'chat/getstatus<?php isset($userArgument) ? print $userArgument : ''?>'+uaArguments+id_internal_popup+id_position+id_ma+id_hide_then_offline+id_check_operator_message+top+topposition+id_show_leave_form+id_department+id_operator+id_identifier+id_disable_pro_active_invitations+id_theme+id_disable_responsive+id_survey+'?r=\'+referrer+\'&l=\'+location;'+"\n"+
+        'po.src = \''+$('#HttpMode').val()+'//<?php echo $_SERVER['HTTP_HOST']?><?php echo erLhcoreClassDesign::baseurldirect()?>'+siteAccess+'chat/getstatus<?php isset($userArgument) ? print $userArgument : ''?>'+uaArguments+id_internal_popup+id_position+id_ma+id_hide_then_offline+id_disable_online_tracking+id_check_operator_message+top+topposition+id_show_leave_form+id_department+id_operator+id_identifier+id_disable_pro_active_invitations+id_theme+id_disable_responsive+id_product+id_survey+'?r=\'+referrer+\'&l=\'+location;'+"\n"+
         'var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);'+"\n"+
       '})();'+"\n"+
     '</scr'+'ipt>';
@@ -250,7 +286,7 @@ function generateEmbedCode(){
     $('#HMLTContent').text(id_tag+script);
 };
 
-$('#LocaleID,#id_embed_domain,#MinimizeID,#id_operator,#DepartmentID,#HttpMode,#ThemeID,#id_Survey,#id_disable_pro_active_invitations,#id_site_identifier,#id_internal_popup,#id_disable_responsive,#id_position_bottom,#PositionID,#id_show_leave_form,#id_hide_then_offline,#id_check_operator_message,#UnitsTop,#id_top_text,#id_popup_width,#id_popup_height,#id_widget_width,#id_widget_height').change(function(){
+$('#LocaleID,#id_embed_domain,#id_product_id,#id_disable_online_tracking,#MinimizeID,#id_operator,#DepartmentID,#HttpMode,#ThemeID,#id_Survey,#id_disable_pro_active_invitations,#id_site_identifier,#id_internal_popup,#id_disable_responsive,#id_position_bottom,#PositionID,#id_show_leave_form,#id_hide_then_offline,#id_check_operator_message,#UnitsTop,#id_top_text,#id_popup_width,#id_popup_height,#id_widget_width,#id_widget_height').change(function(){
     generateEmbedCode();
 });
 
